@@ -139,6 +139,7 @@ const Dot = styled.li`
   border-radius: 50%;
   width: 10px;
   height: 10px;
+  cursor: pointer;
   margin-right: 5px;
   background-color: ${(props) =>
     props.isActive ? "rgb(238, 77, 45)" : "rgb(255 255 255 / 40%)"};
@@ -152,16 +153,37 @@ function HomePageMall() {
   const [moving, setMoving] = useState(0);
   const [checkDot, setCheckDot] = useState(0);
 
-  const numberOfDots = 4;
+  const numberOfDots = CarouselInformation.length;
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCheckDot();
-    }, 3000);
-  });
+      setCheckDot(currDot => currDot === numberOfDots - 1 ? 0 : currDot + 1);
+      setMoving(currMoving => currMoving === CarouselInformation.length - 1 ? 0 : currMoving + 1);
+    }, 5000);
 
-  function onTranslate(newNumber) {
-    setMoving((currNumber) => currNumber + newNumber);
+    return () => clearInterval(timer);
+  },[CarouselInformation.length]);
+
+  function onTranslate(direction) {
+    setMoving((currMoving) => {
+      if(direction == 'next'){
+        return currMoving === numberOfDots - 1 ? 0 : currMoving + 1;
+      }else{
+        return currMoving != 0 ? currMoving -1 : numberOfDots - 1;
+      }
+    });
+    setCheckDot((currDot) => {
+      if(direction == 'next'){
+        return currDot === numberOfDots - 1 ? 0 : currDot + 1;
+      }else{
+        return currDot != 0 ? currDot -1 : numberOfDots - 1;
+      }
+    });
+  }
+
+  function onDotClick(index){
+    setCheckDot(currDot => currDot === index ? currDot : index);
+    setMoving(index);
   }
 
   function onHover() {
@@ -209,19 +231,22 @@ function HomePageMall() {
             onMouseEnter={() => onHover()}
             onMouseLeave={() => onHover()}
           >
+
             <CarouselList>
               {CarouselInformation.map((item, index) => (
                 <CarouselContainer key={index}>
                   <CarouselImage
-                    translation={moving}
+                    onClick={() => onDotClick(index)}
+                    translation={moving * -100}
                     alt={item.alt}
                     source={item.source}
                   ></CarouselImage>
                 </CarouselContainer>
               ))}
             </CarouselList>
+
             <ChevronLeftIcon
-              onClick={() => onTranslate(100)}
+              onClick={() => onTranslate("prev")}
               style={{
                 position: "absolute",
                 top: "50%",
@@ -234,8 +259,9 @@ function HomePageMall() {
                 visibility: isHovered ? "visible" : "hidden",
               }}
             />
+
             <ChevronRightIcon
-              onClick={() => onTranslate(-100)}
+              onClick={() => onTranslate("next")}
               style={{
                 position: "absolute",
                 top: "50%",
@@ -248,16 +274,10 @@ function HomePageMall() {
                 visibility: isHovered ? "visible" : "hidden",
               }}
             />
-            {/* <DotContainer>
-              <Dot></Dot>
-              <Dot></Dot>
-              <Dot></Dot>
-              <Dot></Dot>
-            </DotContainer> */}
 
             <DotContainer>
               {Array.from({ length: numberOfDots }).map((_, index) => (
-                <Dot key={index} isActive={checkDot === index}></Dot>
+                <Dot key={index} onClick={() => onDotClick(index)} isActive={checkDot === index}></Dot>
               ))}
             </DotContainer>
           </ListContainer>
