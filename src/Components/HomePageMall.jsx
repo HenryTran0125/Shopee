@@ -152,37 +152,48 @@ function HomePageMall() {
   const [isHovered, setIsHovered] = useState(false);
   const [moving, setMoving] = useState(0);
   const [checkDot, setCheckDot] = useState(0);
+  const [checkClick, setCheckClick] = useState(null);
 
   const numberOfDots = CarouselInformation.length;
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCheckDot(currDot => currDot === numberOfDots - 1 ? 0 : currDot + 1);
-      setMoving(currMoving => currMoving === CarouselInformation.length - 1 ? 0 : currMoving + 1);
+      setCheckDot((currDot) =>
+        currDot === numberOfDots - 1 ? 0 : currDot + 1
+      );
+      setMoving((currMoving) =>
+        currMoving === CarouselInformation.length - 1 ? 0 : currMoving + 1
+      );
     }, 5000);
 
+    setCheckClick(timer);
+
     return () => clearInterval(timer);
-  },[CarouselInformation.length]);
+  }, [CarouselInformation.length]);
+
+  console.log(checkClick);
 
   function onTranslate(direction) {
     setMoving((currMoving) => {
-      if(direction == 'next'){
+      if (direction == "next") {
+        clearInterval(checkClick);
         return currMoving === numberOfDots - 1 ? 0 : currMoving + 1;
-      }else{
-        return currMoving != 0 ? currMoving -1 : numberOfDots - 1;
+      } else {
+        clearInterval(checkClick);
+        return currMoving != 0 ? currMoving - 1 : numberOfDots - 1;
       }
     });
     setCheckDot((currDot) => {
-      if(direction == 'next'){
+      if (direction == "next") {
         return currDot === numberOfDots - 1 ? 0 : currDot + 1;
-      }else{
-        return currDot != 0 ? currDot -1 : numberOfDots - 1;
+      } else {
+        return currDot != 0 ? currDot - 1 : numberOfDots - 1;
       }
     });
   }
 
-  function onDotClick(index){
-    setCheckDot(currDot => currDot === index ? currDot : index);
+  function onDotClick(index) {
+    setCheckDot((currDot) => (currDot === index ? currDot : index));
     setMoving(index);
   }
 
@@ -231,7 +242,6 @@ function HomePageMall() {
             onMouseEnter={() => onHover()}
             onMouseLeave={() => onHover()}
           >
-
             <CarouselList>
               {CarouselInformation.map((item, index) => (
                 <CarouselContainer key={index}>
@@ -277,7 +287,11 @@ function HomePageMall() {
 
             <DotContainer>
               {Array.from({ length: numberOfDots }).map((_, index) => (
-                <Dot key={index} onClick={() => onDotClick(index)} isActive={checkDot === index}></Dot>
+                <Dot
+                  key={index}
+                  onClick={() => onDotClick(index)}
+                  isActive={checkDot === index}
+                ></Dot>
               ))}
             </DotContainer>
           </ListContainer>
