@@ -153,27 +153,27 @@ function HomePageMall() {
   const [moving, setMoving] = useState(0);
   const [checkDot, setCheckDot] = useState(0);
   const [checkClick, setCheckClick] = useState(null);
+  const [isManualControl, setIsManualControl] = useState(false);
 
   const numberOfDots = CarouselInformation.length;
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCheckDot((currDot) =>
-        currDot === numberOfDots - 1 ? 0 : currDot + 1
-      );
-      setMoving((currMoving) =>
-        currMoving === CarouselInformation.length - 1 ? 0 : currMoving + 1
-      );
-    }, 5000);
-
-    setCheckClick(timer);
-
-    return () => clearInterval(timer);
+    if (!isManualControl) {
+      const timer = setInterval(() => {
+        setCheckDot((currDot) =>
+          currDot === numberOfDots - 1 ? 0 : currDot + 1
+        );
+        setMoving((currMoving) =>
+          currMoving === CarouselInformation.length - 1 ? 0 : currMoving + 1
+        );
+      }, 5000);
+      setCheckClick(timer);
+      return () => clearInterval(timer);
+    }
   }, [CarouselInformation.length]);
 
-  console.log(checkClick);
-
   function onTranslate(direction) {
+    setIsManualControl(true);
     setMoving((currMoving) => {
       if (direction == "next") {
         clearInterval(checkClick);
@@ -185,11 +185,16 @@ function HomePageMall() {
     });
     setCheckDot((currDot) => {
       if (direction == "next") {
+        clearInterval(checkClick);
         return currDot === numberOfDots - 1 ? 0 : currDot + 1;
       } else {
         return currDot != 0 ? currDot - 1 : numberOfDots - 1;
       }
     });
+
+    window.autoSlideTimer = setInterval(() => {
+      setIsManualControl(false);
+    }, 5000);
   }
 
   function onDotClick(index) {
