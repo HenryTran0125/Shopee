@@ -170,10 +170,16 @@ function HomePageMall() {
       setCheckClick(timer);
       return () => clearInterval(timer);
     }
-  }, [CarouselInformation.length]);
+  }, [isManualControl, numberOfDots]);
+
+  function resetAutoSlide() {
+    clearInterval(checkClick);
+    setIsManualControl(false);
+  }
 
   function onTranslate(direction) {
     setIsManualControl(true);
+    clearInterval(checkClick);
     setMoving((currMoving) => {
       if (direction == "next") {
         clearInterval(checkClick);
@@ -192,9 +198,7 @@ function HomePageMall() {
       }
     });
 
-    window.autoSlideTimer = setInterval(() => {
-      setIsManualControl(false);
-    }, 5000);
+    setTimeout(resetAutoSlide, 5000);
   }
 
   function onDotClick(index) {
@@ -251,7 +255,6 @@ function HomePageMall() {
               {CarouselInformation.map((item, index) => (
                 <CarouselContainer key={index}>
                   <CarouselImage
-                    onClick={() => onDotClick(index)}
                     translation={moving * -100}
                     alt={item.alt}
                     source={item.source}
