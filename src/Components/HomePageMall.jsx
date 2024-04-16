@@ -5,25 +5,8 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { List } from "@mui/material";
 import { useState } from "react";
 import { useEffect } from "react";
-
-const CarouselInformation = [
-  {
-    alt: "Puma",
-    source: "/MallCarousel/1.jpg",
-  },
-  {
-    alt: "Apple",
-    source: "/MallCarousel/2.jpg",
-  },
-  {
-    alt: "Enjoy",
-    source: "/MallCarousel/3.jpg",
-  },
-  {
-    alt: "Authentic",
-    source: "/MallCarousel/4.jpg",
-  },
-];
+import { CarouselInformation } from "./CarouselInformation";
+import { MallBrands } from "./MallBrands";
 
 const Container = styled.div`
   margin-top: 12px;
@@ -42,7 +25,6 @@ const Headlines = styled.div`
 
 const Policy = styled.div`
   display: flex;
-  /* width: 55%; */
   justify-content: space-around;
 `;
 
@@ -148,12 +130,74 @@ const Dot = styled.li`
       props.isActive ? "rgb(238, 77, 45)" : "rgb(255 255 255 / 40%)"};
 `;
 
+const BrandsSaleOff = styled.div`
+  /* width: 100%;
+  height: 100%; */
+  width: 800px;
+  height: 100%;
+  overflow: hidden;
+`;
+
+const MallElementContainer = styled.ul`
+  width: 200%;
+  height: 472px;
+  display: flex;
+  flex-wrap: wrap;
+  transform: translate(-0px, 0);
+`;
+
+const MallElement = styled.li`
+  height: 100%;
+  width: 12.5%;
+  width: 200px !important;
+  height: 236px;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const MallImage = styled.div`
+  background-image: url(${(props) => props.Image});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 100%;
+  width: 100%;
+`;
+
+const SaleText = styled.div`
+  text-align: center;
+`;
+
+const MoreBrands = styled.li`
+  height: 100%;
+  width: 12.5%;
+  list-style-type: none;
+  position: relative;
+  padding-top: 120%;
+`;
+
+const MoreBrandsElement = styled.div`
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+`;
+
 function HomePageMall() {
   const [isHovered, setIsHovered] = useState(false);
   const [moving, setMoving] = useState(0);
   const [checkDot, setCheckDot] = useState(0);
   const [checkClick, setCheckClick] = useState(null);
   const [isManualControl, setIsManualControl] = useState(false);
+
+  console.log(MallBrands.length);
 
   const numberOfDots = CarouselInformation.length;
 
@@ -305,7 +349,25 @@ function HomePageMall() {
           </ListContainer>
         </Carousel>
 
-        <div></div>
+        <BrandsSaleOff>
+          <MallElementContainer>
+            {MallBrands.map((item) => (
+              <MallElement key={item.source}>
+                <MallImage Image={item.source}></MallImage>
+                <SaleText>{item.text}</SaleText>
+              </MallElement>
+            ))}
+
+            <MoreBrands>
+              <MoreBrandsElement>
+                <div>see all</div>
+                <div>
+                  <ChevronRightIcon />
+                </div>
+              </MoreBrandsElement>
+            </MoreBrands>
+          </MallElementContainer>
+        </BrandsSaleOff>
       </Body>
     </Container>
   );
