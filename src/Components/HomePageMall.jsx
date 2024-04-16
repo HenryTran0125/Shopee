@@ -149,13 +149,15 @@ const MallElementContainer = styled.ul`
 const MallElement = styled.li`
   height: 100%;
   width: 12.5%;
-  width: 200px !important;
+  /* width: 200px !important; */
   height: 236px;
   list-style-type: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 12px;
+  position: relative;
 `;
 
 const MallImage = styled.div`
@@ -169,14 +171,22 @@ const MallImage = styled.div`
 
 const SaleText = styled.div`
   text-align: center;
+  position: absolute;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 128px;
+  overflow: hidden;
+  bottom: 4%;
+  font-size: 18px;
+  color: #d0011b;
 `;
 
 const MoreBrands = styled.li`
   height: 100%;
   width: 12.5%;
   list-style-type: none;
+  /* padding-top: 120%; */
   position: relative;
-  padding-top: 120%;
 `;
 
 const MoreBrandsElement = styled.div`
@@ -367,6 +377,9 @@ function HomePageMall() {
               </MoreBrandsElement>
             </MoreBrands>
           </MallElementContainer>
+
+          <ChevronLeftIcon />
+          <ChevronRightIcon />
         </BrandsSaleOff>
       </Body>
     </Container>
