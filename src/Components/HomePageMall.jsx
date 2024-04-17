@@ -136,6 +136,7 @@ const BrandsSaleOff = styled.div`
   width: 800px;
   height: 100%;
   overflow: hidden;
+  position: relative;
 `;
 
 const MallElementContainer = styled.ul`
@@ -143,7 +144,8 @@ const MallElementContainer = styled.ul`
   height: 472px;
   display: flex;
   flex-wrap: wrap;
-  transform: translate(-0px, 0);
+  transform: translate(${(props) => props.SlidePosition}px, 0);
+  transition: transform 450ms ease-in-out;
 `;
 
 const MallElement = styled.li`
@@ -182,22 +184,36 @@ const SaleText = styled.div`
 `;
 
 const MoreBrands = styled.li`
-  height: 100%;
   width: 12.5%;
+  height: 236px;
   list-style-type: none;
   /* padding-top: 120%; */
   position: relative;
 `;
 
 const MoreBrandsElement = styled.div`
-  display: flex;
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: 50%;
+  left: 35%;
+  display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const MoreBrandsText = styled.div`
+  white-space: nowrap;
+  color: #d0011b;
+  cursor: pointer;
+  font-size: 1.25rem;
+  margin-right: 4px;
+`;
+
+const ArrowBrands = styled.div`
+  width: 1.375rem;
+  height: 1.375rem;
+  background-color: #d0011b;
+  border-radius: 50%;
+  color: #fff;
 `;
 
 function HomePageMall() {
@@ -206,6 +222,8 @@ function HomePageMall() {
   const [checkDot, setCheckDot] = useState(0);
   const [checkClick, setCheckClick] = useState(null);
   const [isManualControl, setIsManualControl] = useState(false);
+  const [slide, setSlide] = useState(0);
+  const [mouse, setMouse] = useState(false);
 
   console.log(MallBrands.length);
 
@@ -260,9 +278,22 @@ function HomePageMall() {
     setMoving(index);
   }
 
-  function onHover() {
-    setIsHovered((check) => !check);
+  function onHover(category) {
+    if (category === "Carousel") {
+      setIsHovered((check) => !check);
+    } else {
+      setMouse((check) => !check);
+    }
   }
+
+  function onSlide(slide) {
+    if (slide === "Next") {
+      setSlide((curr) => curr - 800);
+    } else {
+      setSlide((curr) => curr + 800);
+    }
+  }
+
   return (
     <Container>
       <Headlines>
@@ -302,8 +333,8 @@ function HomePageMall() {
       <Body>
         <Carousel>
           <ListContainer
-            onMouseEnter={() => onHover()}
-            onMouseLeave={() => onHover()}
+            onMouseEnter={() => onHover("Carousel")}
+            onMouseLeave={() => onHover("Carousel")}
           >
             <CarouselList>
               {CarouselInformation.map((item, index) => (
@@ -359,8 +390,11 @@ function HomePageMall() {
           </ListContainer>
         </Carousel>
 
-        <BrandsSaleOff>
-          <MallElementContainer>
+        <BrandsSaleOff
+          onMouseEnter={() => onHover("Brand")}
+          onMouseLeave={() => onHover("Brand")}
+        >
+          <MallElementContainer SlidePosition={slide}>
             {MallBrands.map((item) => (
               <MallElement key={item.source}>
                 <MallImage Image={item.source}></MallImage>
@@ -370,16 +404,53 @@ function HomePageMall() {
 
             <MoreBrands>
               <MoreBrandsElement>
-                <div>see all</div>
-                <div>
+                <MoreBrandsText>See All</MoreBrandsText>
+                <ArrowBrands>
                   <ChevronRightIcon />
-                </div>
+                </ArrowBrands>
               </MoreBrandsElement>
             </MoreBrands>
           </MallElementContainer>
 
-          <ChevronLeftIcon />
-          <ChevronRightIcon />
+          <ChevronLeftIcon
+            onClick={() => onSlide("Prev")}
+            style={{
+              position: "absolute",
+              top: mouse ? "48%" : "50%",
+              width: mouse ? "50px" : "25px",
+              height: mouse ? "50px" : "25px",
+              left: "0%",
+              cursor: "pointer",
+              color: "rgba(0, 0, 0, 0.54)",
+              backgroundColor: "#fff",
+              boxShadow: "0 1px 12px 0 rgba(0,0,0, .12)",
+              outline: "0",
+              borderRadius: "50%",
+              zIndex: "1",
+              visibility: slide < 0 ? "visible" : "hidden",
+              transition: mouse ? "all .1s cubic-bezier(.4,0,.6,1)" : "",
+            }}
+          />
+
+          <ChevronRightIcon
+            onClick={() => onSlide("Next")}
+            style={{
+              position: "absolute",
+              top: mouse ? "48%" : "50%",
+              right: "-0.5%",
+              width: mouse ? "50px" : "25px",
+              height: mouse ? "50px" : "25px",
+              cursor: "pointer",
+              color: "rgba(0, 0, 0, 0.54)",
+              backgroundColor: "#fff",
+              boxShadow: "0 1px 12px 0 rgba(0,0,0, .12)",
+              outline: "0",
+              borderRadius: "50%",
+              zIndex: "1",
+              visibility: slide >= 0 ? "visible" : "hidden",
+              transition: mouse ? "all .1s cubic-bezier(.4,0,.6,1)" : "",
+            }}
+          />
         </BrandsSaleOff>
       </Body>
     </Container>
