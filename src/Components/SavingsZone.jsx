@@ -3,50 +3,79 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Highlights } from "./Highlights";
+import { Ads } from "./AdsSavingsZone";
+import ChevronLeft from "@mui/icons-material/ChevronLeft";
+import ChevronRight from "@mui/icons-material/ChevronRight";
 
 const Zone = styled.div`
   background-color: #fff;
-  margin-top: 30px;
+  padding-top: 30px;
   opacity: 1;
 `;
 
-const ZoneAlignment = styled.div`
-  width: 57%;
-  min-width: 1200px;
-  margin: 0 auto;
-`;
 const Advertisement = styled.div`
-  display: flex;
-  gap: 5px;
-`;
-const CarouselContainer = styled.div`
-  /* width: 100%; */
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
-const Carousel = styled.img`
+const AdvertisementAlignment = styled.div`
+  display: flex;
+  min-height: 235px;
+  max-height: 235px;
+`;
+
+const CarouselAlignment = styled.div`
+  flex-grow: 2;
+  flex-shrink: 1;
+  flex-basis: 0;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+`;
+
+const CarouselContainer = styled.ul`
+  width: 1200%;
+  height: 100%;
+  list-style-type: none;
+  display: flex;
+`;
+
+const Carousel = styled.li`
   width: 100%;
   /* height: 270px; */
   height: 100%;
-  display: inline-block;
+  background-image: url(${(props) => props.source});
+  transform: translate(-0%, 0);
 `;
 
 const GiftContainer = styled.div`
-  width: 40%;
+  /* width: 40%; */
   gap: 6px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
 `;
 
-const Gift = styled.img`
+const Gift = styled.div`
   width: 100%;
   height: 100%;
-  display: inline-block;
+  /* display: inline-block; */
+  flex: 1 1 50%;
+  background-image: url(${(props) => props.src});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 `;
 const HighLightsZone = styled.div`
   display: flex;
   margin-top: 10px;
   justify-content: space-around;
+  width: 1200px;
+  min-height: 108px;
+  margin: 10px auto 0;
 `;
 
 const HighlightsElement = styled.div`
@@ -77,50 +106,77 @@ const HighlightsIcon = styled.div`
 `;
 
 function SavingsZone() {
-  const [data, setData] = useState(null);
+  const [isHovered, setIsHovered] = useState(false);
 
-  useEffect(() => {
-    async function API() {
-      try {
-        const response = await fetch(
-          "https://partner.shopeemobile.com/api/v2/product/get_category?partner_id=851249&timestamp=1654673582&shop_id=1001094&access_token=367a0a8eb9d1837cbf7c43b587a0faa4&sign=a40fc50a08c382eeee08e2eb00deb8464c6fdcbe4f1c271e033cdbca3ded4d5b&language=zh-hans"
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error! status ${response.status}`);
-        }
-        const data = await response.json();
-        console.log(data);
-      } catch (error) {
-        console.error("Could not fetch data:", error);
-      }
-    }
+  const dots = Ads.length;
 
-    API();
-  }, []);
+  function onHover() {
+    setIsHovered((currState) => !currState);
+  }
 
   return (
     <Zone>
-      <ZoneAlignment>
-        <Advertisement>
-          <CarouselContainer>
-            <Carousel src="/Ads/1.jpg" />
-          </CarouselContainer>
+      <Advertisement>
+        <AdvertisementAlignment>
+          <CarouselAlignment
+            onMouseEnter={() => onHover()}
+            onMouseLeave={() => onHover()}
+          >
+            <CarouselContainer>
+              {Ads.map((item) => (
+                <Carousel source={item.source} key={item.source}></Carousel>
+              ))}
+            </CarouselContainer>
+
+            <ChevronLeft
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "0",
+                width: "1rem",
+                height: "1rem",
+                backgroundColor: "rgba(0, 0, 0, .18)",
+                cursor: "pointer",
+                boxShadow: "0 1px 8px 0 rgba(0, 0, 0, .09)",
+                opacity: "0",
+                color: "rgba(0,0,0, .87)",
+                transition: "opacity .3s ease",
+                visibility: isHovered ? "visible" : "hidden",
+              }}
+            />
+            <ChevronRight
+              style={{
+                position: "absolute",
+                top: "50%",
+                right: "0",
+                width: "1rem",
+                height: "1rem",
+                backgroundColor: "rgba(0, 0, 0, .18)",
+                cursor: "pointer",
+                boxShadow: "0 1px 8px 0 rgba(0, 0, 0, .09)",
+                // opacity: "0",
+                color: "rgba(0,0,0, .87)",
+                transition: "opacity .3s ease",
+                visibility: isHovered ? "visible" : "hidden",
+              }}
+            />
+          </CarouselAlignment>
 
           <GiftContainer>
             <Gift src="/Ads/11.jpg" />
             <Gift src="/Ads/12.png" />
           </GiftContainer>
-        </Advertisement>
+        </AdvertisementAlignment>
+      </Advertisement>
 
-        <HighLightsZone>
-          {Highlights.map((item) => (
-            <HighlightsElement key={item.name}>
-              <HighlightsIcon imageUrl={item.imageUrl}></HighlightsIcon>
-              <HighlightsName>{item.name}</HighlightsName>
-            </HighlightsElement>
-          ))}
-        </HighLightsZone>
-      </ZoneAlignment>
+      <HighLightsZone>
+        {Highlights.map((item) => (
+          <HighlightsElement key={item.name}>
+            <HighlightsIcon imageUrl={item.imageUrl}></HighlightsIcon>
+            <HighlightsName>{item.name}</HighlightsName>
+          </HighlightsElement>
+        ))}
+      </HighLightsZone>
     </Zone>
   );
 }
