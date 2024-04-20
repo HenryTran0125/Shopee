@@ -43,10 +43,42 @@ const CarouselContainer = styled.ul`
 
 const Carousel = styled.li`
   width: 100%;
-  /* height: 270px; */
   height: 100%;
   background-image: url(${(props) => props.source});
-  transform: translate(-0%, 0);
+  background-position: contain;
+  transform: translate(${(props) => props.move}%, 0);
+  transition: transform 500ms ease 0s;
+`;
+
+const DotContainer = styled.ul`
+  display: flex;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%);
+  transition: transform opacity 0.5s ease;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+`;
+
+const Dot = styled.li`
+  background-color: ${(props) =>
+    props.check === "true" ? "#ee4d2d" : "hsla(0, 0%, 100%, 0.4)"};
+  /* background-color: #ee4d2d; */
+  border: ${(props) =>
+    props.check === "true"
+      ? "1px solid #ee4d2d"
+      : "1px solid hsla(0, 0%, 100%, 0.4)"};
+  opacity: 1;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block;
+  list-style-type: none;
 `;
 
 const GiftContainer = styled.div`
@@ -80,7 +112,6 @@ const HighLightsZone = styled.div`
 
 const HighlightsElement = styled.div`
   text-align: center;
-  /* display: flex; */
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -95,7 +126,7 @@ const HighlightsName = styled.div`
 const HighlightsIcon = styled.div`
   margin: 18px auto 8px;
   padding: 12px;
-  background-image: url(/HighlightsIcons/${(props) => props.imageUrl});
+  background-image: url(/HighlightsIcons/${(props) => props.url});
   background-size: contain;
   background-position: center;
   width: 45px;
@@ -107,11 +138,42 @@ const HighlightsIcon = styled.div`
 
 function SavingsZone() {
   const [isHovered, setIsHovered] = useState(false);
+  const [moving, setMoving] = useState(0);
+  const [dot, setDot] = useState(0);
 
-  const dots = Ads.length;
+  const numberOfDots = Ads.length;
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDot((currDot) => (currDot === numberOfDots - 1 ? 0 : currDot + 1));
+      setMoving((currIndex) =>
+        currIndex === Ads.length - 1 ? 0 : currIndex + 1
+      );
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, [numberOfDots, dot]);
 
   function onHover() {
     setIsHovered((currState) => !currState);
+  }
+
+  function onSlide(move) {
+    if (move === "next") {
+      setMoving((currIndex) =>
+        currIndex === Ads.length - 1 ? 0 : currIndex + 1
+      );
+      setDot((currDot) => (currDot === numberOfDots - 1 ? 0 : currDot + 1));
+    } else if (move === "prev") {
+      setMoving((currIndex) =>
+        currIndex === 0 ? Ads.length - 1 : currIndex - 1
+      );
+      setDot((currDot) => (currDot === 0 ? numberOfDots - 1 : currDot - 1));
+    }
+  }
+
+  function onSelectDot(index) {
+    setDot(index);
   }
 
   return (
@@ -124,42 +186,65 @@ function SavingsZone() {
           >
             <CarouselContainer>
               {Ads.map((item) => (
-                <Carousel source={item.source} key={item.source}></Carousel>
+                <Carousel
+                  move={moving * -100}
+                  source={item.source}
+                  key={item.source}
+                ></Carousel>
               ))}
             </CarouselContainer>
 
             <ChevronLeft
+              onClick={() => onSlide("prev")}
               style={{
                 position: "absolute",
                 top: "50%",
                 left: "0",
-                width: "1rem",
-                height: "1rem",
+                width: "2.1875rem",
+                height: "3.75rem",
+                fontSize: "20px",
+                lineHeight: "20px",
+                textAlign: "center",
+                transform: "translateY(-50%)",
                 backgroundColor: "rgba(0, 0, 0, .18)",
                 cursor: "pointer",
                 boxShadow: "0 1px 8px 0 rgba(0, 0, 0, .09)",
-                opacity: "0",
-                color: "rgba(0,0,0, .87)",
+                color: "#fff",
                 transition: "opacity .3s ease",
                 visibility: isHovered ? "visible" : "hidden",
               }}
             />
+
             <ChevronRight
+              onClick={() => onSlide("next")}
               style={{
                 position: "absolute",
                 top: "50%",
                 right: "0",
-                width: "1rem",
-                height: "1rem",
+                width: "2.1875rem",
+                height: "3.75rem",
+                fontSize: "20px",
+                lineHeight: "20px",
+                textAlign: "center",
+                transform: "translateY(-50%)",
                 backgroundColor: "rgba(0, 0, 0, .18)",
                 cursor: "pointer",
                 boxShadow: "0 1px 8px 0 rgba(0, 0, 0, .09)",
-                // opacity: "0",
-                color: "rgba(0,0,0, .87)",
+                color: "#fff",
                 transition: "opacity .3s ease",
                 visibility: isHovered ? "visible" : "hidden",
               }}
             />
+
+            <DotContainer>
+              {Array.from({ length: numberOfDots }).map((_, index) => (
+                <Dot
+                  onClick={() => onSelectDot(index)}
+                  key={index}
+                  check={dot === index ? "true" : "false"}
+                />
+              ))}
+            </DotContainer>
           </CarouselAlignment>
 
           <GiftContainer>
@@ -172,7 +257,7 @@ function SavingsZone() {
       <HighLightsZone>
         {Highlights.map((item) => (
           <HighlightsElement key={item.name}>
-            <HighlightsIcon imageUrl={item.imageUrl}></HighlightsIcon>
+            <HighlightsIcon url={item.imageUrl}></HighlightsIcon>
             <HighlightsName>{item.name}</HighlightsName>
           </HighlightsElement>
         ))}

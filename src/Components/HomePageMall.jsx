@@ -124,10 +124,12 @@ const Dot = styled.li`
   cursor: pointer;
   margin-right: 5px;
   background-color: ${(props) =>
-    props.isActive ? "rgb(238, 77, 45)" : "rgb(255 255 255 / 40%)"};
+    props.active === "true" ? "rgb(238, 77, 45)" : "  rgb(255 255 255 / 40%) "};
   border: 1px solid
     ${(props) =>
-      props.isActive ? "rgb(238, 77, 45)" : "rgb(255 255 255 / 40%)"};
+      props.active === "true"
+        ? "rgb(238, 77, 45)"
+        : "  rgb(255 255 255 / 40%)"};
 `;
 
 const BrandsSaleOff = styled.div`
@@ -144,7 +146,7 @@ const MallElementContainer = styled.ul`
   height: 472px;
   display: flex;
   flex-wrap: wrap;
-  transform: translate(${(props) => props.SlidePosition}px, 0);
+  transform: translate(${(props) => props.slideposition}px, 0);
   transition: transform 450ms ease-in-out;
 `;
 
@@ -163,7 +165,7 @@ const MallElement = styled.li`
 `;
 
 const MallImage = styled.div`
-  background-image: url(${(props) => props.Image});
+  background-image: url(${(props) => props.image});
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -383,8 +385,8 @@ function HomePageMall() {
                 <Dot
                   key={index}
                   onClick={() => onDotClick(index)}
-                  isActive={checkDot === index}
-                ></Dot>
+                  active={checkDot === index ? "true" : "false"}
+                />
               ))}
             </DotContainer>
           </ListContainer>
@@ -394,10 +396,10 @@ function HomePageMall() {
           onMouseEnter={() => onHover("Brand")}
           onMouseLeave={() => onHover("Brand")}
         >
-          <MallElementContainer SlidePosition={slide}>
+          <MallElementContainer slideposition={slide}>
             {MallBrands.map((item) => (
               <MallElement key={item.source}>
-                <MallImage Image={item.source}></MallImage>
+                <MallImage image={item.source}></MallImage>
                 <SaleText>{item.text}</SaleText>
               </MallElement>
             ))}

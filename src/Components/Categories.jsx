@@ -39,7 +39,7 @@ const ListContainer = styled.ul`
   padding: 0;
   margin: 0;
   list-style-type: none;
-  transform: translate(${(props) => props.currentPosition}px, 0);
+  transform: translate(${(props) => props.position}px, 0);
   /* transition: transform 0.4s ease-in-out; */
   transition: all 500ms ease 0s;
   height: 100%;
@@ -62,7 +62,7 @@ const ImageContainer = styled.div`
 `;
 
 const Image = styled.div`
-  background-image: url(/Categories/${(props) => props.ImageUrl});
+  background-image: url(/Categories/${(props) => props.url});
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -122,7 +122,7 @@ function Categories() {
       <CategoriesText>categories</CategoriesText>
       <ListPosition>
         <ListAlignment>
-          <ListContainer currentPosition={position}>
+          <ListContainer position={position}>
             {List.map((item, index) => (
               <CategoriesElement
                 onMouseEnter={() => checkHover(index + 1)}
@@ -133,7 +133,7 @@ function Categories() {
                 key={item.name}
               >
                 <ImageContainer>
-                  <Image ImageUrl={item.image}></Image>
+                  <Image url={item.image}></Image>
                 </ImageContainer>
 
                 <TextContainer>

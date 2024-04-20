@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
+import { useForm } from "react-hook-form";
 
 const HeaderContainer = styled.header`
   background: linear-gradient(-180deg, #f53d2d, #f63);
@@ -190,6 +191,14 @@ const Cart = styled.svg`
 `;
 
 function Header() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  function onSubmit() {}
+
   return (
     <HeaderContainer>
       <HeaderAlignment>
@@ -225,9 +234,9 @@ function Header() {
                   gradientTransform="matrix(0 -1.982 -1.8439 0 -132.522 -51.077)"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <InstagramStop offset="0" stop-color="#fd5" />
-                  <InstagramStop offset=".5" stop-color="#ff543e" />
-                  <InstagramStop offset="1" stop-color="#c837ab" />
+                  <InstagramStop offset="0" stopColor="#fd5" />
+                  <InstagramStop offset=".5" stopColor="#ff543e" />
+                  <InstagramStop offset="1" stopColor="#c837ab" />
                 </linearGradient>
                 <path
                   fill="url(#a)"
@@ -289,10 +298,10 @@ function Header() {
                 />
                 <LanguagePath
                   fill="#fff"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M9.142 4.898C8.295 6.677 7.75 9.187 7.75 12c0 2.813.545 5.323 1.392 7.102.873 1.835 1.934 2.648 2.858 2.648.924 0 1.985-.813 2.858-2.648.847-1.779 1.392-4.289 1.392-7.102 0-2.813-.545-5.323-1.392-7.102C13.985 3.063 12.924 2.25 12 2.25c-.924 0-1.985.813-2.858 2.648Zm-1.355-.645C8.723 2.287 10.163.75 12 .75c1.837 0 3.277 1.537 4.213 3.503.962 2.021 1.537 4.761 1.537 7.747 0 2.986-.575 5.726-1.537 7.747-.936 1.966-2.376 3.503-4.213 3.503-1.837 0-3.277-1.537-4.213-3.503C6.825 17.726 6.25 14.986 6.25 12c0-2.986.575-5.726 1.537-7.747Z"
                 />
-                <LanguageG fill="#fff" fill-rule="evenodd">
+                <LanguageG fill="#fff" fillRule="evenodd">
                   <path d="M1.25 9A.75.75 0 0 1 2 8.25h20a.75.75 0 0 1 0 1.5H2A.75.75 0 0 1 1.25 9ZM1.25 15a.75.75 0 0 1 .75-.75h20a.75.75 0 0 1 0 1.5H2a.75.75 0 0 1-.75-.75Z" />
                   <path d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM.75 12C.75 5.787 5.787.75 12 .75S23.25 5.787 23.25 12 18.213 23.25 12 23.25.75 18.213.75 12Z" />
                 </LanguageG>
@@ -329,7 +338,13 @@ function Header() {
         <Img src="./ShopeeLogo.jpg" />
         <SearchContainer>
           <InputContainer>
-            <Input placeholder="Search for products, brands and shops" />
+            <form>
+              <Input
+                id="input"
+                placeholder="Search for products, brands and shops"
+                {...register("input")}
+              />
+            </form>
             <Button>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

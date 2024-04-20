@@ -24,15 +24,9 @@ export const Ads = [
     source: "/Ads/8.jpg",
   },
   {
-    source: "/Ads/9.jpg",
+    source: "/Ads/9.png",
   },
   {
     source: "/Ads/10.jpg",
-  },
-  {
-    source: "/Ads/11.jpg",
-  },
-  {
-    source: "/Ads/12.jpg",
   },
 ];
