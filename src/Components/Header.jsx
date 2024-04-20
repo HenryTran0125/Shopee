@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 
 const HeaderContainer = styled.header`
   background: linear-gradient(-180deg, #f53d2d, #f63);
@@ -194,10 +194,21 @@ function Header() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
 
-  function onSubmit() {}
+  function onSubmit(data) {
+    console.log(data);
+  }
+
+  function handleKeyDown(event) {
+    // console.log(event);
+    if (event.key === "Enter") {
+      // event.preventDefault();
+      setValue("searching", "");
+    }
+  }
 
   return (
     <HeaderContainer>
@@ -338,11 +349,12 @@ function Header() {
         <Img src="./ShopeeLogo.jpg" />
         <SearchContainer>
           <InputContainer>
-            <form>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <Input
-                id="input"
+                // id="input"
                 placeholder="Search for products, brands and shops"
-                {...register("input")}
+                {...register("searching")}
+                onKeyDown={handleKeyDown}
               />
             </form>
             <Button>
