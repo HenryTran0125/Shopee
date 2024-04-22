@@ -5,8 +5,8 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { List } from "@mui/material";
 import { useState } from "react";
 import { useEffect } from "react";
-import { CarouselInformation } from "./CarouselInformation";
-import { MallBrands } from "./MallBrands";
+import { CarouselInformation } from "../data/CarouselInformation";
+import { MallBrands } from "../data/MallBrands";
 
 const Container = styled.div`
   margin-top: 12px;
@@ -218,7 +218,7 @@ const ArrowBrands = styled.div`
   color: #fff;
 `;
 
-function HomePageMall() {
+function HomeShopeeMall() {
   const [isHovered, setIsHovered] = useState(false);
   const [moving, setMoving] = useState(0);
   const [checkDot, setCheckDot] = useState(0);
@@ -459,4 +459,4 @@ function HomePageMall() {
   );
 }
 
-export default HomePageMall;
+export default HomeShopeeMall;

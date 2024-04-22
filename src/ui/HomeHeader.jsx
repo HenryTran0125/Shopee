@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import { useForm, useWatch } from "react-hook-form";
+import { useState } from "react";
+import { Products } from "../data/CateAnchor";
 
 const HeaderContainer = styled.header`
   background: linear-gradient(-180deg, #f53d2d, #f63);
@@ -190,24 +192,21 @@ const Cart = styled.svg`
   height: 30px;
 `;
 
-function Header() {
+function HomeHeader() {
   const {
     register,
     handleSubmit,
     setValue,
+    getValues,
     formState: { errors },
   } = useForm();
+  let valueInput;
 
   function onSubmit(data) {
-    console.log(data);
-  }
-
-  function handleKeyDown(event) {
-    // console.log(event);
-    if (event.key === "Enter") {
-      // event.preventDefault();
-      setValue("searching", "");
-    }
+    // console.log(data);
+    valueInput = getValues("searching");
+    console.log(valueInput);
+    setValue("searching", "");
   }
 
   return (
@@ -346,7 +345,7 @@ function Header() {
       </HeaderAlignment>
 
       <HeaderSearch>
-        <Img src="./ShopeeLogo.jpg" />
+        <Img src="./LogoIcon/ShopeeLogo.jpg" />
         <SearchContainer>
           <InputContainer>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -354,9 +353,9 @@ function Header() {
                 // id="input"
                 placeholder="Search for products, brands and shops"
                 {...register("searching")}
-                onKeyDown={handleKeyDown}
               />
             </form>
+
             <Button>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -377,19 +376,9 @@ function Header() {
           </InputContainer>
 
           <NavSearch>
-            <CateAnchor>Phone Case</CateAnchor>
-            <CateAnchor>Tops Women</CateAnchor>
-            <CateAnchor>Shoes</CateAnchor>
-            <CateAnchor>Muji</CateAnchor>
-            <CateAnchor>LEGO</CateAnchor>
-            <CateAnchor>Skirt</CateAnchor>
-            <CateAnchor>iPhone</CateAnchor>
-            <CateAnchor>Hoodie</CateAnchor>
-            <CateAnchor>Samsung A55</CateAnchor>
-            <CateAnchor>Study Table</CateAnchor>
-            <CateAnchor>Baggy Shirt</CateAnchor>
-            <CateAnchor>Handbag</CateAnchor>
-            <CateAnchor>Perfume</CateAnchor>
+            {Products.map((product) => (
+              <CateAnchor key={product}>{product}</CateAnchor>
+            ))}
           </NavSearch>
         </SearchContainer>
         <Cart
@@ -413,4 +402,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default HomeHeader;

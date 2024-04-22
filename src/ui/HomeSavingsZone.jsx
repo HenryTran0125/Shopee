@@ -2,8 +2,8 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Highlights } from "./Highlights";
-import { Ads } from "./AdsSavingsZone";
+import { Highlights } from "../data/Highlights";
+import { Ads } from "../data/AdsSavingsZone";
 import ChevronLeft from "@mui/icons-material/ChevronLeft";
 import ChevronRight from "@mui/icons-material/ChevronRight";
 
@@ -136,7 +136,7 @@ const HighlightsIcon = styled.div`
   border-radius: 30%;
 `;
 
-function SavingsZone() {
+function HomeSavingsZone() {
   const [isHovered, setIsHovered] = useState(false);
   const [moving, setMoving] = useState(0);
   const [dot, setDot] = useState(0);
@@ -266,4 +266,4 @@ function SavingsZone() {
   );
 }
 
-export default SavingsZone;
+export default HomeSavingsZone;

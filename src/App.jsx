@@ -1,16 +1,19 @@
-import Body from "./Components/Body"
-import Header from "./Components/Header"
-import GlobalStyles from "./styles/GlobalStyles"
+/* eslint-disable no-unused-vars */
+import HomeLayout from "./ui/HomeLayout";
+import GlobalStyles from "./styles/GlobalStyles";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-
   return (
     <>
-    <GlobalStyles />
-    <Header />
-    <Body />
+      <GlobalStyles />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomeLayout />} />
+        </Routes>
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

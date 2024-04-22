@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { useState } from "react";
-import { List } from "./List";
+import { List } from "../data/List";
 
 const CategoriesAlignment = styled.div`
   margin-top: 1.25rem;
@@ -88,7 +88,7 @@ const Button = styled.button`
   position: absolute;
 `;
 
-function Categories() {
+function HomeCategories() {
   const [position, setPosition] = useState(0);
   const [value, setValue] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
@@ -192,4 +192,4 @@ function Categories() {
   );
 }
 
-export default Categories;
+export default HomeCategories;
