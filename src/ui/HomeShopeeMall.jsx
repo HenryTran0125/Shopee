@@ -227,8 +227,6 @@ function HomeShopeeMall() {
   const [slide, setSlide] = useState(0);
   const [mouse, setMouse] = useState(false);
 
-  console.log(MallBrands.length);
-
   const numberOfDots = CarouselInformation.length;
 
   useEffect(() => {

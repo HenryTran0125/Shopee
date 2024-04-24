@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { useForm, useWatch } from "react-hook-form";
 import { useState } from "react";
 import { Products } from "../data/CateAnchor";
+import { useKeyWords } from "../services/apiSearchKeyWords";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import qs from "qs";
 
 const HeaderContainer = styled.header`
   background: linear-gradient(-180deg, #f53d2d, #f63);
@@ -135,6 +138,7 @@ const HeaderAlignment = styled.div`
 const Img = styled.img`
   height: 100%;
   width: 150px;
+  cursor: pointer;
   display: inline-block;
 `;
 
@@ -192,7 +196,9 @@ const Cart = styled.svg`
   height: 30px;
 `;
 
-function HomeHeader() {
+function Header() {
+  let valueInput;
+
   const {
     register,
     handleSubmit,
@@ -200,13 +206,30 @@ function HomeHeader() {
     getValues,
     formState: { errors },
   } = useForm();
-  let valueInput;
 
-  function onSubmit(data) {
+  const { data, error, isLoading } = useKeyWords();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // const keyword = searchParams.get("keyword") || "";
+
+  function onSubmit() {
     // console.log(data);
     valueInput = getValues("searching");
-    console.log(valueInput);
-    setValue("searching", "");
+    const queryString = qs.stringify({ keyword: valueInput }); //create URL string automatically with key is "keyword" and value is "valueInput"
+    if (location.pathname.startsWith("/search")) {
+      //if current page is search
+      setSearchParams(valueInput != "" ? { keyword: valueInput } : {});
+    } else {
+      //if current page is not search (on Home page)
+      navigate(`/search?${queryString}`);
+      setValue("searching", "");
+    }
+  }
+
+  function onBackHome() {
+    navigate("/");
   }
 
   return (
@@ -345,7 +368,7 @@ function HomeHeader() {
       </HeaderAlignment>
 
       <HeaderSearch>
-        <Img src="./LogoIcon/ShopeeLogo.jpg" />
+        <Img onClick={() => onBackHome()} src="./LogoIcon/ShopeeLogo.jpg" />
         <SearchContainer>
           <InputContainer>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -402,4 +425,4 @@ function HomeHeader() {
   );
 }
 
-export default HomeHeader;
+export default Header;
