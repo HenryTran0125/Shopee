@@ -13,7 +13,7 @@ const Icon = styled.div`
 
 const SearchFilterHeading = styled.h2`
   flex: 1;
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 700;
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.8);
