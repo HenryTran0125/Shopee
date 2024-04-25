@@ -224,7 +224,6 @@ function Header() {
     } else {
       //if current page is not search (on Home page)
       navigate(`/search?${queryString}`);
-      setValue("searching", "");
     }
   }
 
