@@ -2,6 +2,7 @@
 import styled from "styled-components";
 import SearchResultProduct from "./SearchResultProduct";
 import ShopRelation from "./ShopRelation";
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
 
 const Container = styled.div`
   flex: 1;
@@ -10,6 +11,12 @@ const Container = styled.div`
 `;
 
 function SearchResult() {
+  const [searchParams] = useSearchParams();
+  const location = useLocation();
+  const getKeyWords = searchParams.get("keyword") || "";
+  // console.log(getKeyWords);
+  // console.log(location)
+
   return (
     <Container>
       <ShopRelation />

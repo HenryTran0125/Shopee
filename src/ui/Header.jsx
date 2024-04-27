@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Products } from "../data/CateAnchor";
 import { useKeyWords } from "../services/apiSearchKeyWords";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { searchKeyWord } from "../services/apiSearchKeyWords";
 import qs from "qs";
 
 const HeaderContainer = styled.header`
@@ -207,16 +208,17 @@ function Header() {
     formState: { errors },
   } = useForm();
 
-  const { data, error, isLoading } = useKeyWords();
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
   const navigate = useNavigate();
 
+  // console.log(data);
+
   // const keyword = searchParams.get("keyword") || "";
 
   function onSubmit() {
-    // console.log(data);
     valueInput = getValues("searching");
+    searchKeyWord(valueInput);
     const queryString = qs.stringify({ keyword: valueInput }); //create URL string automatically with key is "keyword" and value is "valueInput"
     if (location.pathname.startsWith("/search")) {
       //if current page is search
