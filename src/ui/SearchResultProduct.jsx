@@ -2,6 +2,7 @@
 import { useSearchParams } from "react-router-dom";
 import { useKeyWords } from "../services/apiSearchKeyWords";
 import SearchResultFor from "./SearchResultFor";
+import SearchSortBy from "./SearchSortBy";
 
 function SearchResultProduct() {
   const [searchParams] = useSearchParams();
@@ -13,6 +14,7 @@ function SearchResultProduct() {
   return (
     <section>
       <SearchResultFor keywords={keywords} />
+      <SearchSortBy />
     </section>
   );
 }

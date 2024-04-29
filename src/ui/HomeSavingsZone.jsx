@@ -190,7 +190,7 @@ function HomeSavingsZone() {
                   move={moving * -100}
                   source={item.source}
                   key={item.source}
-                ></Carousel>
+                />
               ))}
             </CarouselContainer>
 
