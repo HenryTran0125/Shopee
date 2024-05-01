@@ -35,8 +35,54 @@ const ButtonContainer = styled.section`
   margin-left: 0.625rem;
 `;
 
+const SectionSelection = styled.section`
+  background: #fff;
+`;
+
+const SelectionContainer = styled.div`
+  margin-right: 0.75rem;
+`;
+
+const Selection = styled.select`
+  background: #fff;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.02);
+  cursor: pointer;
+  height: 2.125rem;
+  line-height: 2.125rem;
+  min-width: 12.5rem;
+  padding-left: 0.75rem;
+  padding-right: 1.75rem;
+  text-align: left;
+`;
+
 const PageControllerContainer = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ChevronLeftContainer = styled.a`
+  display: inline-block;
+  background: #f9f9f9;
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  border-radius: 2px;
+  cursor: pointer;
+  font-weight: 300;
+  font-size: 0.875rem;
+  line-height: 1;
+`;
+
+const ChevronRightContainer = styled.a`
+  display: inline-block;
+  background: #f9f9f9;
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  border-radius: 2px;
+  cursor: pointer;
+  font-weight: 300;
+  font-size: 0.875rem;
+  line-height: 1;
 `;
 
 function SearchSortBy() {
@@ -63,14 +109,15 @@ function SearchSortBy() {
           ))}
         </ButtonContainer>
 
-        <section>
-          <div>
-            <select value="1">
-              <option value={"1"}>Price: Low to High</option>
-              <option value={"2"}>Price: High to Low</option>
-            </select>
-          </div>
-        </section>
+        <SectionSelection>
+          <SelectionContainer>
+            <Selection>
+              <option value={0}>Price</option>
+              <option value={1}>Price: Low to High</option>
+              <option value={2}>Price: High to Low</option>
+            </Selection>
+          </SelectionContainer>
+        </SectionSelection>
       </SortOptions>
 
       <PageControllerContainer>
@@ -78,13 +125,37 @@ function SearchSortBy() {
           <span>1</span>/<span>17</span>
         </div>
 
-        <a>
-          <ChevronLeft style={{ width: "20px", height: "20px" }} />
-        </a>
+        <ChevronLeftContainer>
+          <ChevronLeft
+            style={{
+              height: ".625rem",
+              width: ".625rem",
+              marginTop: ".125rem",
+              display: "inline-block",
+              fontSize: ".875rem",
+              fontWeight: "300",
+              cursor: "pointer",
+              color: "rgba(0,0,0, .26)",
+              lineHeight: "1",
+            }}
+          />
+        </ChevronLeftContainer>
 
-        <a>
-          <ChevronRight />
-        </a>
+        <ChevronRightContainer>
+          <ChevronRight
+            style={{
+              height: ".625rem",
+              width: ".625rem",
+              marginTop: ".125rem",
+              display: "inline-block",
+              fontSize: ".875rem",
+              fontWeight: "300",
+              cursor: "pointer",
+              color: "rgba(0,0,0, .26)",
+              lineHeight: "1",
+            }}
+          />
+        </ChevronRightContainer>
       </PageControllerContainer>
     </SortContainer>
   );
