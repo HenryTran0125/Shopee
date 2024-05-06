@@ -7,11 +7,12 @@ import { useState } from "react";
 const SortContainer = styled.fieldset`
   display: flex;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.03);
+  background: rgba(0, 0, 0, 0.03);
   border-radius: 2px;
-  font-weight: 400px;
+  font-weight: 400;
   justify-content: space-between;
   padding: 0.8125rem 1.25rem;
+  border: 0px;
 `;
 
 const SortByText = styled.div`
@@ -64,25 +65,38 @@ const PageControllerContainer = styled.div`
 `;
 
 const ChevronLeftContainer = styled.a`
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: #f9f9f9;
   border: 1px solid rgba(0, 0, 0, 0.09);
+  color: rgba(0, 0, 0, 0.26);
   border-radius: 2px;
   cursor: pointer;
   font-weight: 300;
   font-size: 0.875rem;
   line-height: 1;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+  height: 2.125rem;
+  width: 2.25rem;
+  margin-left: 20px;
 `;
 
 const ChevronRightContainer = styled.a`
-  display: inline-block;
-  background: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
   border: 1px solid rgba(0, 0, 0, 0.09);
+  color: rgba(0, 0, 0, 0.8);
   border-radius: 2px;
   cursor: pointer;
   font-weight: 300;
   font-size: 0.875rem;
   line-height: 1;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+  height: 2.125rem;
+  width: 2.25rem;
 `;
 
 function SearchSortBy() {
@@ -128,8 +142,9 @@ function SearchSortBy() {
         <ChevronLeftContainer>
           <ChevronLeft
             style={{
-              height: ".625rem",
-              width: ".625rem",
+              height: "1.25rem",
+              width: "1.25rem",
+              fill: "#ccc",
               marginTop: ".125rem",
               display: "inline-block",
               fontSize: ".875rem",
@@ -144,14 +159,15 @@ function SearchSortBy() {
         <ChevronRightContainer>
           <ChevronRight
             style={{
-              height: ".625rem",
-              width: ".625rem",
+              height: "1.25rem",
+              width: "1.25rem",
+              fill: "#555",
               marginTop: ".125rem",
               display: "inline-block",
               fontSize: ".875rem",
               fontWeight: "300",
               cursor: "pointer",
-              color: "rgba(0,0,0, .26)",
+              color: "rgba(0,0,0, .8)",
               lineHeight: "1",
             }}
           />

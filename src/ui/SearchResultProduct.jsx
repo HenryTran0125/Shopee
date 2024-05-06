@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useSearchParams } from "react-router-dom";
 import { useKeyWords } from "../services/apiSearchKeyWords";
+import SearchProducts from "./SearchProducts";
 import SearchResultFor from "./SearchResultFor";
 import SearchSortBy from "./SearchSortBy";
 
@@ -15,6 +16,7 @@ function SearchResultProduct() {
     <section>
       <SearchResultFor keywords={keywords} />
       <SearchSortBy />
+      <SearchProducts data={data} />
     </section>
   );
 }
