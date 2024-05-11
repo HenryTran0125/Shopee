@@ -11,7 +11,6 @@ function SearchResultProduct() {
   const { data, error, isLoading } = useKeyWords(keywords);
   // const { data, error, isLoading } = useShopKeyWords(keywords);
 
-  console.log(data);
   return (
     <section>
       <SearchResultFor keywords={keywords} />
