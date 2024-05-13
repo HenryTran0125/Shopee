@@ -6,35 +6,36 @@ const ListItem = styled.ul`
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
+  /* width: 4265px; */
 `;
 
 const Item = styled.li`
-  display: flex;
-  flex-direction: column;
   width: 20%;
-  height: 250px;
-  padding-left: 0.3125rem;
-  padding-right: 0.3125rem;
-  margin: 0.3125rem 0px;
+  height: 340px;
+  margin: 0.4125rem 0;
   flex-basis: 20%;
   max-width: 20%;
   flex: 0 0 auto;
+  padding: 0 0.4125rem;
+`;
+
+const MainContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255);
+  border: 1px solid rgba(0, 0, 0, 0.09);
 `;
 
 const ImageContainer = styled.div`
   width: 100%;
-  height: 300px;
-  border: 0px solid rgb(229, 231, 235);
-  box-sizing: border-box;
 `;
 
 const Img = styled.img`
-  background-image: url(${(props) => props.source});
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-size: cover;
   width: 100%;
   height: 100%;
+  object-fit: contain;
 `;
 
 const Title = styled.div`
@@ -54,14 +55,16 @@ function SearchProducts({ data }) {
     <ListItem>
       {data.map((item) => (
         <Item key={item.item_id}>
-          <ImageContainer>
-            <Img source={item.img} />
-          </ImageContainer>
-          <div>
-            <Title>{item.title}</Title>
-            <div>{item.price_info.price}</div>
-            <div>{item.shop_info.shop_location}</div>
-          </div>
+          <MainContentContainer>
+            <ImageContainer>
+              <Img src={item.img} alt={item.title} />
+            </ImageContainer>
+            <div>
+              <Title>{item.title}</Title>
+              <div>{item.price_info.price}</div>
+              <div>{item.shop_info.shop_location}</div>
+            </div>
+          </MainContentContainer>
         </Item>
       ))}
     </ListItem>
