@@ -7,7 +7,15 @@ import SearchingPage from "./pages/SearchingPage";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 function App() {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false, // don't fetch when switch between tabs in browser
+        staleTime: 1000 * 60 * 10, //time when data is considered as fresh
+        cacheTime: 1000 * 60 * 10, //time data is stored in cache
+      },
+    },
+  });
 
   return (
     <QueryClientProvider client={queryClient}>
