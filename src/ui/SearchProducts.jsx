@@ -103,6 +103,31 @@ const Fulfilled = styled.div`
   height: 2rem;
 `;
 
+const Preferred = styled.div`
+  background-image: url("/Preferred/Preferred.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: 3%;
+  left: 2%;
+  width: 3rem;
+  height: 2rem;
+`;
+
+const LocationContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const LocationText = styled.div`
+  color: rgba(0, 0, 0, 0.54);
+  font-weight: 300;
+  font-size: 0.825rem;
+  line-height: 1rem;
+  cursor: pointer;
+  vertical-align: middle;
+`;
+
 function SearchProducts({ data }) {
   console.log(data);
   return (
@@ -137,13 +162,24 @@ function SearchProducts({ data }) {
                 <div>
                   <div>star/ sold</div>
                 </div>
-                <div>
-                  <div>{item.shop_info.shop_location}</div>
-                </div>
+
+                <LocationContainer>
+                  <div>
+                    <img
+                      src="/Location/MapPin.svg"
+                      style={{ margin: "4px", verticalAlign: "middle" }}
+                    />
+                  </div>
+                  <LocationText>{item.shop_info.shop_location}</LocationText>
+                </LocationContainer>
               </div>
             </MainInformation>
           </MainContentContainer>
-          {item.is_service_by_shopee && <Fulfilled />}
+          {item.is_service_by_shopee ? (
+            <Fulfilled />
+          ) : (
+            item.liked_count > 1000 && <Preferred />
+          )}
         </Item>
       ))}
     </ListItem>
