@@ -2,6 +2,7 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { formatNumber } from "../utilities/formatNumber";
+import RatingStar from "./RatingStar";
 
 const ListItem = styled.ul`
   list-style-type: none;
@@ -160,7 +161,7 @@ function SearchProducts({ data }) {
                 )}
 
                 <div>
-                  <div>star/ sold</div>
+                  <RatingStar />
                 </div>
 
                 <LocationContainer>

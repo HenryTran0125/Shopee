@@ -1,8 +1,5 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
-import { useWatch } from "react-hook-form";
-import { useState } from "react";
-import { useKeyWords } from "../services/apiSearchKeyWords";
 import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { searchKeyWord } from "../services/apiSearchKeyWords";
@@ -98,8 +95,6 @@ function HeaderSearch() {
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
 
-  // console.log(data);
-  // const keyword = searchParams.get("keyword") || "";
   function onSubmit() {
     valueInput = getValues("searching");
     searchKeyWord(valueInput);

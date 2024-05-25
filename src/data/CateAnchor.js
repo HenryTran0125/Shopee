@@ -1,7 +1,8 @@
 export const Products = [
   "Phone Case",
   "Tops Women",
-  "Shoes,Muji",
+  "Shoes",
+  "Muji",
   "LEGO",
   "Skirt",
   "iPhone",

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import SearchResultProduct from "./SearchResultProduct";
 import ShopRelation from "./ShopRelation";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
+import { useKeyWords } from "../services/apiSearchKeyWords";
 
 const Container = styled.div`
   flex: 1;
@@ -12,15 +13,31 @@ const Container = styled.div`
 
 function SearchResult() {
   const [searchParams] = useSearchParams();
-  const location = useLocation();
-  const getKeyWords = searchParams.get("keyword") || "";
-  // console.log(getKeyWords);
-  // console.log(location)
+  const keywords = searchParams.get("keyword") || "";
+  const { data, error, isLoading } = useKeyWords(keywords);
+
+  // Kiểm tra trạng thái loading hoặc lỗi
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error loading data</div>;
+  }
+
+  const dataInformation =
+    data && data.data && data.data.items ? data.data["items"] : null;
+
+  // console.log(data);
+
+  // const shopData = data.shopData;
+
+  // console.log(shopData);
 
   return (
     <Container>
       <ShopRelation />
-      <SearchResultProduct />
+      <SearchResultProduct keywords={keywords} data={dataInformation} />
     </Container>
   );
 }
