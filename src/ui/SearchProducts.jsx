@@ -130,7 +130,7 @@ const LocationText = styled.div`
 `;
 
 function SearchProducts({ data }) {
-  console.log(data);
+  // console.log(data);
   return (
     <ListItem>
       {data.map((item) => (

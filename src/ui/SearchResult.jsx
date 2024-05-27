@@ -25,18 +25,25 @@ function SearchResult() {
     return <div>Error loading data</div>;
   }
 
+  const { searchData, dataShop } = data || {};
+
+  // const dataInformation =
+  //   data && data.searchData && data.searchData.data.items
+  //     ? data.searchData.data.items
+  //     : null;
+
   const dataInformation =
-    data && data.data && data.data.items ? data.data["items"] : null;
+    searchData && searchData.data && searchData.data.items
+      ? searchData.data.items
+      : null;
 
-  // console.log(data);
-
-  // const shopData = data.shopData;
-
-  // console.log(shopData);
+  console.log(data);
+  console.log(searchData);
+  console.log(dataShop);
 
   return (
     <Container>
-      <ShopRelation />
+      <ShopRelation keywords={keywords} dataShop={dataShop} />
       <SearchResultProduct keywords={keywords} data={dataInformation} />
     </Container>
   );
