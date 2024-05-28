@@ -21,5 +21,5 @@ export default SearchResultProduct;
 
 SearchResultProduct.propTypes = {
   keywords: PropTypes.string,
-  data: PropTypes.object,
+  data: PropTypes.array,
 };

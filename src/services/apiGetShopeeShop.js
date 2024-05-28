@@ -3,26 +3,27 @@ import axios from "axios";
 import { apiToken } from "./apiToken";
 import { useQuery } from "@tanstack/react-query";
 
-export async function getShopeeShop(dataItem) {
-  const validItems = dataItem.filter(
-    (item) => item.shop_id && item.is_official_shop
-  );
+export async function getShopeeShop() {
+  // const validItems = dataItem.filter(
+  //   (item) => item.shop_id && item.is_official_shop
+  // );
 
-  if (validItems.length === 0) {
-    throw new Error("No valid shops found");
-  }
+  // if (validItems.length === 0) {
+  //   throw new Error("No valid shops found");
+  // }
 
-  const bestShop = validItems.reduce((maxRatingItem, currentItem) => {
-    return currentItem.rate_info.rating_star >
-      maxRatingItem.rate_info.rating_star
-      ? currentItem
-      : maxRatingItem;
-  });
+  // const bestShop = validItems.reduce((maxRatingItem, currentItem) => {
+  //   return currentItem.rate_info.rating_star >
+  //     maxRatingItem.rate_info.rating_star
+  //     ? currentItem
+  //     : maxRatingItem;
+  // });
 
-  const bestShopId = bestShop.shop_id;
+  // const bestShopId = bestShop.shop_id;
 
   const { data } = await axios.get(
-    `/api/shopee/shop/shop_info?apiToken=${apiToken}&site=sg&shop_id=${bestShopId}&username=fangzhong.sg`
+    // `/api/shopee/shop/shop_info?apiToken=${apiToken}&site=sg&shop_id=${bestShopId}&username=fangzhong.sg`
+    `/api/shopee/shop/shop_info?apiToken=${apiToken}&site=sg&shop_id=442800909&username=fangzhong.sg`
   );
 
   return data;
@@ -31,6 +32,6 @@ export async function getShopeeShop(dataItem) {
 export function useShopeeShop(dataItem) {
   return useQuery({
     queryKey: ["shopeeShop", dataItem],
-    queryFn: () => getShopeeShop(dataItem),
+    queryFn: () => getShopeeShop(),
   });
 }

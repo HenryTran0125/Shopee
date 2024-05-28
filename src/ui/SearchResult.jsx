@@ -17,13 +17,13 @@ function SearchResult() {
   const { data, error, isLoading } = useKeyWords(keywords);
 
   // Kiểm tra trạng thái loading hoặc lỗi
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
-  if (error) {
-    return <div>Error loading data</div>;
-  }
+  // if (error) {
+  //   return <div>Error loading data</div>;
+  // }
 
   const { searchData, dataShop } = data || {};
 
@@ -37,9 +37,9 @@ function SearchResult() {
       ? searchData.data.items
       : null;
 
-  console.log(data);
-  console.log(searchData);
-  console.log(dataShop);
+  // console.log(data);
+  // console.log(searchData);
+  // console.log(dataShop);
 
   return (
     <Container>
