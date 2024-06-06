@@ -8,6 +8,7 @@ const ContainerShopRelation = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-bottom: 0.625rem;
 `;
 
 const ShopRelateToKeyWords = styled.div`
@@ -128,6 +129,19 @@ const ShopInfoAlignment = styled.div`
   text-align: center;
 `;
 
+const DataFormat = styled.div`
+  color: #ee4d2d;
+  font-weight: 500;
+  font-size: 1.125rem;
+`;
+
+const ShopInfoReviewText = styled.div`
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  text-transform: capitalize;
+`;
+
 const ShopProducts = styled.div`
   display: flex;
   align-items: center;
@@ -178,7 +192,7 @@ function ShopRelation({ dataShop, keywords }) {
   }
 
   return (
-    <>
+    <div style={{ marginBottom: "1.25rem" }}>
       <ContainerShopRelation>
         <ShopRelateToKeyWords>
           <H1>shops related to</H1>
@@ -272,18 +286,9 @@ function ShopRelation({ dataShop, keywords }) {
                     ></line>
                   </g>
                 </svg>
-                <div>{dataItemsCount}</div>
+                <DataFormat>{dataItemsCount}</DataFormat>
               </ShopProducts>
-              <div
-                style={{
-                  color: "rgba(0,0,0, .54)",
-                  fontSize: ".75rem",
-                  marginTop: ".5rem",
-                  textTransform: "capitalize",
-                }}
-              >
-                Products
-              </div>
+              <ShopInfoReviewText>Products</ShopInfoReviewText>
             </div>
           </ShopInfoAlignment>
 
@@ -308,18 +313,9 @@ function ShopRelation({ dataShop, keywords }) {
                     strokeMiterlimit="10"
                   ></polygon>
                 </svg>
-                <div>{dataRatingStar}</div>
+                <DataFormat>{dataRatingStar}</DataFormat>
               </ShopRating>
-              <div
-                style={{
-                  color: "rgba(0,0,0, .54)",
-                  fontSize: ".75rem",
-                  marginTop: ".5rem",
-                  textTransform: "capitalize",
-                }}
-              >
-                Ratings
-              </div>
+              <ShopInfoReviewText>Ratings</ShopInfoReviewText>
             </div>
           </ShopInfoAlignment>
 
@@ -349,23 +345,14 @@ function ShopRelation({ dataShop, keywords }) {
                     <circle cx="11" cy="5.8" r="1" stroke="none"></circle>
                   </g>
                 </svg>
-                <div>{dataResponseRate}</div>
+                <DataFormat>{dataResponseRate}</DataFormat>
               </ShopResponse>
-              <div
-                style={{
-                  color: "rgba(0,0,0, .54)",
-                  fontSize: ".75rem",
-                  marginTop: ".5rem",
-                  textTransform: "capitalize",
-                }}
-              >
-                Response Rate
-              </div>
+              <ShopInfoReviewText>Response Rate</ShopInfoReviewText>
             </div>
           </ShopInfoAlignment>
         </RatingContainer>
       </ShopContainer>
-    </>
+    </div>
   );
 }
 

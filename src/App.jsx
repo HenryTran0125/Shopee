@@ -5,6 +5,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import SearchingPage from "./pages/SearchingPage";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import DetailItem from "./pages/DetailItem";
+import { useState } from "react";
 
 function App() {
   const queryClient = new QueryClient({
@@ -25,6 +27,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeLayout />} />
           <Route path="/search" element={<SearchingPage />} />
+          <Route path="/item" element={<DetailItem />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

@@ -3,6 +3,8 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { formatNumber } from "../utilities/formatNumber";
 import RatingStar from "./RatingStar";
+import { useNavigate } from "react-router-dom";
+import { useData } from "../context/dataContext";
 
 const ListItem = styled.ul`
   list-style-type: none;
@@ -29,6 +31,7 @@ const MainContentContainer = styled.div`
   height: 100%;
   background-color: rgba(255, 255, 255);
   border: 1px solid rgba(0, 0, 0, 0.09);
+  cursor: pointer;
 `;
 
 const ImageContainer = styled.div`
@@ -130,12 +133,16 @@ const LocationText = styled.div`
 `;
 
 function SearchProducts({ data }) {
-  // console.log(data);
+  const { setData } = useData();
+  const navigate = useNavigate();
+  function onSelection(item) {
+    console.log(item);
+  }
   return (
     <ListItem>
       {data.map((item) => (
         <Item key={item.item_id}>
-          <MainContentContainer>
+          <MainContentContainer onClick={() => onSelection(item)}>
             <ImageContainer>
               <Img src={item.img} alt={item.title} />
             </ImageContainer>
