@@ -15,6 +15,7 @@ function SearchResult() {
   const [searchParams] = useSearchParams();
   const keywords = searchParams.get("keyword") || "";
   const { data, error, isLoading } = useKeyWords(keywords);
+  const { searchData, dataShop } = data || {};
 
   // Kiểm tra trạng thái loading hoặc lỗi
   if (isLoading) {
@@ -26,14 +27,17 @@ function SearchResult() {
   }
 
   const dataInformation =
-    data && data.data && data.data.items ? data.data["items"] : null;
+    searchData && searchData.data && searchData.data.items
+      ? searchData.data.items
+      : null;
 
-  console.log(data);
-  // console.log(shopData);
+  // console.log(data);
+  // console.log(searchData);
+  console.log(dataShop);
 
   return (
     <Container>
-      <ShopRelation />
+      <ShopRelation keywords={keywords} dataShop={dataShop} />
       <SearchResultProduct keywords={keywords} data={dataInformation} />
     </Container>
   );

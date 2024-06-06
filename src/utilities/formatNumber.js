@@ -4,5 +4,5 @@ export function formatNumber(number) {
     console.error("Invalid number input for formatting:", number);
     return number; // Trả lại nguyên giá trị nếu không phải số
   }
-  return number.toLocaleString("en-US");
+  return Number(num.toFixed(2)).toLocaleString("en-US"); // Làm tròn đến 2 chữ số thập phân và định dạng
 }

@@ -4,23 +4,29 @@ import { apiToken } from "./apiToken";
 import { useQuery } from "@tanstack/react-query";
 
 export async function getShopeeShop(dataItem) {
-  const bestShopId = dataItem
-    .map((shopId) => shopId.shop_id)
-    .map(
-      (Id) =>
-        `/api/shopee/shop/shop_info?apiToken=${apiToken}&site=sg&shop_id=${Id}&username=fangzhong.sg`
-    )
-    .filter((Id) => Id.is_official_shop)
-    .reduce((maxRating, currentRating) => {
-      return currentRating.rate_info.rating_star >
-        maxRating.rate_info.rating_star
-        ? currentRating.rate_info.rating_star
-        : maxRating.rate_info.rating_star;
-    }, dataItem[0]);
+  const requests = dataItem.map((item) => {
+    const id = item.shop_id;
+    return axios.get(
+      `/api/shopee/shop/shop_info?apiToken=${apiToken}&site=sg&shop_id=${id}&username=fangzhong.s`
+    );
+  });
 
-  const { data } = await axios.get(
-    `/api/shopee/shop/shop_info?apiToken=${apiToken}&site=sg&shop_id=${bestShopId}&username=fangzhong.sg`
+  const response = await Promise.all(requests);
+  const dataResponse = response.map((item) => item.data.data);
+
+  const filteredOfficialShop = dataResponse.filter(
+    (shop) => shop.is_official_shop
   );
+
+  if (filteredOfficialShop.length === 0) {
+    throw new Error("No official shops found");
+  }
+
+  const data = filteredOfficialShop.reduce((maxRatingShop, currShop) => {
+    return currShop.rate_info.rating_star >= maxRatingShop.rate_info.rating_star
+      ? currShop
+      : maxRatingShop;
+  }, filteredOfficialShop[0]);
 
   return data;
 }
@@ -29,5 +35,6 @@ export function useShopeeShop(dataItem) {
   return useQuery({
     queryKey: ["shopeeShop", dataItem],
     queryFn: () => getShopeeShop(dataItem),
+    enabled: !!dataItem,
   });
 }
