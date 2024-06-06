@@ -28,10 +28,7 @@ function SearchResult() {
   const dataInformation =
     data && data.data && data.data.items ? data.data["items"] : null;
 
-  // console.log(data);
-
-  // const shopData = data.shopData;
-
+  console.log(data);
   // console.log(shopData);
 
   return (
