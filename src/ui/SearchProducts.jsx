@@ -130,7 +130,7 @@ const LocationText = styled.div`
 `;
 
 function SearchProducts({ data }) {
-  // console.log(data);
+  console.log(data);
   return (
     <ListItem>
       {data.map((item) => (
@@ -146,9 +146,7 @@ function SearchProducts({ data }) {
               <div>
                 {item.discount ? (
                   <PriceContainer>
-                    <PriceMin>
-                      ${formatNumber(item.price_info.price_min)}
-                    </PriceMin>
+                    <PriceMin>${formatNumber(item.price_info.price)}</PriceMin>
                     <PriceMax>
                       ${formatNumber(item.price_info.price_max)}
                     </PriceMax>

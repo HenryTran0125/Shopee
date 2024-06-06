@@ -3,28 +3,30 @@ import axios from "axios";
 import { apiToken } from "./apiToken";
 import { useQuery } from "@tanstack/react-query";
 
-export async function getShopeeShop() {
-  // const validItems = dataItem.filter(
-  //   (item) => item.shop_id && item.is_official_shop
-  // );
+export async function getShopeeShop(dataItem) {
+  const requests = dataItem.map((item) => {
+    const id = item.shop_id;
+    return axios.get(
+      `/api/shopee/shop/shop_info?apiToken=${apiToken}&site=sg&shop_id=${id}&username=fangzhong.s`
+    );
+  });
 
-  // if (validItems.length === 0) {
-  //   throw new Error("No valid shops found");
-  // }
+  const response = await Promise.all(requests);
+  const dataResponse = response.map((item) => item.data.data);
 
-  // const bestShop = validItems.reduce((maxRatingItem, currentItem) => {
-  //   return currentItem.rate_info.rating_star >
-  //     maxRatingItem.rate_info.rating_star
-  //     ? currentItem
-  //     : maxRatingItem;
-  // });
-
-  // const bestShopId = bestShop.shop_id;
-
-  const { data } = await axios.get(
-    // `/api/shopee/shop/shop_info?apiToken=${apiToken}&site=sg&shop_id=${bestShopId}&username=fangzhong.sg`
-    `/api/shopee/shop/shop_info?apiToken=${apiToken}&site=sg&shop_id=442800909&username=fangzhong.sg`
+  const filteredOfficialShop = dataResponse.filter(
+    (shop) => shop.is_official_shop
   );
+
+  if (filteredOfficialShop.length === 0) {
+    throw new Error("No official shops found");
+  }
+
+  const data = filteredOfficialShop.reduce((maxRatingShop, currShop) => {
+    return currShop.rate_info.rating_star >= maxRatingShop.rate_info.rating_star
+      ? currShop
+      : maxRatingShop;
+  }, filteredOfficialShop[0]);
 
   return data;
 }
@@ -32,6 +34,7 @@ export async function getShopeeShop() {
 export function useShopeeShop(dataItem) {
   return useQuery({
     queryKey: ["shopeeShop", dataItem],
-    queryFn: () => getShopeeShop(),
+    queryFn: () => getShopeeShop(dataItem),
+    enabled: !!dataItem,
   });
 }

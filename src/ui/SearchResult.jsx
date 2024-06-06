@@ -15,22 +15,16 @@ function SearchResult() {
   const [searchParams] = useSearchParams();
   const keywords = searchParams.get("keyword") || "";
   const { data, error, isLoading } = useKeyWords(keywords);
-
-  // Kiểm tra trạng thái loading hoặc lỗi
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
-
-  // if (error) {
-  //   return <div>Error loading data</div>;
-  // }
-
   const { searchData, dataShop } = data || {};
 
-  // const dataInformation =
-  //   data && data.searchData && data.searchData.data.items
-  //     ? data.searchData.data.items
-  //     : null;
+  // Kiểm tra trạng thái loading hoặc lỗi
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error loading data</div>;
+  }
 
   const dataInformation =
     searchData && searchData.data && searchData.data.items
@@ -39,7 +33,7 @@ function SearchResult() {
 
   // console.log(data);
   // console.log(searchData);
-  // console.log(dataShop);
+  console.log(dataShop);
 
   return (
     <Container>

@@ -9,7 +9,7 @@ export async function searchKeyWord(inputKeywords) {
       `/api/shopee/search/items/v2?apiToken=${apiToken}&site=sg&keyword=${inputKeywords}&by=pop&order=desc&page=1&pageSize=20`
     );
 
-    const dataShop = data.data.items.map((item) => item.shop_id);
+    const dataShop = data.data.items;
 
     return { searchData: data, dataShop };
   } catch (error) {

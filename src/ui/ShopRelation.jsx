@@ -2,6 +2,7 @@
 import PropTypes from "prop-types";
 import { useShopeeShop } from "../services/apiGetShopeeShop";
 import styled from "styled-components";
+import { formatNumber } from "../utilities/formatNumber";
 
 const ContainerShopRelation = styled.div`
   display: flex;
@@ -57,13 +58,12 @@ const ShopContainer = styled.div`
   border-radius: 0.125rem;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
   color: rgba(0, 0, 0, 0.87);
-  height: 7.5rem;
-  padding: 0 1.5625rem;
+  height: 8.625rem;
+  padding: 0 1.725rem;
   text-decoration: none;
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   transition: transform 0.1s cubic-bezier(0.4, 0, 0.6, 1),
     box-shadow 0.1s cubic-bezier(0.4, 0, 0.6, 1);
 `;
@@ -80,11 +80,6 @@ const ShopLogo = styled.div`
 const ShopeeMall = styled.img`
   height: 16px;
   width: 64px;
-`;
-
-const ShopInformation = styled.div`
-  display: flex;
-  align-items: center;
 `;
 
 const ShopNameContainer = styled.a`
@@ -120,12 +115,53 @@ const ShopFollow = styled.span`
   color: #ee4d2d;
 `;
 
+const RatingContainer = styled.div`
+  display: flex;
+`;
+
+const ShopInfoAlignment = styled.div`
+  border-left: 1px solid rgba(0, 0, 0, 0.09);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  min-width: 90px;
+  padding: 0 0.625rem;
+  text-align: center;
+`;
+
+const ShopProducts = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  gap: 0.5rem;
+`;
+
+const ShopRating = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  gap: 0.5rem;
+`;
+
+const ShopResponse = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  gap: 0.5rem;
+`;
+
 function ShopRelation({ dataShop, keywords }) {
-  const { data, isError, isLoading } = useShopeeShop();
+  const { data, isError, isLoading } = useShopeeShop(dataShop);
+  const shopName = data?.shop_name;
+  const shopUsername = data?.username;
+  const followerCount = data?.follower_count;
+  const followingCount = data?.following_count;
+  const dataItemsCount = data?.items_count;
+  const dataRatingStar = formatNumber(data?.rate_info.rating_star);
+  const dataResponseRate = data?.rate_info.response_rate;
 
-  const shopLogoURL = data?.data?.shop_logo;
+  const shopLogoURL = data?.shop_logo;
 
-  const newShopLogoURL = shopLogoURL.toLowerCase().includes("shopeesiteoption")
+  const newShopLogoURL = shopLogoURL?.toLowerCase().includes("shopeesiteoption")
     ? shopLogoURL.toLowerCase().replace("shopeesiteoption.sg", "sg")
     : shopLogoURL;
 
@@ -137,7 +173,7 @@ function ShopRelation({ dataShop, keywords }) {
     return <div>Error loading shop data</div>;
   }
 
-  if (!data || !data.data) {
+  if (!data) {
     return <div>No shop available</div>;
   }
 
@@ -174,116 +210,160 @@ function ShopRelation({ dataShop, keywords }) {
       </ContainerShopRelation>
 
       <ShopContainer>
-        <ShopInformation>
-          <div style={{ marginRight: "4px", position: "relative" }}>
-            <div
-              style={{
-                width: "4.375rem",
-                height: "4.375rem",
-                borderRadius: "50%",
-                border: "0.0625rem solid rgba( 0,0,0, .09",
-              }}
-            >
-              <ShopLogo src={newShopLogoURL} />
-            </div>
-            <div style={{ position: "absolute", top: "80%" }}>
-              <ShopeeMall src="/Is_official_shop/ShopeeMall.png" />
-            </div>
+        <div style={{ marginRight: "4px", position: "relative" }}>
+          <div
+            style={{
+              width: "4.375rem",
+              height: "4.375rem",
+              borderRadius: "50%",
+              border: "0.0625rem solid rgba( 0,0,0, .09",
+            }}
+          >
+            <ShopLogo src={newShopLogoURL} />
           </div>
+          <div style={{ position: "absolute", top: "80%" }}>
+            <ShopeeMall src="/Is_official_shop/ShopeeMall.png" />
+          </div>
+        </div>
 
-          <ShopNameContainer>
-            <ShopName>{data.data.shop_name}</ShopName>
-            <ShopUsername>{data.data.username}</ShopUsername>
-            <ShopFollowCount>
-              <ShopFollow>{data.data.follower_count}</ShopFollow>
-              <span>&ensp;followers </span>
-              <span>|</span>
-              <ShopFollow> {data.data.following_count}</ShopFollow>
-              <span>&ensp;following</span>
-            </ShopFollowCount>
-          </ShopNameContainer>
-        </ShopInformation>
+        <ShopNameContainer>
+          <ShopName>{shopName}</ShopName>
+          <ShopUsername>{shopUsername}</ShopUsername>
+          <ShopFollowCount>
+            <ShopFollow>{followerCount}</ShopFollow>
+            <span>&ensp;followers </span>
+            <span>|</span>
+            <ShopFollow> {followingCount}</ShopFollow>
+            <span>&ensp;following</span>
+          </ShopFollowCount>
+        </ShopNameContainer>
 
-        <div>
-          <div>
-            <div>
-              <svg
-                enableBackground="new 0 0 15 15"
-                viewBox="0 0 15 15"
-                x="0"
-                y="0"
-                style={{ height: "1em", width: "1em", fill: "#ee4d2d" }}
+        <RatingContainer>
+          <ShopInfoAlignment>
+            <div style={{ display: "inline-block", textAlign: "left" }}>
+              <ShopProducts>
+                <svg
+                  enableBackground="new 0 0 15 15"
+                  viewBox="0 0 15 15"
+                  x="0"
+                  y="0"
+                  className="shopee-svg-icon icon-products"
+                  stroke="#ee4d2d"
+                  color="#ee4d2d"
+                  height="1em"
+                  width="1em"
+                >
+                  <g>
+                    <path
+                      d="m10 1 4.5 2.5-.5 3h-2v7.5h-9v-7.5h-2l-.5-3 4.6-2.5c.3 1.1 1.3 1.9 2.4 1.9s2.1-.8 2.5-1.9z"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeMiterlimit="10"
+                    ></path>
+                    <line
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeMiterlimit="10"
+                      x1="3"
+                      x2="12"
+                      y1="11.5"
+                      y2="11.5"
+                    ></line>
+                  </g>
+                </svg>
+                <div>{dataItemsCount}</div>
+              </ShopProducts>
+              <div
+                style={{
+                  color: "rgba(0,0,0, .54)",
+                  fontSize: ".75rem",
+                  marginTop: ".5rem",
+                  textTransform: "capitalize",
+                }}
               >
-                <g>
-                  <path
-                    d="m10 1 4.5 2.5-.5 3h-2v7.5h-9v-7.5h-2l-.5-3 4.6-2.5c.3 1.1 1.3 1.9 2.4 1.9s2.1-.8 2.5-1.9z"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeMiterlimit="10"
-                  ></path>
-                  <line
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeMiterlimit="10"
-                    x1="3"
-                    x2="12"
-                    y1="11.5"
-                    y2="11.5"
-                  ></line>
-                </g>
-              </svg>
-              <div>{data.data.items_count}</div>
+                Products
+              </div>
             </div>
-            <div>Products</div>
-          </div>
-          <div>
+          </ShopInfoAlignment>
+
+          <ShopInfoAlignment>
             <div>
-              <svg
-                enableBackground="new 0 0 15 15"
-                viewBox="0 0 15 15"
-                x="0"
-                y="0"
-                style={{ height: "1em", width: "1em", fill: "#ee4d2d" }}
-              >
-                <polygon
-                  fill="none"
-                  points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeMiterlimit="10"
-                ></polygon>
-              </svg>
-              <div>{data.data.rate_info.rating_star}</div>
-            </div>
-            <div>Ratings</div>
-          </div>
-          <div>
-            <div>
-              <svg
-                enableBackground="new 0 0 15 15"
-                viewBox="0 0 15 15"
-                x="0"
-                y="0"
-                style={{ height: "1em", width: "1em", fill: "#ee4d2d" }}
-              >
-                <g>
+              <ShopRating>
+                <svg
+                  enableBackground="new 0 0 15 15"
+                  viewBox="0 0 15 15"
+                  x="0"
+                  y="0"
+                  stroke="#ee4d2d"
+                  height="1em"
+                  width="1em"
+                  display="inline-block"
+                >
                   <polygon
                     fill="none"
-                    points="14 10.8 7 10.8 3 13.8 3 10.8 1 10.8 1 1.2 14 1.2"
+                    points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4"
+                    strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeMiterlimit="10"
                   ></polygon>
-                  <circle cx="4" cy="5.8" r="1" stroke="none"></circle>
-                  <circle cx="7.5" cy="5.8" r="1" stroke="none"></circle>
-                  <circle cx="11" cy="5.8" r="1" stroke="none"></circle>
-                </g>
-              </svg>
-              <div>{data.data.rate_info.response_rate}</div>
+                </svg>
+                <div>{dataRatingStar}</div>
+              </ShopRating>
+              <div
+                style={{
+                  color: "rgba(0,0,0, .54)",
+                  fontSize: ".75rem",
+                  marginTop: ".5rem",
+                  textTransform: "capitalize",
+                }}
+              >
+                Ratings
+              </div>
             </div>
-            <div>Response Rate</div>
-          </div>
-        </div>
+          </ShopInfoAlignment>
+
+          <ShopInfoAlignment>
+            <div>
+              <ShopResponse>
+                <svg
+                  enableBackground="new 0 0 15 15"
+                  viewBox="0 0 15 15"
+                  x="0"
+                  y="0"
+                  stroke="#ee4d2d"
+                  color="#ee4d2d"
+                  height="1em"
+                  width="1em"
+                  display="inline-block"
+                >
+                  <g>
+                    <polygon
+                      fill="none"
+                      points="14 10.8 7 10.8 3 13.8 3 10.8 1 10.8 1 1.2 14 1.2"
+                      strokeLinejoin="round"
+                      strokeMiterlimit="10"
+                    ></polygon>
+                    <circle cx="4" cy="5.8" r="1" stroke="none"></circle>
+                    <circle cx="7.5" cy="5.8" r="1" stroke="none"></circle>
+                    <circle cx="11" cy="5.8" r="1" stroke="none"></circle>
+                  </g>
+                </svg>
+                <div>{dataResponseRate}</div>
+              </ShopResponse>
+              <div
+                style={{
+                  color: "rgba(0,0,0, .54)",
+                  fontSize: ".75rem",
+                  marginTop: ".5rem",
+                  textTransform: "capitalize",
+                }}
+              >
+                Response Rate
+              </div>
+            </div>
+          </ShopInfoAlignment>
+        </RatingContainer>
       </ShopContainer>
     </>
   );
