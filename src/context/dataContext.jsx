@@ -6,10 +6,11 @@ import PropTypes from "prop-types";
 const DataContext = createContext();
 
 function DataProvider({ children }) {
-  const [data, setData] = useState();
+  const [dataItem, setDataItem] = useState();
+  console.log(dataItem);
 
   return (
-    <DataContext.Provider value={{ data, setData }}>
+    <DataContext.Provider value={{ dataItem, setDataItem }}>
       {children}
     </DataContext.Provider>
   );

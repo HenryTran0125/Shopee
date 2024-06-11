@@ -31,10 +31,6 @@ function SearchResult() {
       ? searchData.data.items
       : null;
 
-  // console.log(data);
-  // console.log(searchData);
-  console.log(dataShop);
-
   return (
     <Container>
       <ShopRelation keywords={keywords} dataShop={dataShop} />

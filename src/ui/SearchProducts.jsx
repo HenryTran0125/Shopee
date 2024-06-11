@@ -5,6 +5,7 @@ import { formatNumber } from "../utilities/formatNumber";
 import RatingStar from "./RatingStar";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../context/dataContext";
+import { useState } from "react";
 
 const ListItem = styled.ul`
   list-style-type: none;
@@ -133,16 +134,32 @@ const LocationText = styled.div`
 `;
 
 function SearchProducts({ data }) {
-  const { setData } = useData();
+  const { setDataItem } = useData();
   const navigate = useNavigate();
+  const [hover, setHover] = useState(null);
+
   function onSelection(item) {
-    console.log(item);
+    const title = item?.title;
+    const shopId = item?.shop_id;
+    const itemId = item?.item_id;
+    const encodedTitle = encodeURI(title);
+    setDataItem(item);
+    navigate(`/${encodedTitle}/${shopId}/${itemId}`);
   }
+
+  function onHover(index) {
+    setHover((currData) => (currData == index ? currData : index));
+    console.log(hover);
+  }
+
   return (
     <ListItem>
-      {data.map((item) => (
+      {data.map((item, index) => (
         <Item key={item.item_id}>
-          <MainContentContainer onClick={() => onSelection(item)}>
+          <MainContentContainer
+            onClick={() => onSelection(item)}
+            onMouseEnter={() => onHover(index)}
+          >
             <ImageContainer>
               <Img src={item.img} alt={item.title} />
             </ImageContainer>
@@ -161,7 +178,7 @@ function SearchProducts({ data }) {
                   </PriceContainer>
                 ) : (
                   <PriceContainer>
-                    <PriceMin>{item.price_info.price}</PriceMin>
+                    <PriceMin>${item.price_info.price}</PriceMin>
                   </PriceContainer>
                 )}
 

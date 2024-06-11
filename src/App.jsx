@@ -7,6 +7,7 @@ import SearchingPage from "./pages/SearchingPage";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import DetailItem from "./pages/DetailItem";
 import { useState } from "react";
+import { useData } from "./context/dataContext";
 
 function App() {
   const queryClient = new QueryClient({
@@ -19,6 +20,12 @@ function App() {
     },
   });
 
+  const { dataItem } = useData();
+  const title = dataItem?.title;
+  const shopId = dataItem?.shop_id;
+  const itemId = dataItem?.item_id;
+  const encodedTitle = encodeURI(title);
+
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
@@ -27,7 +34,10 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeLayout />} />
           <Route path="/search" element={<SearchingPage />} />
-          <Route path="/item" element={<DetailItem />} />
+          <Route
+            path="/:encodedTitle/:shopId/:itemId"
+            element={<DetailItem />}
+          />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
