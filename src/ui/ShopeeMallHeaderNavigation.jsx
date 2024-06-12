@@ -86,12 +86,12 @@ const Language = styled.div`
   align-items: center;
 `;
 
-function HeaderNavigation() {
+function ShopeeMallHeaderNavigation() {
   return (
     <HeaderAlignment>
       <HeaderNav>
         <LeftNav>
-          <LeftAnchor href="#">Seller Centre</LeftAnchor>
+          <LeftAnchor href="#">Shopee Home</LeftAnchor>
           <LeftAnchor href="#">Start Selling</LeftAnchor>
           <LeftAnchor href="#">Download</LeftAnchor>
           <FollowUs>Follow us on</FollowUs>
@@ -129,4 +129,4 @@ function HeaderNavigation() {
   );
 }
 
-export default HeaderNavigation;
+export default ShopeeMallHeaderNavigation;

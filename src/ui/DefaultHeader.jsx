@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import HeaderNavigation from "./HeaderNavigation";
-import HeaderSearch from "./HeaderSearch";
+import DefaultHeaderNavigation from "./DefaultHeaderNavigation";
+import DefaultHeaderSearch from "./DefaultHeaderSearch";
 import styled from "styled-components";
 
 const HeaderContainer = styled.header`
@@ -9,13 +9,13 @@ const HeaderContainer = styled.header`
   min-width: 50rem;
 `;
 
-function Header() {
+function DefaultHeader() {
   return (
     <HeaderContainer>
-      <HeaderNavigation />
-      <HeaderSearch />
+      <DefaultHeaderNavigation />
+      <DefaultHeaderSearch />
     </HeaderContainer>
   );
 }
 
-export default Header;
+export default DefaultHeader;

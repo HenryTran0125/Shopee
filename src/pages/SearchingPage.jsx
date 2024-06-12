@@ -1,12 +1,11 @@
 /* eslint-disable no-unused-vars */
-import { useParams } from "react-router-dom";
-import Header from "../ui/Header";
+import DefaultHeader from "../ui/DefaultHeader";
 import SearchingBody from "../ui/SearchingBody";
 
 function SearchingPage() {
   return (
     <div>
-      <Header />
+      <DefaultHeader />
       <SearchingBody />
     </div>
   );

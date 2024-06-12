@@ -76,7 +76,7 @@ const CateAnchor = styled.a`
   /* margin-right: 10px; */
 `;
 
-function HeaderSearch() {
+function DefaultHeaderSearch() {
   let valueInput;
   const navigate = useNavigate();
 
@@ -139,4 +139,4 @@ function HeaderSearch() {
   );
 }
 
-export default HeaderSearch;
+export default DefaultHeaderSearch;

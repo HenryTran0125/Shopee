@@ -31,8 +31,9 @@ const MainContentContainer = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(255, 255, 255);
-  border: 1px solid rgba(0, 0, 0, 0.09);
   cursor: pointer;
+  border: ${(props) =>
+    props.checkStatus ? "1px solid #ee4d2d" : "1px solid rgba(0, 0, 0, 0.09)"};
 `;
 
 const ImageContainer = styled.div`
@@ -136,7 +137,7 @@ const LocationText = styled.div`
 function SearchProducts({ data }) {
   const { setDataItem } = useData();
   const navigate = useNavigate();
-  const [hover, setHover] = useState(null);
+  const [hover, setHover] = useState();
 
   function onSelection(item) {
     const title = item?.title;
@@ -149,7 +150,6 @@ function SearchProducts({ data }) {
 
   function onHover(index) {
     setHover((currData) => (currData == index ? currData : index));
-    console.log(hover);
   }
 
   return (
@@ -159,6 +159,8 @@ function SearchProducts({ data }) {
           <MainContentContainer
             onClick={() => onSelection(item)}
             onMouseEnter={() => onHover(index)}
+            onMouseLeave={() => setHover()}
+            checkStatus={hover == index ? true : false}
           >
             <ImageContainer>
               <Img src={item.img} alt={item.title} />

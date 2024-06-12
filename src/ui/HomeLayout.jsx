@@ -1,10 +1,10 @@
 import HomeBody from "./HomeBody";
-import Header from "./Header";
+import DefaultHeader from "./DefaultHeader";
 
 function HomeLayout() {
   return (
     <>
-      <Header />
+      <DefaultHeader />
       <HomeBody />
     </>
   );
