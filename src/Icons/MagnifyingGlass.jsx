@@ -1,7 +1,16 @@
-function MagnifyingGlass() {
+import PropTypes from "prop-types";
+
+function MagnifyingGlass({ background }) {
   return (
     <svg
-      style={{ margin: "0 auto", height: "1em", width: "1em", fill: "#fff" }}
+      style={{
+        margin: "0 auto",
+        height: "1em",
+        width: "1em",
+        fill: "#fff",
+        background: `${background}`,
+        outline: "none",
+      }}
       height="19"
       viewBox="0 0 19 19"
       width="19"
@@ -23,3 +32,7 @@ function MagnifyingGlass() {
 }
 
 export default MagnifyingGlass;
+
+MagnifyingGlass.propTypes = {
+  background: PropTypes.string,
+};

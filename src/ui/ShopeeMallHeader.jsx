@@ -3,10 +3,10 @@ import ShopeeMallHeaderSearch from "./ShopeeMallHeaderSearch";
 
 function ShopeeMallHeader() {
   return (
-    <div style={{ background: "#d0011b" }}>
+    <header style={{ background: "#d0011b" }}>
       <ShopeeMallHeaderNavigation />
       <ShopeeMallHeaderSearch />
-    </div>
+    </header>
   );
 }
 

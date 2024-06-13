@@ -33,7 +33,7 @@ const MainContentContainer = styled.div`
   background-color: rgba(255, 255, 255);
   cursor: pointer;
   border: ${(props) =>
-    props.checkStatus ? "1px solid #ee4d2d" : "1px solid rgba(0, 0, 0, 0.09)"};
+    props.checkstatus ? "1px solid #ee4d2d" : "1px solid rgba(0, 0, 0, 0.09)"};
 `;
 
 const ImageContainer = styled.div`
@@ -160,7 +160,7 @@ function SearchProducts({ data }) {
             onClick={() => onSelection(item)}
             onMouseEnter={() => onHover(index)}
             onMouseLeave={() => setHover()}
-            checkStatus={hover == index ? true : false}
+            checkstatus={hover == index ? true : false}
           >
             <ImageContainer>
               <Img src={item.img} alt={item.title} />

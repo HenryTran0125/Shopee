@@ -4,7 +4,7 @@ import { apiToken } from "./apiToken";
 import { useQuery } from "@tanstack/react-query";
 
 export async function getShopeeShop(dataItem) {
-  const requests = dataItem.map((item) => {
+  const requests = dataItem?.map((item) => {
     const id = item.shop_id;
     return axios.get(
       `/api/shopee/shop/shop_info?apiToken=${apiToken}&site=sg&shop_id=${id}&username=fangzhong.s`
@@ -33,7 +33,7 @@ export async function getShopeeShop(dataItem) {
 
 export function useShopeeShop(dataItem) {
   return useQuery({
-    queryKey: ["shopeeShop", dataItem],
+    queryKey: ["shopeeShop", getShopeeShop()],
     queryFn: () => getShopeeShop(dataItem),
     enabled: !!dataItem,
   });

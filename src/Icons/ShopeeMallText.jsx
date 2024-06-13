@@ -5,6 +5,8 @@ function ShopeeMallText() {
         width: "165px",
         height: "33px",
         maxWidth: "165px",
+        position: "relative",
+        top: "5px",
       }}
       viewBox="0 0 220 44"
     >

@@ -7,7 +7,7 @@ const DataContext = createContext();
 
 function DataProvider({ children }) {
   const [dataItem, setDataItem] = useState();
-  console.log(dataItem);
+  // console.log(dataItem);
 
   return (
     <DataContext.Provider value={{ dataItem, setDataItem }}>
