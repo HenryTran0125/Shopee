@@ -22,7 +22,7 @@ function DetailBody() {
   return (
     <Main>
       <CategoryPath data={realData} />
-      <DetailItem />
+      <DetailItem data={realData} />
     </Main>
   );
 }
