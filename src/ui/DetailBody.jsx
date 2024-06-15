@@ -15,9 +15,24 @@ const Main = styled.div`
 
 function DetailBody() {
   const { shopId, itemId, encodedTitle } = useParams();
-  const { data } = useDetailItem(shopId, itemId, encodedTitle);
+  const { data, isLoading, error } = useDetailItem(
+    shopId,
+    itemId,
+    encodedTitle
+  );
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error Loading</div>;
+  }
+
   const realData = data?.data;
   console.log(realData);
+  console.log(shopId, itemId);
+  console.log(data);
 
   return (
     <Main>

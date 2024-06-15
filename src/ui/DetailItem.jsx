@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const DetailItemAlignment = styled.div`
-  margin-top: 20px;
+  margin-top: 1.25rem;
   background: #fff;
 `;
 
@@ -11,24 +11,49 @@ const DetailItemContainer = styled.div`
   display: flex;
 `;
 
-const Overview = styled.div`
-  /* background-color: red; */
-  flex-grow: 2;
-  display: flex;
-  flex-direction: column;
+const Overview = styled.section`
+  display: block;
+  width: 480px;
+  padding: 15px;
+  flex-shrink: 1;
+`;
+
+const MainContent = styled.div`
+  overflow: hidden;
 `;
 
 const HoveredImageContainer = styled.div``;
 
 const HoveredImage = styled.img``;
 
-const ImageVideo = styled.div`
-  background-image: url(${(props) => props.test});
+const ListImgs = styled.div`
+  display: flex;
+  /* position: relative; */
+  width: 190%;
+  /* overflow-y: hidden; */
+  margin: 5px -5px;
+  flex-wrap: nowrap;
 `;
 
-const DetailInformation = styled.div`
-  background-color: green;
-  flex-grow: 3;
+const ImgsContainer = styled.div`
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 5px;
+  height: 100%;
+  width: 20%;
+`;
+
+const Img = styled.img`
+  display: block;
+  height: 100%;
+  width: 100%;
+  /* overflow: hidden; */
+`;
+
+const DetailInformation = styled.section`
+  /* background-color: green; */
+  flex: 1 0 auto;
+  width: 0;
 `;
 
 function DetailItem({ data }) {
@@ -39,21 +64,25 @@ function DetailItem({ data }) {
     <DetailItemAlignment>
       <DetailItemContainer>
         <Overview>
-          <div>
+          <MainContent>
             <HoveredImageContainer>
-              <img />
+              <video
+                height="100%"
+                width="100%"
+                src={video}
+                type="video/mp4"
+                controls
+              ></video>
             </HoveredImageContainer>
 
-            <ul>
+            <ListImgs>
               {mainImgs.map((element, index) => (
-                <li key={index}>
-                  <img src={element} />
-                  {/* <ImageVideo test={video}></ImageVideo> */}
-                  {/* <video src={video} type="video/mp4"></video> */}
-                </li>
+                <ImgsContainer key={index}>
+                  <Img src={element} />
+                </ImgsContainer>
               ))}
-            </ul>
-          </div>
+            </ListImgs>
+          </MainContent>
         </Overview>
         <DetailInformation>Hi</DetailInformation>
       </DetailItemContainer>
