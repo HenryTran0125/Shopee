@@ -39,13 +39,13 @@ function CategoryPath({ data }) {
     <CategoryPathAlignment>
       <CategoryPathContainer>
         <CategoryPathElement>Shopee</CategoryPathElement>
-        <ArrowRight src="../../public/ArrowRight/ArrowRight.svg" />
+        <ArrowRight src="/CategoryPathArrow/CategoryPathRightArrow.svg" />
         <CategoryPathElement>{firstFeCategory}</CategoryPathElement>
-        <ArrowRight src="../../public/ArrowRight/ArrowRight.svg" />
+        <ArrowRight src="/CategoryPathArrow/CategoryPathRightArrow.svg" />
         <CategoryPathElement>{secondFeCategory}</CategoryPathElement>
-        <ArrowRight src="../../public/ArrowRight/ArrowRight.svg" />
+        <ArrowRight src="/CategoryPathArrow/CategoryPathRightArrow.svg" />
         <CategoryPathElement>{thirdFeCategory}</CategoryPathElement>
-        <ArrowRight src="../../public/ArrowRight/ArrowRight.svg" />
+        <ArrowRight src="/CategoryPathArrow/CategoryPathRightArrow.svg" />
         <CategoryPathElement>{title}</CategoryPathElement>
       </CategoryPathContainer>
     </CategoryPathAlignment>
