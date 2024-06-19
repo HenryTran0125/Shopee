@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
 html, body, #root, *, *::before, *::after{
@@ -22,6 +22,6 @@ body{
 }
 
 
-`
+`;
 
-export default GlobalStyles
+export default GlobalStyles;
