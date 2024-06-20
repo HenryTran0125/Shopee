@@ -174,9 +174,11 @@ function SearchProducts({ data }) {
               <div>
                 {item.discount ? (
                   <PriceContainer>
-                    <PriceMin>${formatNumber(item.price_info.price)}</PriceMin>
+                    <PriceMin>
+                      ${formatNumber(item.price_info.price, 2)}
+                    </PriceMin>
                     <PriceMax>
-                      ${formatNumber(item.price_info.price_max)}
+                      ${formatNumber(item.price_info.price_max, 2)}
                     </PriceMax>
                     <Discount>-{item.discount}%</Discount>
                   </PriceContainer>

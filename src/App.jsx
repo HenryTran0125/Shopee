@@ -6,7 +6,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import SearchingPage from "./pages/SearchingPage";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import DetailItemPage from "./pages/DetailItemPage";
-import { useState } from "react";
 import { useData } from "./context/dataContext";
 
 function App() {
