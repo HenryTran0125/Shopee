@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
@@ -38,7 +39,7 @@ const HoveredVideo = styled.video`
 const ListElements = styled.div`
   flex: 0;
   display: flex;
-  width: 200%;
+  width: ${(props) => props.length * 100}px;
   margin: 5px 0;
   flex-wrap: nowrap;
   align-items: center;
@@ -51,13 +52,14 @@ const ElementContainer = styled.div`
   padding: 5px;
   height: 100%;
   min-height: 100%;
-  width: 20%;
+  width: ${(props) => (props.length * 10) / 5}%;
+  /* width: 20%; */
   position: relative;
 `;
 
 const Video = styled.video`
   display: block;
-  height: 80px;
+  height: 90px;
   width: 100%;
   position: relative;
 `;
@@ -70,7 +72,9 @@ const Img = styled.img`
 `;
 
 const LeftArrowButton = styled.button`
-  background-color: #cccccc;
+  background-color: transparent(#000);
+  height: 2.5rem;
+  width: 1.5rem;
   position: absolute;
   left: 0px;
   align-items: center;
@@ -116,12 +120,32 @@ const PlayButton = styled.img`
   height: 32px;
 `;
 
+const ShareAndLove = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+`;
+
+const SocialMedia = styled.div`
+  border-right: 1px solid rgba(0, 0, 0, 0.09);
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+`;
+
+const Share = styled.div`
+  color: #222;
+  font-size: 16px;
+`;
+
 function OverView({ slideImgs }) {
+  const [chosenElement, setChosenElement] = useState();
+  const [isChosen, setIsChosen] = useState();
+  const lengthOfImgs = slideImgs.length;
   function onHover(hoveredElement) {
     setChosenElement(hoveredElement);
   }
-  const [chosenElement, setChosenElement] = useState();
-  const [isChosen, setIsChosen] = useState();
   return (
     <Overview>
       <MainContent>
@@ -139,9 +163,9 @@ function OverView({ slideImgs }) {
           )}
         </HoveredElementContainer>
 
-        <ListElements>
+        <ListElements length={lengthOfImgs}>
           {slideImgs?.map((element, index) => (
-            <ElementContainer key={index}>
+            <ElementContainer length={lengthOfImgs} key={index}>
               {element.includes("cvf") ? (
                 <>
                   <Video src={element}></Video>
@@ -177,6 +201,15 @@ function OverView({ slideImgs }) {
           </RightArrowButton>
         </ListElements>
       </MainContent>
+      <ShareAndLove>
+        <SocialMedia>
+          <Share>Share: </Share>
+          <button></button>
+          <button></button>
+          <button></button>
+        </SocialMedia>
+        <div></div>
+      </ShareAndLove>
     </Overview>
   );
 }
