@@ -40,6 +40,13 @@ const HoveredVideoContainer = styled.div`
   width: 100%;
 `;
 
+const HoveredImgContainer = styled.div`
+  height: 100%;
+  width: 100%;
+`;
+
+const HoveredImage = styled.img``;
+
 const HoveredVideo = styled.video`
   height: inherit;
   width: 100%;
@@ -55,31 +62,44 @@ const ListElements = styled.div`
 
 const ElementContainer = styled.div`
   cursor: pointer;
-  display: inline-block;
+  /* display: inline-block; */
   box-sizing: border-box;
   padding: 5px;
-  height: 100%;
-  min-height: 100%;
+  height: 100px;
+  /* min-height: 100%; */
   width: 20%;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  flex-grow: 1;
   border: ${(props) => (props.check == "true" ? "2px solid #d0011b" : "")};
 `;
 
 const Video = styled.video`
-  display: block;
-  min-height: 90px;
+  /* display: block; */
+  /* min-height: 80px; */
+  display: flex;
+  /* flex-grow: 1; */
+  height: 100%;
   width: 100%;
+  object-fit: contain;
+  object-position: center;
+  box-sizing: border-box;
 `;
 
 const Img = styled.img`
   display: block;
   height: 100%;
   width: 100%;
-  border: 0;
+  box-sizing: border-box;
+  /* object-fit: cover; */
   /* overflow: hidden; */
 `;
 
 const LeftArrowButton = styled.button`
   background-color: #cccccc;
+  height: 2.5rem;
+  width: 1.5rem;
   position: absolute;
   left: 0px;
   align-items: center;
@@ -97,7 +117,7 @@ const LeftArrowButton = styled.button`
 `;
 
 const RightArrowButton = styled.button`
-  background-color: transparent(#000);
+  background-color: #cccccc;
   height: 2.5rem;
   width: 1.5rem;
   position: absolute;
@@ -153,7 +173,9 @@ function DetailItem({ data }) {
                   />
                 </HoveredVideoContainer>
               ) : (
-                <Img src={chosenElement ? chosenElement : slideImgs[0]} />
+                <HoveredImgContainer>
+                  <Img src={chosenElement ? chosenElement : slideImgs[0]} />
+                </HoveredImgContainer>
               )}
             </HoveredElementContainer>
 
