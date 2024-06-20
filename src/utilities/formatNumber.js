@@ -23,3 +23,19 @@ export function formatNumberInThousand(number) {
   }
   return Number(num.toFixed(1)).toLocaleString("de-DE"); // Làm tròn đến 2 chữ số thập phân và định dạng
 }
+
+export function formatPrice(price, fractionDigits = 2) {
+  const formatedPrice = (price / 100000).toLocaleString("en-US", {
+    minimumFractionDigits: fractionDigits,
+    maximumFractionDigits: fractionDigits,
+  });
+  return formatedPrice;
+}
+
+export function formatVoucher(voucher) {
+  const formatedVoucher = voucher.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  });
+
+  return formatedVoucher;
+}
