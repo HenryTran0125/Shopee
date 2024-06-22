@@ -34,7 +34,6 @@ function CategoryPath({ data }) {
   const thirdFeCategory = data?.fe_category_path[2]?.display_name;
   const title = data?.title;
   // console.log(firstFeCategory, secondFeCategory, thirdFeCategory);
-  console.log(data);
   return (
     <CategoryPathAlignment>
       <CategoryPathContainer>

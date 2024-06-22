@@ -113,6 +113,7 @@ const BuyNow = styled.button`
 function DetailItem({ data }) {
   const mainImgs = data?.main_imgs;
   const video = data?.video_url;
+  const likeCount = data?.liked_count;
   const slideImgs = [...mainImgs];
   slideImgs.splice(1, 0, video);
   // const checkLink = slideImgs?.filter((item) => item.includes("cvf"));
@@ -120,9 +121,6 @@ function DetailItem({ data }) {
   const titleProduct = data?.title;
   const ratingStar = data?.rating_star;
   const commentsCount = data?.comment_count;
-  const afterDiscount = data?.flash_sale.price.single_value;
-  const beforeDiscount = data?.flash_sale.price_before_discount.single_value;
-  const discount = data?.skus[0]?.discount;
 
   const vouchers = data?.promotions[0].discount_value;
   const shippingThreshold =
@@ -135,7 +133,7 @@ function DetailItem({ data }) {
   return (
     <DetailItemAlignment>
       <DetailItemContainer>
-        <OverView slideImgs={slideImgs} />
+        <OverView slideImgs={slideImgs} likeCount={likeCount} />
 
         <DetailInformation>
           <DetailInformationContainer>
@@ -152,11 +150,7 @@ function DetailItem({ data }) {
               commentsCount={commentsCount}
             />
 
-            <PriceOfProduct
-              afterDiscount={afterDiscount}
-              beforeDiscount={beforeDiscount}
-              discount={discount}
-            />
+            <PriceOfProduct />
 
             <Options
               vouchers={vouchers}

@@ -6,6 +6,8 @@ import ShopeeMallHeader from "../ui/ShopeeMallHeader";
 
 function DetailItemPage() {
   const { dataItem } = useData();
+  console.log(dataItem);
+
   return (
     <div>
       {dataItem?.is_service_by_shopee ? (

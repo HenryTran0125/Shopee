@@ -39,3 +39,29 @@ export function formatVoucher(voucher) {
 
   return formatedVoucher;
 }
+
+export function roundingNumber(number) {
+  const lengthOfNumber = number.toString().length;
+  const dividedNumber = Math.pow(10, lengthOfNumber - 1); // Math.floor là hàm lũy thừa dựa trên số mũ và cơ số cho trước (cơ số 10, số mũ: lengthOfNumber - 1)
+
+  const roundedNumber = Math.floor(number / dividedNumber) + "k";
+
+  return roundedNumber;
+}
+
+export function getCurrentDate() {
+  let currentDate = new Date();
+  let day = currentDate.getDate();
+  let month = currentDate.getMonth() + 1; // Tháng bắt đầu từ 0 nên cần +1
+  let year = currentDate.getFullYear();
+
+  // Định dạng ngày tháng năm thành chuỗi
+  let formattedDate = day + "." + month + "." + year;
+  return formattedDate;
+}
+
+export function getIntegerPart(number) {
+  const getNumber = Math.trunc(number);
+
+  return getNumber;
+}

@@ -7,10 +7,13 @@ const DataContext = createContext();
 
 function DataProvider({ children }) {
   const [dataItem, setDataItem] = useState();
+  const [dataDetailProduct, setDataDetailProduct] = useState();
   // console.log(dataItem);
 
   return (
-    <DataContext.Provider value={{ dataItem, setDataItem }}>
+    <DataContext.Provider
+      value={{ dataItem, setDataItem, dataDetailProduct, setDataDetailProduct }}
+    >
       {children}
     </DataContext.Provider>
   );

@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { formatPrice } from "../utilities/formatNumber";
+import { useData } from "../context/dataContext";
 
 const PriceContainer = styled.div`
   display: flex;
@@ -60,6 +62,13 @@ const DiscountText = styled.div`
   background-color: #d0011b;
 `;
 
+const PriceWithNoDiscount = styled.div`
+  display: flex;
+  font-size: 1.875rem;
+  font-weight: 500;
+  color: #d0011b;
+`;
+
 const GuaranteeContainer = styled.div`
   display: flex;
   align-items: center;
@@ -87,21 +96,38 @@ const GuaranteedMoneyBack = styled.div`
   margin-top: 4px;
 `;
 
-function PriceOfProduct({ afterDiscount, beforeDiscount, discount }) {
+function PriceOfProduct() {
+  const { dataDetailProduct } = useData();
+  const checkFlashSale = dataDetailProduct?.flash_sale;
+  const priceMin = dataDetailProduct?.price_info.price_min;
+  const priceMax = dataDetailProduct?.price_info.price_max;
+  const afterDiscount =
+    dataDetailProduct?.flash_sale?.price_before_discount.single_value;
+  const beforeDiscount =
+    dataDetailProduct?.flash_sale?.price_before_discount.single_value;
+  const discount = dataDetailProduct?.skus[0]?.discount;
+  console.log(priceMin);
+
   return (
     <PriceContainer>
       <PriceAlignment>
         <PriceDiscountContainer>
-          <PriceDiscountAlignment>
-            <BeforeDiscount>${formatPrice(beforeDiscount)}</BeforeDiscount>
+          {checkFlashSale ? (
+            <PriceDiscountAlignment>
+              <BeforeDiscount>${formatPrice(beforeDiscount)}</BeforeDiscount>
 
-            <AfterDiscount>
-              <AfterDiscountText>
-                ${formatPrice(afterDiscount)}
-              </AfterDiscountText>
-              <DiscountText>{discount}% OFF</DiscountText>
-            </AfterDiscount>
-          </PriceDiscountAlignment>
+              <AfterDiscount>
+                <AfterDiscountText>
+                  ${formatPrice(afterDiscount)}
+                </AfterDiscountText>
+                <DiscountText>{discount}% OFF</DiscountText>
+              </AfterDiscount>
+            </PriceDiscountAlignment>
+          ) : (
+            <PriceWithNoDiscount>
+              ${priceMin} - ${priceMax}
+            </PriceWithNoDiscount>
+          )}
         </PriceDiscountContainer>
         <a style={{ cursor: "pointer", backgroundColor: "transparent" }}>
           <GuaranteeContainer>
@@ -120,9 +146,3 @@ function PriceOfProduct({ afterDiscount, beforeDiscount, discount }) {
 }
 
 export default PriceOfProduct;
-
-PriceOfProduct.propTypes = {
-  afterDiscount: PropTypes.any,
-  beforeDiscount: PropTypes.any,
-  discount: PropTypes.any,
-};

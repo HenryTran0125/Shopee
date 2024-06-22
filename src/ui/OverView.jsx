@@ -2,6 +2,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { roundingNumber } from "../utilities/formatNumber";
 
 const Overview = styled.section`
   display: block;
@@ -39,6 +40,7 @@ const HoveredVideo = styled.video`
 const ListElements = styled.div`
   flex: 0;
   display: flex;
+  position: relative;
   width: ${(props) => props.length * 100}px;
   margin: 5px 0;
   flex-wrap: nowrap;
@@ -72,18 +74,22 @@ const Img = styled.img`
 `;
 
 const LeftArrowButton = styled.button`
-  background-color: transparent(#000);
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  color: #fff;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   height: 2.5rem;
   width: 1.5rem;
-  position: absolute;
-  left: 0px;
-  align-items: center;
+  left: 5px;
   border: 0;
   cursor: pointer;
   display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 0.875rem;
   font-weight: 300;
-  justify-content: center;
   letter-spacing: 0;
   line-height: 1;
   outline: none;
@@ -92,18 +98,22 @@ const LeftArrowButton = styled.button`
 `;
 
 const RightArrowButton = styled.button`
-  background-color: transparent(#000);
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  color: #fff;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   height: 2.5rem;
   width: 1.5rem;
-  position: absolute;
-  right: 0px;
+  right: 5px;
+  display: flex;
   align-items: center;
+  justify-content: center;
   border: 0;
   cursor: pointer;
-  display: flex;
   font-size: 0.875rem;
   font-weight: 300;
-  justify-content: center;
   letter-spacing: 0;
   line-height: 1;
   outline: none;
@@ -139,7 +149,90 @@ const Share = styled.div`
   font-size: 16px;
 `;
 
-function OverView({ slideImgs }) {
+const Messenger = styled.button`
+  cursor: pointer;
+  border: 0;
+  height: 25px;
+  margin-left: 5px;
+  outline: 0;
+  overflow: visible;
+  padding: 0;
+  position: relative;
+  width: 25px;
+  background-position: 0 -100%;
+  background-color: transparent;
+  background-image: url(https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/12f585f9c56d4f30.png);
+  background-size: 100%;
+`;
+const Facebook = styled.button`
+  cursor: pointer;
+  border: 0;
+  height: 25px;
+  margin-left: 5px;
+  outline: 0;
+  overflow: visible;
+  padding: 0;
+  position: relative;
+  width: 25px;
+  background-position: 0 0;
+  background-color: transparent;
+  background-image: url(https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/12f585f9c56d4f30.png);
+  background-size: 100%;
+`;
+const Pinterest = styled.button`
+  cursor: pointer;
+  border: 0;
+  height: 25px;
+  margin-left: 5px;
+  outline: 0;
+  overflow: visible;
+  padding: 0;
+  position: relative;
+  width: 25px;
+  background-position: 0 -300%;
+  background-color: transparent;
+  background-image: url(https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/12f585f9c56d4f30.png);
+  background-size: 100%;
+`;
+const Twitter = styled.button`
+  cursor: pointer;
+  border: 0;
+  height: 25px;
+  margin-left: 5px;
+  outline: 0;
+  overflow: visible;
+  padding: 0;
+  position: relative;
+  width: 25px;
+  background-position: 0 -400%;
+  background-color: transparent;
+  background-image: url(https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/12f585f9c56d4f30.png);
+  background-size: 100%;
+`;
+
+const Favorite = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+`;
+
+const FavoriteButton = styled.button`
+  background-color: transparent;
+  border: 0;
+  display: flex;
+  outline: 0;
+  overflow: visible;
+  position: relative;
+  cursor: pointer;
+`;
+
+const FavoriteText = styled.div`
+  color: #222;
+  font-size: 16px;
+`;
+
+function OverView({ slideImgs, likeCount }) {
   const [chosenElement, setChosenElement] = useState();
   const [isChosen, setIsChosen] = useState();
   const lengthOfImgs = slideImgs.length;
@@ -193,7 +286,7 @@ function OverView({ slideImgs }) {
           ))}
 
           <LeftArrowButton>
-            <img src="/Arrow/LeftArrow.svg" />
+            <img style={{ border: "0" }} src="/Arrow/LeftArrow.svg" />
           </LeftArrowButton>
 
           <RightArrowButton>
@@ -204,11 +297,31 @@ function OverView({ slideImgs }) {
       <ShareAndLove>
         <SocialMedia>
           <Share>Share: </Share>
-          <button></button>
-          <button></button>
-          <button></button>
+          <Messenger />
+          <Facebook />
+          <Pinterest />
+          <Twitter />
         </SocialMedia>
-        <div></div>
+
+        <Favorite>
+          <FavoriteButton>
+            <svg
+              style={{ overflow: "hidden", marginRight: "10px" }}
+              width="24"
+              height="20"
+            >
+              <path
+                d="M19.469 1.262c-5.284-1.53-7.47 4.142-7.47 4.142S9.815-.269 4.532 1.262C-1.937 3.138.44 13.832 12 19.333c11.559-5.501 13.938-16.195 7.469-18.07z"
+                stroke="#FF424F"
+                strokeWidth="1.5"
+                fill="none"
+                fillRule="evenodd"
+                strokeLinejoin="round"
+              ></path>
+            </svg>
+            <FavoriteText>Favorite({roundingNumber(likeCount)})</FavoriteText>
+          </FavoriteButton>
+        </Favorite>
       </ShareAndLove>
     </Overview>
   );
@@ -218,4 +331,5 @@ export default OverView;
 
 OverView.propTypes = {
   slideImgs: PropTypes.any,
+  likeCount: PropTypes.any,
 };

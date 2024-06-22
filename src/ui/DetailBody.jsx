@@ -3,7 +3,10 @@ import styled from "styled-components";
 import DetailItem from "./DetailItem";
 import CategoryPath from "./CategoryPath";
 import { useParams } from "react-router-dom";
-import { getDetailItem, useDetailItem } from "../services/apiDetailItem";
+import { useDetailItem } from "../services/apiDetailItem";
+import StoreInformation from "./StoreInformation";
+import ProductInformation from "./ProductInformation";
+import { useData } from "../context/dataContext";
 
 const Main = styled.div`
   max-width: 1200px;
@@ -20,9 +23,22 @@ function DetailBody() {
     itemId,
     encodedTitle
   );
+  const { setDataDetailProduct } = useData();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          margin: "0 auto",
+          height: "100vh",
+        }}
+      >
+        <div>Loading...</div>
+      </div>
+    );
   }
 
   if (error) {
@@ -30,14 +46,14 @@ function DetailBody() {
   }
 
   const realData = data?.data;
-  console.log(realData);
-  console.log(shopId, itemId);
-  console.log(data);
+  setDataDetailProduct(realData);
 
   return (
     <Main>
       <CategoryPath data={realData} />
       <DetailItem data={realData} />
+      <StoreInformation />
+      <ProductInformation data={realData} />
     </Main>
   );
 }
