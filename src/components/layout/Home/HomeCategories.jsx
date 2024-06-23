@@ -62,7 +62,7 @@ const ImageContainer = styled.div`
 `;
 
 const Image = styled.div`
-  background-image: url(/Categories/${(props) => props.url});
+  background-image: url(${(props) => props.url});
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
