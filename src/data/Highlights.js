@@ -1,42 +1,42 @@
 export const Highlights = [
   {
     name: "New User Exclusives",
-    imageUrl: "newUser.png",
+    imageUrl: "../../../assets/images/HighlightsIcons/newUser.png",
   },
   {
     name: "Shopee Supermarket",
-    imageUrl: "cart.png",
+    imageUrl: "../../../assets/images/HighlightsIcons/cart.png",
   },
   {
     name: "Daily Vouchers",
-    imageUrl: "voucher.png",
+    imageUrl: "../../../assets/images/HighlightsIcons/voucher.png",
   },
   {
     name: "Shopee OOTD",
-    imageUrl: "ootd.png",
+    imageUrl: "../../../assets/images/HighlightsIcons/ootd.png",
   },
   {
     name: "MariBank",
-    imageUrl: "maribank.png",
+    imageUrl: "../../../assets/images/HighlightsIcons/maribank.png",
   },
   {
     name: "100% Authentic Brands",
-    imageUrl: "mall.png",
+    imageUrl: "../../../assets/images/HighlightsIcons/mall.png",
   },
   {
     name: "Electronics Zone",
-    imageUrl: "tech.png",
+    imageUrl: "../../../assets/images/HighlightsIcons/tech.png",
   },
   {
     name: "Shopee Live",
-    imageUrl: "live.png",
+    imageUrl: "../../../assets/images/HighlightsIcons/live.png",
   },
   {
     name: "Free Next Day Delivery",
-    imageUrl: "delivery.png",
+    imageUrl: "../../../assets/images/HighlightsIcons/delivery.png",
   },
   {
     name: "Shopee Exclusives",
-    imageUrl: "exclusive.png",
+    imageUrl: "../../../assets/images/HighlightsIcons/exclusive.png",
   },
 ];

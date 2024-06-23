@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
-import HomeLayout from "./ui/HomeLayout";
-import GlobalStyles from "./styles/GlobalStyles";
+import { useData } from "./context/dataContext";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import SearchingPage from "./pages/SearchingPage";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import DetailItemPage from "./pages/DetailItemPage";
-import { useData } from "./context/dataContext";
+import GlobalStyles from "./assets/styles/GlobalStyles";
+import Home from "./components/pages/Home";
+import SearchingPage from "./components/pages/SearchingPage";
+import DetailItemPage from "./components/pages/DetailItemPage";
 
 function App() {
   const queryClient = new QueryClient({
@@ -31,12 +31,14 @@ function App() {
       <GlobalStyles />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomeLayout />} />
+          <Route path="/" element={<Home />} />
           <Route path="/search" element={<SearchingPage />} />
-          <Route
-            path="/:encodedTitle/:shopId/:itemId"
-            element={<DetailItemPage />}
-          />
+          {
+            <Route
+              path="/:encodedTitle/:shopId/:itemId"
+              element={<DetailItemPage />}
+            />
+          }
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
