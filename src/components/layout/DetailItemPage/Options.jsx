@@ -3,6 +3,12 @@ import { formatVoucher } from "../../../utilities/helpers";
 import Minus from "../../../Icons/Minus";
 import Plus from "../../../Icons/Plus";
 import PropTypes from "prop-types";
+import ViewPlans from "../../../Icons/ViewPlans";
+import FreeShipping from "../../../assets/images/Shipping/FreeShipping.png";
+import ShippingQuestionMarkIcon from "../../../Icons/ShippingQuestionMarkIcon";
+import ShippingIcon from "../../../Icons/ShippingIcon";
+import Truck from "../../../Icons/Truck";
+import DetailDownArrow from "../../../Icons/DetailDownArrow";
 
 const OptionsAlignment = styled.div`
   margin-top: 1.5625rem;
@@ -408,12 +414,16 @@ function Options({
   return (
     <OptionsAlignment>
       <OptionsContainer>
-        <ShopVouchersAlignment>
-          <ShopVouchersContainer>
-            <H3>Shop Vouchers</H3>
-            <Vouchers>${formatVoucher(vouchers)} OFF</Vouchers>
-          </ShopVouchersContainer>
-        </ShopVouchersAlignment>
+        {vouchers ? (
+          <ShopVouchersAlignment>
+            <ShopVouchersContainer>
+              <H3>Shop Vouchers</H3>
+              <Vouchers>${formatVoucher(vouchers)} OFF</Vouchers>
+            </ShopVouchersContainer>
+          </ShopVouchersAlignment>
+        ) : (
+          ""
+        )}
 
         <AddOn>
           <H3>Add-On</H3>
@@ -427,14 +437,7 @@ function Options({
 
             <Button>
               View Plans
-              <img
-                style={{
-                  height: "9px",
-                  marginLeft: "6px",
-                  border: "0",
-                }}
-                src="/ViewPlans/ViewPlans.svg"
-              />
+              <ViewPlans />
             </Button>
           </Interest>
         </Installment>
@@ -443,13 +446,10 @@ function Options({
           <H3>Shipping</H3>
           <ShippingInfo>
             <ShippingInfoAlignment>
-              <img style={{ border: "0" }} src="/Shipping/Shipping.svg" />
+              <ShippingIcon />
               <FulfilledText>Fulfilled by Shopee</FulfilledText>
               <ShippingQuestionMark>
-                <img
-                  style={{ width: "14px", height: "14px", border: "0" }}
-                  src="/Shipping/ShippingQuestionMark.svg"
-                />
+                <ShippingQuestionMarkIcon />
               </ShippingQuestionMark>
             </ShippingInfoAlignment>
 
@@ -463,7 +463,7 @@ function Options({
                   border: "0",
                   height: "20px",
                 }}
-                src="/Shipping/FreeShipping.png"
+                src={FreeShipping}
               />
               <FreeShippingContainer>
                 <FreeShippingText>Free Shipping</FreeShippingText>
@@ -472,16 +472,7 @@ function Options({
                 </FreeShipingThreshold>
               </FreeShippingContainer>
               <TruckContainer>
-                <img
-                  style={{
-                    height: "20px",
-                    width: "20px",
-                    marginLeft: "5px",
-                    marginRight: "5px",
-                    border: "0",
-                  }}
-                  src="/Shipping/Truck.svg"
-                />
+                <Truck />
               </TruckContainer>
 
               <ShippingFeeRangeContainer>
@@ -489,16 +480,7 @@ function Options({
                 <PriceShippingFeeContainer>
                   <PriceShippingFeeRange>
                     ${shippingFeeMin} - ${shippingFeeMax}
-                    <img
-                      alt="arrow down"
-                      style={{
-                        height: "12px",
-                        width: "12px",
-                        marginLeft: "5px",
-                        border: "0",
-                      }}
-                      src="/Shipping/ArrowDown.svg"
-                    />
+                    <DetailDownArrow />
                   </PriceShippingFeeRange>
                 </PriceShippingFeeContainer>
               </ShippingFeeRangeContainer>

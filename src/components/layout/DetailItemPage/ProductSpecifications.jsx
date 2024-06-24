@@ -2,6 +2,8 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { useData } from "../../../context/dataContext";
+import CategoryPathArrow from "../../../Icons/CategoryPathArrow";
+// import CategoryPathArrow from "../../../assets/images/CategoryPathArrow/CategoryPathRightArrow";
 
 const Container = styled.section`
   padding: 1.075rem 1.075rem 0;
@@ -51,12 +53,6 @@ const TextPath = styled.a`
   white-space: nowrap;
 `;
 
-const RightArrow = styled.img`
-  height: 10px;
-  margin: 0 5px;
-  width: 10px;
-`;
-
 const Navigator = styled.a`
   color: #05a;
   cursor: pointer;
@@ -85,11 +81,11 @@ function ProductSpecifications() {
           <Label>Category</Label>
           <Content>
             <TextPath>Shopee</TextPath>
-            <RightArrow src="/CategoryPathArrow/CategoryPathRightArrow.svg" />
+            <CategoryPathArrow />
             <TextPath>{categoryPath1}</TextPath>
-            <RightArrow src="/CategoryPathArrow/CategoryPathRightArrow.svg" />
+            <CategoryPathArrow />
             <TextPath>{categoryPath2}</TextPath>
-            <RightArrow src="/CategoryPathArrow/CategoryPathRightArrow.svg" />
+            <CategoryPathArrow />
             <TextPath>{categoryPath3}</TextPath>
           </Content>
         </Alignment>
@@ -112,7 +108,7 @@ function ProductSpecifications() {
 
         {stock && (
           <Alignment>
-            <Label>Brand</Label>
+            <Label>Stock</Label>
             <div>{stock}</div>
           </Alignment>
         )}

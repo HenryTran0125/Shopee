@@ -9,6 +9,8 @@ import Minus from "../../../Icons/Minus";
 import Plus from "../../../Icons/Plus";
 import Options from "./Options";
 import ShippingPolicy from "./ShippingPolicy";
+import AddToCartIcon from "../../../Icons/AddToCartIcon";
+import MallTitle from "../../../Icons/MallTitle";
 
 const DetailItemAlignment = styled.div`
   margin-top: 1.25rem;
@@ -75,13 +77,6 @@ const AddToCart = styled.button`
   min-width: 180px !important;
 `;
 
-const ImgAddToCart = styled.img`
-  height: 20px;
-  margin-right: 10px;
-  width: 20px;
-  border: 0;
-`;
-
 const AddToCartText = styled.span`
   text-transform: capitalize;
 `;
@@ -122,7 +117,7 @@ function DetailItem({ data }) {
   const ratingStar = data?.rating_star;
   const commentsCount = data?.comment_count;
 
-  const vouchers = data?.promotions[0]?.discount_value;
+  // const vouchers = data?.promotions[0]?.discount_value;
   const shippingThreshold =
     data?.delivery_info?.price_info_default?.free_shipping_threshold;
   const shippingFeeMin = data?.delivery_info?.price_info_default?.price_min;
@@ -138,10 +133,7 @@ function DetailItem({ data }) {
         <DetailInformation>
           <DetailInformationContainer>
             <TitleProduct>
-              <img
-                style={{ display: "inline", marginRight: "8px", border: "0" }}
-                src="/MallTitle/MallTitle.svg"
-              />
+              <MallTitle />
               <span style={{ fontSize: "20px" }}>{titleProduct}</span>
             </TitleProduct>
 
@@ -152,20 +144,19 @@ function DetailItem({ data }) {
 
             <PriceOfProduct />
 
-            {/* <Options
-              vouchers={vouchers}
+            <Options
               shippingThreshold={shippingThreshold}
               shippingFeeMin={shippingFeeMin}
               shippingFeeMax={shippingFeeMax}
               propsOption1={propsOption1}
               propsOption2={propsOption2}
-            /> */}
+            />
 
             <div style={{ marginTop: "15px" }}>
               <div style={{ paddingLeft: "20px" }}>
                 <ButtonBuyContainer>
                   <AddToCart>
-                    <ImgAddToCart src="/AddToCart/AddToCart.svg" />
+                    <AddToCartIcon />
                     <AddToCartText>add to cart</AddToCartText>
                   </AddToCart>
 

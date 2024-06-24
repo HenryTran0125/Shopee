@@ -3,6 +3,9 @@ import { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { roundingNumber } from "../../../utilities/helpers";
+import PlayButton from "../../../Icons/PlayButton";
+import LeftArrow from "../../../Icons/LeftArrow";
+import RightArrow from "../../../Icons/RightArrow";
 
 const Overview = styled.section`
   display: block;
@@ -119,15 +122,6 @@ const RightArrowButton = styled.button`
   outline: none;
   transition: background-color 0.1s cubic-bezier(0.4, 0, 0.6, 1);
   padding: 0;
-`;
-
-const PlayButton = styled.img`
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  transform: translate3d(-16px, -16px, 0);
-  width: 32px;
-  height: 32px;
 `;
 
 const ShareAndLove = styled.div`
@@ -262,7 +256,7 @@ function OverView({ slideImgs, likeCount }) {
               {element.includes("cvf") ? (
                 <>
                   <Video src={element}></Video>
-                  <PlayButton src="/PlayButton/PlayButton.svg" />
+                  <PlayButton />
                 </>
               ) : (
                 <Img src={element} />
@@ -286,14 +280,15 @@ function OverView({ slideImgs, likeCount }) {
           ))}
 
           <LeftArrowButton>
-            <img style={{ border: "0" }} src="/Arrow/LeftArrow.svg" />
+            <LeftArrow />
           </LeftArrowButton>
 
           <RightArrowButton>
-            <img src="/Arrow/RightArrow.svg" />
+            <RightArrow />
           </RightArrowButton>
         </ListElements>
       </MainContent>
+
       <ShareAndLove>
         <SocialMedia>
           <Share>Share: </Share>

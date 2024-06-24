@@ -36,6 +36,17 @@ const VoucherDiscountAlignment = styled.div`
   width: 13.675rem;
 `;
 
+const NoVouchers = styled.div`
+  margin-top: 0.3125rem;
+  height: 7.375rem;
+  margin-bottom: 1.25rem;
+  background-color: transparent;
+  width: 13.675rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const VoucherDiscountContainer = styled.div`
   box-sizing: border-box;
   position: relative;
@@ -194,44 +205,50 @@ function ShopVouchers({ discountValue, minSpend, productLimit, Date }) {
           <ShopVouchersText>Shop Vouchers</ShopVouchersText>
 
           <VoucherDiscount>
-            <VoucherDiscountAlignment>
-              <VoucherDiscountContainer>
-                <MainContentVoucher>
-                  <LeftContentVoucher>
-                    <DiscountValueContent>
-                      <DiscountValueText>
-                        ${getIntegerPart(discountValue)} off
-                      </DiscountValueText>
-                      <MinSpend>
-                        Min. Spend ${getIntegerPart(minSpend)}
-                      </MinSpend>
-                      <ProductLimitAlignment>
-                        <ProductLimitContainer>
-                          <ProductLimitText>
-                            {productLimit && "Specific Product(s)"}
-                          </ProductLimitText>
-                        </ProductLimitContainer>
-                      </ProductLimitAlignment>
-                      <ExpireDateAlignment>
-                        <ExpireDateContainer>
-                          <ExpireDateText>Valid Till: {Date}</ExpireDateText>
-                        </ExpireDateContainer>
-                      </ExpireDateAlignment>
-                    </DiscountValueContent>
-                  </LeftContentVoucher>
+            {discountValue ? (
+              <VoucherDiscountAlignment>
+                <VoucherDiscountContainer>
+                  <MainContentVoucher>
+                    <LeftContentVoucher>
+                      <DiscountValueContent>
+                        <DiscountValueText>
+                          ${getIntegerPart(discountValue)} off
+                        </DiscountValueText>
+                        <MinSpend>
+                          Min. Spend ${getIntegerPart(minSpend)}
+                        </MinSpend>
+                        <ProductLimitAlignment>
+                          <ProductLimitContainer>
+                            <ProductLimitText>
+                              {productLimit && "Specific Product(s)"}
+                            </ProductLimitText>
+                          </ProductLimitContainer>
+                        </ProductLimitAlignment>
+                        <ExpireDateAlignment>
+                          <ExpireDateContainer>
+                            <ExpireDateText>Valid Till: {Date}</ExpireDateText>
+                          </ExpireDateContainer>
+                        </ExpireDateAlignment>
+                      </DiscountValueContent>
+                    </LeftContentVoucher>
 
-                  <RightContentVoucher>
-                    <ClaimAlignment>
-                      <div></div>
-                      <ClaimContainer>
-                        <ClaimText>Claim</ClaimText>
-                      </ClaimContainer>
-                      <div></div>
-                    </ClaimAlignment>
-                  </RightContentVoucher>
-                </MainContentVoucher>
-              </VoucherDiscountContainer>
-            </VoucherDiscountAlignment>
+                    <RightContentVoucher>
+                      <ClaimAlignment>
+                        <div></div>
+                        <ClaimContainer>
+                          <ClaimText>Claim</ClaimText>
+                        </ClaimContainer>
+                        <div></div>
+                      </ClaimAlignment>
+                    </RightContentVoucher>
+                  </MainContentVoucher>
+                </VoucherDiscountContainer>
+              </VoucherDiscountAlignment>
+            ) : (
+              <NoVouchers>
+                <div>No Vouchers Available.</div>
+              </NoVouchers>
+            )}
           </VoucherDiscount>
         </ShopVoucherAlignment>
       </ShopVouchersContainer>

@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
-import SearchFilterText from "../SearchingPage/SearchFilterText";
-import ShippingFrom from "../SearchingPage/ShippingFrom";
-import ShippingOptions from "../SearchingPage/ShippingOptions";
-import ShopTypes from "../SearchingPage/ShopTypes";
+import SearchFilterText from "./SearchFilterText";
+import ShippingFrom from "./ShippingFrom";
+import ShippingOptions from "./ShippingOptions";
+import ShopTypes from "./ShopTypes";
 
 const Container = styled.div`
   flex: 0 0 13.825rem;

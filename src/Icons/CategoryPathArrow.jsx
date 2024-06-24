@@ -1,6 +1,7 @@
-function ArrowRight() {
+function CategoryPathArrow() {
   return (
     <svg
+      style={{ margin: "0 2px" }}
       xmlns="http://www.w3.org/2000/svg"
       enableBackground="new 0 0 11 11"
       viewBox="0 0 11 11"
@@ -15,4 +16,4 @@ function ArrowRight() {
   );
 }
 
-export default ArrowRight;
+export default CategoryPathArrow;

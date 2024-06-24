@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { formatPrice } from "../../../utilities/helpers";
 import { useData } from "../../../context/dataContext";
+import Guarantee from "../../../Icons/Guarantee";
 
 const PriceContainer = styled.div`
   display: flex;
@@ -75,13 +76,13 @@ const GuaranteeContainer = styled.div`
   margin-top: 10px;
 `;
 
-const Authentic = styled.div`
-  background-image: url("/Guarantee/Guarantee.svg");
-  height: 24px;
-  width: 24px;
-  margin-right: 10px;
-  background-size: contain;
-`;
+// const Authentic = styled.div`
+//   background-image: url("/Guarantee/Guarantee.svg");
+//   height: 24px;
+//   width: 24px;
+//   margin-right: 10px;
+//   background-size: contain;
+// `;
 
 const GuaranteedTextContainer = styled.div``;
 
@@ -101,8 +102,7 @@ function PriceOfProduct() {
   const checkFlashSale = dataDetailProduct?.flash_sale;
   const priceMin = dataDetailProduct?.price_info.price_min;
   const priceMax = dataDetailProduct?.price_info.price_max;
-  const afterDiscount =
-    dataDetailProduct?.flash_sale?.price_before_discount.single_value;
+  const afterDiscount = dataDetailProduct?.flash_sale?.price.single_value;
   const beforeDiscount =
     dataDetailProduct?.flash_sale?.price_before_discount.single_value;
   const discount = dataDetailProduct?.skus[0]?.discount;
@@ -131,7 +131,7 @@ function PriceOfProduct() {
         </PriceDiscountContainer>
         <a style={{ cursor: "pointer", backgroundColor: "transparent" }}>
           <GuaranteeContainer>
-            <Authentic></Authentic>
+            <Guarantee />
             <GuaranteedTextContainer>
               <GuaranteedText>Shopee Mall | 100% Authentic</GuaranteedText>
               <GuaranteedMoneyBack>

@@ -33,7 +33,7 @@ export function formatPrice(price, fractionDigits = 2) {
 }
 
 export function formatVoucher(voucher) {
-  const formatedVoucher = voucher.toLocaleString("en-US", {
+  const formatedVoucher = voucher?.toLocaleString("en-US", {
     maximumFractionDigits: 0,
   });
 
@@ -64,4 +64,19 @@ export function getIntegerPart(number) {
   const getNumber = Math.trunc(number);
 
   return getNumber;
+}
+
+export function getDecimalPart(number) {
+  const getNumber = number.toFixed(1);
+
+  return getNumber;
+}
+
+export function getIntegerAndDecimalPart(number) {
+  const lengthOfNumber = number.toString().length;
+  const lengthOfTen = Math.pow(10, lengthOfNumber - 1);
+  const getNumber = number / lengthOfTen;
+  const result = getNumber.toFixed(1) + "k";
+
+  return result;
 }

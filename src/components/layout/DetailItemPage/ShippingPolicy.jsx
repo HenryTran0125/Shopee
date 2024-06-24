@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import FreeReturn from "../../../assets/images/ShopeeMall/FreeReturn.png";
+import Authentic from "../../../assets/images/ShopeeMall/Authentic.png";
+import FreeShipping from "../../../assets/images/ShopeeMall/FreeShipping.png";
 
 const ShippingPolicyAlignment = styled.div`
   margin-top: 30px;
@@ -62,7 +65,7 @@ function ShippingPolicy() {
                   width: "18px",
                   marginRight: "5px",
                 }}
-                src="/ShopeeMall/FreeReturn.png"
+                src={FreeReturn}
               />
               <div
                 style={{
@@ -85,7 +88,7 @@ function ShippingPolicy() {
                   width: "18px",
                   marginRight: "5px",
                 }}
-                src="/ShopeeMall/Authentic.png"
+                src={Authentic}
               />
               <div
                 style={{
@@ -108,7 +111,7 @@ function ShippingPolicy() {
                   width: "18px",
                   marginRight: "5px",
                 }}
-                src="/ShopeeMall/FreeShipping.png"
+                src={FreeShipping}
               />
               <div
                 style={{

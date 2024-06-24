@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import ArrowRight from "../../../Icons/ArrowRight";
 
 const CategoryPathAlignment = styled.div`
   margin-top: 20px;
@@ -23,11 +24,6 @@ const CategoryPathElement = styled.a`
   }
 `;
 
-const ArrowRight = styled.img`
-  position: relative;
-  top: 1px;
-`;
-
 function CategoryPath({ data }) {
   const firstFeCategory = data?.fe_category_path[0]?.display_name;
   const secondFeCategory = data?.fe_category_path[1]?.display_name;
@@ -38,13 +34,13 @@ function CategoryPath({ data }) {
     <CategoryPathAlignment>
       <CategoryPathContainer>
         <CategoryPathElement>Shopee</CategoryPathElement>
-        <ArrowRight src="/CategoryPathArrow/CategoryPathRightArrow.svg" />
+        <ArrowRight />
         <CategoryPathElement>{firstFeCategory}</CategoryPathElement>
-        <ArrowRight src="/CategoryPathArrow/CategoryPathRightArrow.svg" />
+        <ArrowRight />
         <CategoryPathElement>{secondFeCategory}</CategoryPathElement>
-        <ArrowRight src="/CategoryPathArrow/CategoryPathRightArrow.svg" />
+        <ArrowRight />
         <CategoryPathElement>{thirdFeCategory}</CategoryPathElement>
-        <ArrowRight src="/CategoryPathArrow/CategoryPathRightArrow.svg" />
+        <ArrowRight />
         <CategoryPathElement>{title}</CategoryPathElement>
       </CategoryPathContainer>
     </CategoryPathAlignment>

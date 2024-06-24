@@ -25,9 +25,10 @@ function ProductDetailInformation() {
       <Alignment>
         <ProductSpecifications />
         <ProductDescription />
-        <ProductRatings />
-        <ProductSameShop />
       </Alignment>
+
+      <ProductRatings />
+      <ProductSameShop />
     </Container>
   );
 }

@@ -11,9 +11,9 @@ const ProductContent = styled.div`
 `;
 
 function ProductInformation({ data }) {
-  const discountValue = data?.promotions[0].discount_value;
-  const minSpend = data?.promotions[0].min_spend;
-  const productLimit = data?.promotions[0].product_limit;
+  const discountValue = data?.promotions[0]?.discount_value;
+  const minSpend = data?.promotions[0]?.min_spend;
+  const productLimit = data?.promotions[0]?.product_limit;
   const Date = getCurrentDate();
 
   return (
