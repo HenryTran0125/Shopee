@@ -9,15 +9,36 @@ const Alignment = styled.div`
   padding-top: 0.3125rem;
 `;
 
-const Container = styled`
-    height: 100%;
-    position: relative;
-    width: 100%;
+const Container = styled.div`
+  height: 100%;
+  position: relative;
+  width: 100%;
+`;
+
+const List = styled.ul`
+  width: 400%;
+  transform: translate(0px, 0px);
+  display: flex;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+`;
+
+const Item = styled.li`
+  padding: 5px 5px 0;
+  float: left;
+  list-style: none;
+  overflow-x: hidden;
 `;
 
 function ProductOfTheSameShop() {
-  const { newData } = useData();
-  const { data, isLoading, error } = useProductSameShop(newData);
+  const { shopIdProductSameShop } = useData();
+  const { data, isLoading, error } = useProductSameShop(shopIdProductSameShop);
+  const theItems = data?.data?.items;
+  const lengthOfItems = theItems?.length;
+
+  console.log(theItems, lengthOfItems);
 
   if (isLoading) {
     return (
@@ -38,10 +59,15 @@ function ProductOfTheSameShop() {
   if (error) {
     return <div>Error Loading</div>;
   }
-  console.log(data);
   return (
     <Alignment>
-      <Container></Container>
+      <Container>
+        <List>
+          {theItems.map((item, index) => (
+            <Item key={index}></Item>
+          ))}
+        </List>
+      </Container>
     </Alignment>
   );
 }

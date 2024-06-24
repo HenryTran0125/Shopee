@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useShopeeShop } from "../../../services/apiGetShopeeShop";
 import styled from "styled-components";
 import { formatNumber } from "../../../utilities/helpers";
+import officialImage from "../../../assets/images/Is_official_shop/ShopeeMall.png";
 
 const ContainerShopRelation = styled.div`
   display: flex;
@@ -236,7 +237,7 @@ function ShopRelation({ dataShop, keywords }) {
             <ShopLogo src={newShopLogoURL} />
           </div>
           <div style={{ position: "absolute", top: "80%" }}>
-            <ShopeeMall src="/Is_official_shop/ShopeeMall.png" />
+            <ShopeeMall src={officialImage} />
           </div>
         </div>
 

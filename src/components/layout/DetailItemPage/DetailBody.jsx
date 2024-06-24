@@ -26,12 +26,12 @@ function DetailBody() {
     encodedTitle
   );
   // const { data: sameShopData } = useProductSameShop(shopId);
-  const { setDataDetailProduct, setNewData } = useData();
+  const { setDataDetailProduct, setShopIdProductSameShop } = useData();
 
   useEffect(() => {
     if (!isLoading && !error && data?.data) {
       setDataDetailProduct(realData);
-      setNewData(shopId);
+      setShopIdProductSameShop(shopId);
     }
   }, [isLoading, error, data, setDataDetailProduct]);
 

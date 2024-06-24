@@ -37,8 +37,6 @@ function HomeSavingsZone() {
     setDot(index);
   }
 
-  console.log(Ads);
-
   useEffect(() => {
     const timer = setInterval(() => {
       setDot((currDot) => (currDot === numberOfDots - 1 ? 0 : currDot + 1));
