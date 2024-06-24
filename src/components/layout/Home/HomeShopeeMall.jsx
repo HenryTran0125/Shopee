@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { List } from "@mui/material";
-import { useState } from "react";
 import { useEffect } from "react";
+import { useState } from "react";
 import { CarouselInformation } from "../../../data/CarouselInformation";
 import { MallBrands } from "../../../data/MallBrands";
+import Authentic from "../../../assets/images/ShopeeMall/Authentic.png";
+import FreeReturn from "../../../assets/images/ShopeeMall/FreeReturn.png";
+import FreeShipping from "../../../assets/images/ShopeeMall/FreeShipping.png";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 
 const Container = styled.div`
   margin-top: 12px;
@@ -219,13 +221,13 @@ const ArrowBrands = styled.div`
 `;
 
 function HomeShopeeMall() {
-  const [isHovered, setIsHovered] = useState(false);
   const [moving, setMoving] = useState(0);
-  const [checkDot, setCheckDot] = useState(0);
-  const [checkClick, setCheckClick] = useState(null);
-  const [isManualControl, setIsManualControl] = useState(false);
   const [slide, setSlide] = useState(0);
   const [mouse, setMouse] = useState(false);
+  const [checkDot, setCheckDot] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [checkClick, setCheckClick] = useState(null);
+  const [isManualControl, setIsManualControl] = useState(false);
 
   const numberOfDots = CarouselInformation.length;
 
@@ -304,15 +306,15 @@ function HomeShopeeMall() {
             </MallContainer>
           </PolicyElement>
           <PolicyElement>
-            <Img src="/ShopeeMall/FreeReturn.png" />
+            <Img src={FreeReturn} />
             <PolicyText>15-Day Free Returns</PolicyText>
           </PolicyElement>
           <PolicyElement>
-            <Img src="/ShopeeMall/Authentic.png" />
+            <Img src={Authentic} />
             <PolicyText>100% Authentic</PolicyText>
           </PolicyElement>
           <PolicyElement>
-            <Img src="/ShopeeMall/FreeShipping.png" />
+            <Img src={FreeShipping} />
             <PolicyText>Free Shipping</PolicyText>
           </PolicyElement>
         </Policy>

@@ -2,10 +2,11 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { formatNumber } from "../../../utilities/helpers";
-import RatingStar from "./RatingStar";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../../../context/dataContext";
 import { useState } from "react";
+import RatingStar from "./RatingStar";
+import LocationIcon from "../../../assets/images/Location/MapPin.svg";
 
 const ListItem = styled.ul`
   list-style-type: none;
@@ -195,7 +196,7 @@ function SearchProducts({ data }) {
                 <LocationContainer>
                   <div>
                     <img
-                      src="/Location/MapPin.svg"
+                      src={LocationIcon}
                       style={{ margin: "4px", verticalAlign: "middle" }}
                     />
                   </div>

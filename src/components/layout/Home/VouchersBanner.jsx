@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
+import voucherBanner from "../../../assets/images/Banner/VouchersBanner.png";
 
 const Container = styled.div`
   margin-top: 24px;
@@ -9,7 +10,7 @@ const Container = styled.div`
 function VouchersBanner() {
   return (
     <Container>
-      <img src="/Banner/VouchersBanner.png" />
+      <img src={voucherBanner} />
     </Container>
   );
 }

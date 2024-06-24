@@ -1,62 +1,78 @@
+import Torriden from "../assets/images/MallBrands/Torriden.jpg";
+import Ecovacs from "../assets/images/MallBrands/Ecovacs.jpg";
+import Ulike from "../assets/images/MallBrands/Ulike.jpg";
+import topcash from "../assets/images/MallBrands/topcash.jpg";
+import acer from "../assets/images/MallBrands/acer.png";
+import Oneday from "../assets/images/MallBrands/Oneday.jpg";
+import Tefal from "../assets/images/MallBrands/Tefal.jpg";
+import Sterra from "../assets/images/MallBrands/Sterra.jpg";
+import Vivo from "../assets/images/MallBrands/Vivo.jpg";
+import mi from "../assets/images/MallBrands/mi.png";
+import Taka from "../assets/images/MallBrands/Taka.jpg";
+import Dreame from "../assets/images/MallBrands/Dreame.png";
+import Samsung from "../assets/images/MallBrands/Samsung.png";
+import NB from "../assets/images/MallBrands/NB.png";
+import YunNam from "../assets/images/MallBrands/YunNam.png";
+
 export const MallBrands = [
   {
-    source: "/MallBrands/Torriden.jpg",
+    source: Torriden,
     text: "Up To 55% Off + 50% Off Voucher",
   },
   {
-    source: "/MallBrands/Ecovacs.jpg",
+    source: Ecovacs,
     text: "Up To 60% Off",
   },
   {
-    source: "/MallBrands/Ulike.jpg",
+    source: Ulike,
     text: "Up To 54% Off + $20 Off Voucher",
   },
   {
-    source: "/MallBrands/topcash.jpg",
+    source: topcash,
     text: "Up To 70% Off Discount + 10% Off Wnms",
   },
   {
-    source: "/MallBrands/acer.png",
+    source: acer,
     text: "1 Apr Brand Day",
   },
   {
-    source: "/MallBrands/Oneday.jpg",
+    source: Oneday,
     text: "One-Day Best Deals",
   },
   {
-    source: "/MallBrands/Tefal.jpg",
+    source: Tefal,
     text: "Up To 65% Off",
   },
   {
-    source: "/MallBrands/Sterra.jpg",
+    source: Sterra,
     text: "$100 Off Voucher",
   },
   {
-    source: "/MallBrands/Vivo.jpg",
+    source: Vivo,
     text: "Exclusive Launch",
   },
   {
-    source: "/MallBrands/mi.png",
+    source: mi,
     text: "Xiaomi Fan Festival",
   },
   {
-    source: "/MallBrands/Taka.jpg",
+    source: Taka,
     text: "Up To 75% Off",
   },
   {
-    source: "/MallBrands/Dreame.png",
+    source: Dreame,
     text: "Up To 65% Off",
   },
   {
-    source: "/MallBrands/Samsung.png",
+    source: Samsung,
     text: "Up To 50% Off",
   },
   {
-    source: "/MallBrands/NB.png",
+    source: NB,
     text: "Up To 70% Off",
   },
   {
-    source: "/MallBrands/YunNam.png",
+    source: YunNam,
     text: "Up To 35% Off",
   },
 ];

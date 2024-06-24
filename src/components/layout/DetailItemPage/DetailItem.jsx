@@ -122,7 +122,7 @@ function DetailItem({ data }) {
   const ratingStar = data?.rating_star;
   const commentsCount = data?.comment_count;
 
-  const vouchers = data?.promotions[0].discount_value;
+  const vouchers = data?.promotions[0]?.discount_value;
   const shippingThreshold =
     data?.delivery_info?.price_info_default?.free_shipping_threshold;
   const shippingFeeMin = data?.delivery_info?.price_info_default?.price_min;
@@ -152,14 +152,14 @@ function DetailItem({ data }) {
 
             <PriceOfProduct />
 
-            <Options
+            {/* <Options
               vouchers={vouchers}
               shippingThreshold={shippingThreshold}
               shippingFeeMin={shippingFeeMin}
               shippingFeeMax={shippingFeeMax}
               propsOption1={propsOption1}
               propsOption2={propsOption2}
-            />
+            /> */}
 
             <div style={{ marginTop: "15px" }}>
               <div style={{ paddingLeft: "20px" }}>

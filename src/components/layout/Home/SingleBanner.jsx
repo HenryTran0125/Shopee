@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import banner from "../../../assets/images/Banner/banner.png";
 
 const Banner = styled.div`
-  background-image: url("/Banner/banner.png");
+  background-image: url(${(props) => props.banner});
   width: 100%;
   height: 110px;
   margin-top: 20px;
@@ -9,7 +10,7 @@ const Banner = styled.div`
 `;
 
 function SingleBanner() {
-  return <Banner />;
+  return <Banner banner={banner} />;
 }
 
 export default SingleBanner;

@@ -1,3 +1,5 @@
+import RatingStars from "../../../assets/images/RatingStar/RatingStar.svg";
+
 function RatingStar() {
   return (
     <div
@@ -9,11 +11,7 @@ function RatingStar() {
       }}
     >
       {Array.from({ length: 5 }).map((_, index) => (
-        <img
-          style={{ marginLeft: "2px" }}
-          key={index}
-          src="/RatingStar/RatingStar.svg"
-        />
+        <img style={{ marginLeft: "2px" }} key={index} src={RatingStars} />
       ))}
     </div>
   );
