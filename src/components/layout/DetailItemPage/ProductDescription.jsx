@@ -39,7 +39,7 @@ function ProductDescription() {
 
       <DescriptionAlignment>
         <DescriptionContainer>
-          {DescObj.map((item, index) =>
+          {DescObj?.map((item, index) =>
             item.image ? (
               <div key={index}>
                 <div style={{ width: "100%" }}>

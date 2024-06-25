@@ -67,7 +67,7 @@ export function getIntegerPart(number) {
 }
 
 export function getDecimalPart(number) {
-  const getNumber = number.toFixed(1);
+  const getNumber = number?.toFixed(1);
 
   return getNumber;
 }

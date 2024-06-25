@@ -6,7 +6,6 @@ import ShopeeMallHeader from "../layout/DetailItemPage/ShopeeMallHeader";
 
 function DetailItemPage() {
   const { dataItem } = useData();
-  console.log(dataItem);
 
   return (
     <div>

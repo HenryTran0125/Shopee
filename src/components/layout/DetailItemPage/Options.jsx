@@ -9,6 +9,7 @@ import ShippingQuestionMarkIcon from "../../../Icons/ShippingQuestionMarkIcon";
 import ShippingIcon from "../../../Icons/ShippingIcon";
 import Truck from "../../../Icons/Truck";
 import DetailDownArrow from "../../../Icons/DetailDownArrow";
+import StickIcon from "../../../Icons/StickIcon";
 
 const OptionsAlignment = styled.div`
   margin-top: 1.5625rem;
@@ -301,15 +302,6 @@ const BoxTickContainer = styled.div`
   width: 0.9375rem;
 `;
 
-const IconTick = styled.img`
-  height: 8px;
-  width: 8px;
-  bottom: 0;
-  position: absolute;
-  right: 0;
-  border: 0;
-`;
-
 const Prop2Button = styled.button`
   align-items: center;
   background: #fff;
@@ -499,7 +491,7 @@ function Options({
                     {item.name}
 
                     <BoxTickContainer>
-                      <IconTick src="/OptionSelected/Stick.svg" />
+                      <StickIcon />
                     </BoxTickContainer>
                   </OptionButton>
                 ))}
@@ -523,7 +515,7 @@ function Options({
                     <MinusButton>
                       <Minus />
                     </MinusButton>
-                    <QuantityDisplay value={1} />
+                    <QuantityDisplay type="text" defaultValue={1} />
                     <PlusButton>
                       <Plus />
                     </PlusButton>

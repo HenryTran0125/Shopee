@@ -7,6 +7,8 @@ import { useDetailItem } from "../../../services/apiDetailItem";
 import StoreInformation from "./StoreInformation";
 import ProductInformation from "./ProductInformation";
 import { useData } from "../../../context/dataContext";
+import { useProductSameShop } from "../../../services/apiProductSameShop";
+import { useEffect } from "react";
 
 const Main = styled.div`
   max-width: 1200px;
@@ -23,7 +25,14 @@ function DetailBody() {
     itemId,
     encodedTitle
   );
+  const { data: sameShopData } = useProductSameShop(shopId);
   const { setDataDetailProduct } = useData();
+
+  useEffect(() => {
+    if (!isLoading && !error && data?.data) {
+      setDataDetailProduct(realData);
+    }
+  }, [isLoading, error, data, setDataDetailProduct]);
 
   if (isLoading) {
     return (
@@ -46,7 +55,7 @@ function DetailBody() {
   }
 
   const realData = data?.data;
-  setDataDetailProduct(realData);
+  console.log(sameShopData);
 
   return (
     <Main>

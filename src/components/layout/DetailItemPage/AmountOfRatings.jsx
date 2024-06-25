@@ -73,18 +73,19 @@ const StarsText = styled.div`
 
 function AmountOfRatings() {
   const { dataDetailProduct } = useData();
+  if (!dataDetailProduct) {
+    return;
+  }
   const reviewScore = dataDetailProduct?.review_info?.rating_star;
   const classifiedCounts = dataDetailProduct?.review_info?.classified_counts;
-  const reverseStarIndex = Object.entries(classifiedCounts)?.reverse();
-
-  function onSelect() {}
+  const reverseStarIndex =
+    classifiedCounts && Object.entries(classifiedCounts).reverse();
 
   function reverseKeys(key) {
     const keysReversed = key.replace("star", "");
 
     return `${keysReversed} Star`;
   }
-  console.log(reverseStarIndex);
 
   return (
     <AmountOfRatingsContainer>
@@ -100,8 +101,8 @@ function AmountOfRatings() {
       </AverageRatingScore>
 
       <CategoryStar>
-        <StarsText onClick={() => onSelect()}>all</StarsText>
-        {reverseStarIndex.map(([key, value], index) => (
+        <StarsText>all</StarsText>
+        {reverseStarIndex?.map(([key, value], index) => (
           <StarsText key={index}>
             {reverseKeys(key)} ({getIntegerAndDecimalPart(value)})
           </StarsText>

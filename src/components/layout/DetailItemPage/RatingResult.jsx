@@ -1,9 +1,9 @@
+/* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import {
   formatNumber,
   formatNumberInThousand,
 } from "../../../utilities/helpers";
-import NewButton from "../../common/NewButton";
 import PropTypes from "prop-types";
 
 const RatingContainer = styled.div`
@@ -41,46 +41,50 @@ const RatingsText = styled.div`
   cursor: pointer;
 `;
 
+const ButtonStars = styled.button`
+  display: flex;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  align-items: center;
+  padding: 0 15px;
+`;
+
+const ButtonCommentsCount = styled.button`
+  display: flex;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  align-items: center;
+  padding: 0 15px;
+  border-left: 1px solid rgba(0, 0, 0, 0.14);
+`;
+
+const ButtonReport = styled.button`
+  background: none;
+  border: unset;
+  font-size: 14px;
+  margin-left: auto;
+  color: rgba(0, 0, 0, 0.54);
+  cursor: pointer;
+`;
+
 function RatingResult({ ratingStar, commentsCount }) {
   return (
     <RatingContainer>
-      <NewButton
-        display={"flex"}
-        cursor={"pointer"}
-        backgroundColor={"transparent"}
-        border={0}
-        alignItems={"center"}
-        padding={"0 15px"}
-      >
+      <ButtonStars>
         <RatingStar>{formatNumber(ratingStar, 1)}</RatingStar>
 
         <div>Stars</div>
-      </NewButton>
+      </ButtonStars>
 
-      <NewButton
-        display={"flex"}
-        cursor={"pointer"}
-        backgroundColor={"transparent"}
-        border={0}
-        alignItems={"center"}
-        padding={"0 15px"}
-        borderLeft={"1px solid rgba(0,0,0, .14)"}
-      >
+      <ButtonCommentsCount>
         <CommentsCount>{formatNumberInThousand(commentsCount)}</CommentsCount>
 
         <RatingsText>Ratings</RatingsText>
-      </NewButton>
+      </ButtonCommentsCount>
 
-      <NewButton
-        background={"none"}
-        border={"unset"}
-        fontSize={"14px"}
-        marginLeft={"auto"}
-        color={"rgba(0,0,0, .54)"}
-        cursor={"pointer"}
-      >
-        Report
-      </NewButton>
+      <ButtonReport>Report</ButtonReport>
     </RatingContainer>
   );
 }

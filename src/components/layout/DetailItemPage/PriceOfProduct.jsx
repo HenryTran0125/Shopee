@@ -106,7 +106,6 @@ function PriceOfProduct() {
   const beforeDiscount =
     dataDetailProduct?.flash_sale?.price_before_discount.single_value;
   const discount = dataDetailProduct?.skus[0]?.discount;
-  console.log(priceMin);
 
   return (
     <PriceContainer>

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ProductSpecifications from "./ProductSpecifications";
 import ProductDescription from "./ProductDescription";
 import ProductRatings from "./ProductRatings";
-import ProductSameShop from "./ProductSameShop";
+import SameShop from "./SameShop";
 
 const Container = styled.div`
   flex: 1;
@@ -28,7 +28,7 @@ function ProductDetailInformation() {
       </Alignment>
 
       <ProductRatings />
-      <ProductSameShop />
+      <SameShop />
     </Container>
   );
 }

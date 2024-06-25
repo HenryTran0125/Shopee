@@ -3,7 +3,6 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { useData } from "../../../context/dataContext";
 import CategoryPathArrow from "../../../Icons/CategoryPathArrow";
-// import CategoryPathArrow from "../../../assets/images/CategoryPathArrow/CategoryPathRightArrow";
 
 const Container = styled.section`
   padding: 1.075rem 1.075rem 0;
@@ -67,10 +66,7 @@ function ProductSpecifications() {
   const delivery = dataDetailProduct?.delivery_info.area_from;
   const stock = dataDetailProduct?.stock;
   const productProps = dataDetailProduct?.product_props;
-  const checkLength = Object.entries(productProps).length;
-  const keysProduct = Object.keys(productProps);
-  const valuesProduct = Object.values(productProps);
-  console.log(keysProduct, valuesProduct);
+  const checkLength = productProps && Object.entries(productProps)?.length;
 
   return (
     <Container>
@@ -98,7 +94,7 @@ function ProductSpecifications() {
         )}
 
         {checkLength > 0
-          ? Object.entries(productProps).map(([key, value]) => (
+          ? Object.entries(productProps)?.map(([key, value]) => (
               <Alignment key={value}>
                 <Label>{key}</Label>
                 <div>{value}</div>
@@ -121,5 +117,9 @@ function ProductSpecifications() {
     </Container>
   );
 }
+
+ProductSpecifications.propTypes = {
+  dataDetailProduct: PropTypes.object,
+};
 
 export default ProductSpecifications;

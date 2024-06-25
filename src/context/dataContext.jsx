@@ -12,7 +12,12 @@ function DataProvider({ children }) {
 
   return (
     <DataContext.Provider
-      value={{ dataItem, setDataItem, dataDetailProduct, setDataDetailProduct }}
+      value={{
+        dataItem,
+        setDataItem,
+        dataDetailProduct,
+        setDataDetailProduct,
+      }}
     >
       {children}
     </DataContext.Provider>

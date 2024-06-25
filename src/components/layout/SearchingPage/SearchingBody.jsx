@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import SearchFilter from "../DetailItemPage/SearchFilter";
+import SearchFilter from "./SearchFilter";
 import SearchResult from "./SearchResult";
 import styled from "styled-components";
 
