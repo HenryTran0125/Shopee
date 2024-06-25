@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export async function getProductSameShop(shopId) {
   try {
-    const { data } = axios.get(
+    const { data } = await axios.get(
       `/api/shopee/shop/items/v2?apiToken=${apiToken}&site=sg&shop_id=${shopId}&by=relevancy&order=desc&page=1&pageSize=20`
     );
 
@@ -20,7 +20,8 @@ export async function getProductSameShop(shopId) {
 
 export function useProductSameShop(shopId) {
   return useQuery({
-    queryKey: [],
+    queryKey: ["Product Same Shop", shopId],
     queryFn: () => getProductSameShop(shopId),
+    enabled: !!shopId,
   });
 }

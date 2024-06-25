@@ -8,6 +8,7 @@ const DataContext = createContext();
 function DataProvider({ children }) {
   const [dataItem, setDataItem] = useState();
   const [dataDetailProduct, setDataDetailProduct] = useState();
+  const [newData, setNewData] = useState();
   // console.log(dataItem);
 
   return (
@@ -17,6 +18,8 @@ function DataProvider({ children }) {
         setDataItem,
         dataDetailProduct,
         setDataDetailProduct,
+        newData,
+        setNewData,
       }}
     >
       {children}

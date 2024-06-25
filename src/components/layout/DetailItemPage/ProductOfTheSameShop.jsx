@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import { useProductSameShop } from "../../../services/apiProductSameShop";
+import { useData } from "../../../context/dataContext";
 
 const Alignment = styled.div`
   margin-left: -0.3125rem;
@@ -15,8 +16,29 @@ const Container = styled`
 `;
 
 function ProductOfTheSameShop() {
-  //   const { data, isLoading, error } = useProductSameShop();
-  //   console.log(data);
+  const { newData } = useData();
+  const { data, isLoading, error } = useProductSameShop(newData);
+
+  if (isLoading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          margin: "0 auto",
+          height: "100vh",
+        }}
+      >
+        <div>Loading...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div>Error Loading</div>;
+  }
+  console.log(data);
   return (
     <Alignment>
       <Container></Container>
