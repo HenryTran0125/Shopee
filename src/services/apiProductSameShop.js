@@ -23,5 +23,6 @@ export function useProductSameShop(shopId) {
     queryKey: ["Product Same Shop", shopId],
     queryFn: () => getProductSameShop(shopId),
     enabled: !!shopId,
+    staleTime: 10000,
   });
 }

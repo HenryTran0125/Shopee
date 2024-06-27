@@ -18,9 +18,12 @@ export async function getDetailItem(shopId, itemId) {
 }
 
 export function useDetailItem(shopId, itemId, encodedTitle) {
+  console.log("useDetailItem params:", shopId, itemId, encodedTitle);
   return useQuery({
-    queryKey: ["shopId, itemId, encodedTitle", shopId, itemId, encodedTitle],
+    queryKey: ["itemDetail", shopId, itemId, encodedTitle],
     queryFn: () => getDetailItem(shopId, itemId),
-    enabled: !![shopId, itemId],
+    enabled: !!shopId && !!itemId && !!encodedTitle,
+    cacheTime: 1000 * 60 * 5, // 5 phút
+    staleTime: 1000 * 60, // 1 phút
   });
 }

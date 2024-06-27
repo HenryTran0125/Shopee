@@ -21,12 +21,16 @@ function ProductInformation({ data }) {
       <ProductContent>
         <ProductDetailInformation />
 
-        <ShopVouchers
-          discountValue={discountValue}
-          minSpend={minSpend}
-          productLimit={productLimit}
-          Date={Date}
-        />
+        {discountValue ? (
+          <ShopVouchers
+            discountValue={discountValue}
+            minSpend={minSpend}
+            productLimit={productLimit}
+            Date={Date}
+          />
+        ) : (
+          ""
+        )}
       </ProductContent>
     </div>
   );

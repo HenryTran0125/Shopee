@@ -2,9 +2,8 @@
 import styled from "styled-components";
 import SearchResultProduct from "./SearchResultProduct";
 import ShopRelation from "./ShopRelation";
-import { useLocation, useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useKeyWords } from "../../../services/apiSearchKeyWords";
-import { useData } from "../../../context/dataContext";
 
 const Container = styled.div`
   flex: 1;
