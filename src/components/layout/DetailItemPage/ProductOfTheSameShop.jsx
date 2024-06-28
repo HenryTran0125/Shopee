@@ -63,7 +63,7 @@ function ProductOfTheSameShop() {
     <Alignment>
       <Container>
         <List>
-          {theItems.map((item, index) => (
+          {theItems?.map((item, index) => (
             <Item key={index}></Item>
           ))}
         </List>

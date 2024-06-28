@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
-import PropTypes from "prop-types";
 import { useShopeeShop } from "../../../services/apiGetShopeeShop";
-import styled from "styled-components";
 import { formatNumber } from "../../../utilities/helpers";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 import officialImage from "../../../assets/images/Is_official_shop/ShopeeMall.png";
 
 const ContainerShopRelation = styled.div`

@@ -6,7 +6,7 @@ import axios from "axios";
 export async function searchKeyWord(inputKeywords) {
   try {
     const { data } = await axios.get(
-      `/api/shopee/search/items/v2?apiToken=${apiToken}&site=sg&keyword=${inputKeywords}&by=pop&order=desc&page=1&pageSize=20`
+      `/api/shopee/search/items/v2?apiToken=${apiToken}&site=sg&keyword=${inputKeywords}&by=pop&order=desc&page=1&pageSize=30`
     );
 
     const dataShop = data?.data?.items;

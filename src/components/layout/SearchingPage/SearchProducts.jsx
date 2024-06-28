@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
-import styled from "styled-components";
-import PropTypes from "prop-types";
 import { formatNumber } from "../../../utilities/helpers";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../../../context/dataContext";
 import { useState } from "react";
+import styled from "styled-components";
+import PropTypes from "prop-types";
 import RatingStar from "./RatingStar";
-import LocationIcon from "../../../assets/images/Location/MapPin.svg";
+import LocationIcon from "../../../Icons/LocationIcon";
+import FulFilled from "../../../assets/images/FulfilledByShopee/Fulfilled.png";
+import PreFerred from "../../../assets/images/Preferred/Preferred.png";
 
 const ListItem = styled.ul`
   list-style-type: none;
@@ -102,7 +104,7 @@ const Discount = styled.div`
 `;
 
 const Fulfilled = styled.div`
-  background-image: url("/FulfilledByShopee/Fulfilled.png");
+  background-image: url(${(props) => props.source});
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
@@ -113,7 +115,7 @@ const Fulfilled = styled.div`
 `;
 
 const Preferred = styled.div`
-  background-image: url("/Preferred/Preferred.png");
+  background-image: url(${(props) => props.source});
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
@@ -195,10 +197,7 @@ function SearchProducts({ data }) {
 
                 <LocationContainer>
                   <div>
-                    <img
-                      src={LocationIcon}
-                      style={{ margin: "4px", verticalAlign: "middle" }}
-                    />
+                    <LocationIcon />
                   </div>
                   <LocationText>{item.shop_info.shop_location}</LocationText>
                 </LocationContainer>
@@ -206,9 +205,9 @@ function SearchProducts({ data }) {
             </MainInformation>
           </MainContentContainer>
           {item.is_service_by_shopee ? (
-            <Fulfilled />
+            <Fulfilled source={FulFilled} />
           ) : (
-            item.liked_count > 1000 && <Preferred />
+            item.liked_count > 1000 && <Preferred source={PreFerred} />
           )}
         </Item>
       ))}

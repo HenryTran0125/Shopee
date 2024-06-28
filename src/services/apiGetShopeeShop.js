@@ -7,7 +7,7 @@ export async function getShopeeShop(dataItem) {
   const requests = dataItem?.map((item) => {
     const id = item.shop_id;
     return axios.get(
-      `/api/shopee/shop/shop_info?apiToken=${apiToken}&site=sg&shop_id=${id}&username=fangzhong.s`
+      `/api/shopee/shop/shop_info?apiToken=${apiToken}&site=sg&shop_id=${id}&username=fangzhong.sg`
     );
   });
 
