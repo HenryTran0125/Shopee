@@ -40,10 +40,16 @@ const HoveredVideo = styled.video`
   width: 100%;
 `;
 
+const Wrapper = styled.div`
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+`;
+
 const ListElements = styled.div`
   flex: 0;
   display: flex;
-  position: relative;
   width: ${(props) => props.length * 100}px;
   margin: 5px 0;
   flex-wrap: nowrap;
@@ -250,43 +256,45 @@ function OverView({ slideImgs, likeCount }) {
           )}
         </HoveredElementContainer>
 
-        <ListElements length={lengthOfImgs}>
-          {slideImgs?.map((element, index) => (
-            <ElementContainer length={lengthOfImgs} key={index}>
-              {element.includes("cvf") ? (
-                <>
-                  <Video src={element}></Video>
-                  <PlayButton />
-                </>
-              ) : (
-                <Img src={element} />
-              )}
+        <Wrapper>
+          <ListElements length={lengthOfImgs}>
+            {slideImgs?.map((element, index) => (
+              <ElementContainer length={lengthOfImgs} key={index}>
+                {element.includes("cvf") ? (
+                  <>
+                    <Video src={element}></Video>
+                    <PlayButton />
+                  </>
+                ) : (
+                  <Img src={element} />
+                )}
 
-              <div
-                style={{
-                  position: "absolute",
-                  top: "0",
-                  left: "0",
-                  bottom: "0",
-                  right: "0",
-                  border: `${isChosen == index ? "2px solid #d0011b" : ""}`,
-                }}
-                onMouseEnter={() => {
-                  setIsChosen(isChosen == index ? isChosen : index);
-                  onHover(element);
-                }}
-              ></div>
-            </ElementContainer>
-          ))}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "0",
+                    left: "0",
+                    bottom: "0",
+                    right: "0",
+                    border: `${isChosen == index ? "2px solid #d0011b" : ""}`,
+                  }}
+                  onMouseEnter={() => {
+                    setIsChosen(isChosen == index ? isChosen : index);
+                    onHover(element);
+                  }}
+                ></div>
+              </ElementContainer>
+            ))}
 
-          <LeftArrowButton>
-            <LeftArrow />
-          </LeftArrowButton>
+            <LeftArrowButton>
+              <LeftArrow border={0} fill={"white"} />
+            </LeftArrowButton>
 
-          <RightArrowButton>
-            <RightArrow />
-          </RightArrowButton>
-        </ListElements>
+            <RightArrowButton>
+              <RightArrow fill={"white"} />
+            </RightArrowButton>
+          </ListElements>
+        </Wrapper>
       </MainContent>
 
       <ShareAndLove>

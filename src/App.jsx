@@ -33,12 +33,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<SearchingPage />} />
-          {
-            <Route
-              path="/:encodedTitle/:shopId/:itemId"
-              element={<DetailItemPage />}
-            />
-          }
+
+          <Route
+            path="/:encodedTitle/:shopId/:itemId"
+            element={<DetailItemPage />}
+          />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
