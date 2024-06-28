@@ -18,7 +18,6 @@ export async function getDetailItem(shopId, itemId) {
 }
 
 export function useDetailItem(shopId, itemId, encodedTitle) {
-  console.log("useDetailItem params:", shopId, itemId, encodedTitle);
   return useQuery({
     queryKey: ["itemDetail", shopId, itemId, encodedTitle],
     queryFn: () => getDetailItem(shopId, itemId),

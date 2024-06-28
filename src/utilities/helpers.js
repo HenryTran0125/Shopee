@@ -80,3 +80,11 @@ export function getIntegerAndDecimalPart(number) {
 
   return result;
 }
+
+export function roundUp(number) {
+  const lengthOfNumber = number.toString().length;
+  const lengthOfTen = Math.pow(10, lengthOfNumber - 1);
+  const getNumber = number / lengthOfTen;
+  const roundedNumber = Math.ceil(getNumber) * lengthOfTen;
+  return roundedNumber;
+}

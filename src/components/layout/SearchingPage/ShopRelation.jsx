@@ -180,6 +180,8 @@ function ShopRelation({ dataShop, keywords }) {
     ? shopLogoURL.toLowerCase().replace("shopeesiteoption.sg", "sg")
     : shopLogoURL;
 
+  console.log(data);
+
   if (isLoading) {
     return <div>Loading...</div>;
   }

@@ -62,7 +62,7 @@ function DetailBody() {
     <Main>
       <CategoryPath data={realData} />
       <DetailItem data={realData} />
-      <StoreInformation />
+      <StoreInformation shopId={shopId} />
       <ProductInformation data={realData} />
     </Main>
   );

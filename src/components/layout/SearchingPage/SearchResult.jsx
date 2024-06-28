@@ -17,6 +17,8 @@ function SearchResult() {
   const { data, error, isLoading } = useKeyWords(keywords);
   const { searchData, dataShop } = data || {};
 
+  console.log(dataShop);
+
   // Kiểm tra trạng thái loading hoặc lỗi
   if (isLoading) {
     return <div>Loading...</div>;

@@ -191,7 +191,7 @@ function ProductOfTheSameShop() {
   const theItems = data?.data?.items;
   const lengthOfItems = theItems?.length;
 
-  console.log(theItems);
+  // console.log(theItems);
 
   if (isLoading) {
     return (
