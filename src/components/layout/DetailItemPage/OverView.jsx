@@ -82,6 +82,15 @@ const Img = styled.img`
   border: 0;
 `;
 
+const BorderHoveredElement = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border: ${(props) => (props.hovered ? "2px solid #d0011b" : "")};
+`;
+
 const LeftArrowButton = styled.button`
   background-color: rgba(0, 0, 0, 0.2) !important;
   color: #fff;
@@ -232,7 +241,7 @@ const FavoriteText = styled.div`
   font-size: 16px;
 `;
 
-function OverView({ slideImgs, likeCount }) {
+function OverView({ slideImgs, likeCount, color }) {
   const [chosenElement, setChosenElement] = useState();
   const [isChosen, setIsChosen] = useState();
   const lengthOfImgs = slideImgs.length;
@@ -251,6 +260,8 @@ function OverView({ slideImgs, likeCount }) {
                 muted
               />
             </HoveredVideoContainer>
+          ) : color !== null ? (
+            <Img src={color} />
           ) : (
             <Img src={chosenElement ? chosenElement : slideImgs[0]} />
           )}
@@ -269,20 +280,13 @@ function OverView({ slideImgs, likeCount }) {
                   <Img src={element} />
                 )}
 
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "0",
-                    left: "0",
-                    bottom: "0",
-                    right: "0",
-                    border: `${isChosen == index ? "2px solid #d0011b" : ""}`,
-                  }}
+                <BorderHoveredElement
+                  hovered={isChosen == index}
                   onMouseEnter={() => {
                     setIsChosen(isChosen == index ? isChosen : index);
                     onHover(element);
                   }}
-                ></div>
+                ></BorderHoveredElement>
               </ElementContainer>
             ))}
 
@@ -335,4 +339,5 @@ export default OverView;
 OverView.propTypes = {
   slideImgs: PropTypes.any,
   likeCount: PropTypes.any,
+  color: PropTypes.any,
 };

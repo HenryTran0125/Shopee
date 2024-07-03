@@ -11,6 +11,7 @@ import Options from "./Options";
 import ShippingPolicy from "./ShippingPolicy";
 import AddToCartIcon from "../../../Icons/AddToCartIcon";
 import MallTitle from "../../../Icons/MallTitle";
+import { useState } from "react";
 
 const DetailItemAlignment = styled.div`
   margin-top: 1.25rem;
@@ -122,13 +123,17 @@ function DetailItem({ data }) {
     data?.delivery_info?.price_info_default?.free_shipping_threshold;
   const shippingFeeMin = data?.delivery_info?.price_info_default?.price_min;
   const shippingFeeMax = data?.delivery_info?.price_info_default?.price_max;
-  const propsOption1 = data?.sku_props[0];
-  const propsOption2 = data?.sku_props[1];
+  const colour = data?.sku_props[0];
+  const storage = data?.sku_props[1];
+
+  const pickOptions = data?.skus;
+  const [color, setColor] = useState(null);
+  const [memory, setMemory] = useState();
 
   return (
     <DetailItemAlignment>
       <DetailItemContainer>
-        <OverView slideImgs={slideImgs} likeCount={likeCount} />
+        <OverView color={color} slideImgs={slideImgs} likeCount={likeCount} />
 
         <DetailInformation>
           <DetailInformationContainer>
@@ -148,8 +153,10 @@ function DetailItem({ data }) {
               shippingThreshold={shippingThreshold}
               shippingFeeMin={shippingFeeMin}
               shippingFeeMax={shippingFeeMax}
-              propsOption1={propsOption1}
-              propsOption2={propsOption2}
+              colour={colour}
+              setColor={setColor}
+              storage={storage}
+              pickOptions={pickOptions}
             />
 
             <div style={{ marginTop: "15px" }}>

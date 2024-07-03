@@ -201,7 +201,7 @@ function ProductOfTheSameShop() {
           justifyContent: "center",
           alignItems: "center",
           margin: "0 auto",
-          height: "100vh",
+          height: "100%",
         }}
       >
         <div>Loading...</div>

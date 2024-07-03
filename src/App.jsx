@@ -7,6 +7,7 @@ import GlobalStyles from "./assets/styles/GlobalStyles";
 import Home from "./components/pages/Home";
 import SearchingPage from "./components/pages/SearchingPage";
 import DetailItemPage from "./components/pages/DetailItemPage";
+import CheckoutPage from "./components/pages/CheckoutPage";
 
 function App() {
   const queryClient = new QueryClient({
@@ -38,6 +39,8 @@ function App() {
             path="/:encodedTitle/:shopId/:itemId"
             element={<DetailItemPage />}
           />
+
+          <Route path="/cart" element={<CheckoutPage />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

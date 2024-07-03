@@ -1,3 +1,22 @@
+/* eslint-disable no-unused-vars */
+import styled from "styled-components";
+
+const ItemsInCart = styled.div`
+  color: #d0011b;
+  background-color: #fff;
+  border: 0.125rem solid #d0011b;
+  border-radius: 1rem;
+  height: 1.25rem;
+  min-width: 1.25rem;
+  line-height: 1.2em;
+  margin-right: -0.875rem;
+  padding: 0 0.6rem;
+  position: absolute;
+  text-align: center;
+  top: -40%;
+  right: -30%;
+`;
+
 function Cart() {
   return (
     <div
@@ -17,6 +36,10 @@ function Cart() {
           margin: "0 0 0 5px",
           outline: "0",
           overflow: "visible",
+          position: "relative",
+          display: "flex",
+          alignItems: "center",
+          marginRight: ".625rem",
         }}
       >
         <svg
@@ -39,6 +62,7 @@ function Cart() {
           <circle cx="10.7" cy="23" r="2.2" stroke="none"></circle>
           <circle cx="19.7" cy="23" r="2.2" stroke="none"></circle>
         </svg>
+        <ItemsInCart>0</ItemsInCart>
       </a>
     </div>
   );

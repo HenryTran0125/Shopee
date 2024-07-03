@@ -4,10 +4,9 @@ function StickIcon() {
       style={{
         height: "8px",
         width: "8px",
-        bottom: "0",
         position: "absolute",
+        bottom: "0",
         right: "0",
-        border: "0",
       }}
       xmlns="http://www.w3.org/2000/svg"
       enableBackground="new 0 0 12 12"

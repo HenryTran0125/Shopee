@@ -1,6 +1,11 @@
 function AddToCartIcon() {
   return (
     <svg
+      style={{
+        height: "20px",
+        width: "20px",
+        marginRight: "10px",
+      }}
       xmlns="http://www.w3.org/2000/svg"
       enableBackground="new 0 0 15 15"
       viewBox="0 0 15 15"
