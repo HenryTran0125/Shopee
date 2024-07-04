@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import FreeShipping from "../../../assets/images/Shipping/FreeShipping.png";
+import SelectedProducts from "./SelectedProducts";
 
 const Main = styled.main`
   color: rgba(0, 0, 0, 0.8);
@@ -145,7 +146,7 @@ function CheckoutProducts() {
         <Actions>Actions</Actions>
       </TableHeaders>
 
-      <section></section>
+      <SelectedProducts />
     </Main>
   );
 }

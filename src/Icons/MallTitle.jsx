@@ -1,7 +1,13 @@
-function MallTitle() {
+import PropTypes from "prop-types";
+
+function MallTitle({ display, marginRight, border }) {
   return (
     <svg
-      style={{ display: "inline", marginRight: "8px", border: "0" }}
+      style={{
+        display: display,
+        marginRight: marginRight,
+        border: border,
+      }}
       width="30"
       height="16"
       data-cy="Item_mall_badge_pdp"
@@ -26,3 +32,9 @@ function MallTitle() {
 }
 
 export default MallTitle;
+
+MallTitle.propTypes = {
+  display: PropTypes.string,
+  marginRight: PropTypes.any,
+  border: PropTypes.any,
+};

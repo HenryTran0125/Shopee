@@ -1,17 +1,16 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import OverView from "./OverView";
 import RatingResult from "./RatingResult";
 import PriceOfProduct from "./PriceOfProduct";
-import { formatPrice, formatVoucher } from "../../../utilities/helpers";
-import Minus from "../../../Icons/Minus";
-import Plus from "../../../Icons/Plus";
 import Options from "./Options";
 import ShippingPolicy from "./ShippingPolicy";
 import AddToCartIcon from "../../../Icons/AddToCartIcon";
 import MallTitle from "../../../Icons/MallTitle";
 import { useState } from "react";
+import { addToCart } from "../../../features/featureName/featureSlice";
 
 const DetailItemAlignment = styled.div`
   margin-top: 1.25rem;
@@ -107,6 +106,9 @@ const BuyNow = styled.button`
 `;
 
 function DetailItem({ data }) {
+  const [color, setColor] = useState(null);
+  const dispatch = useDispatch();
+
   const mainImgs = data?.main_imgs;
   const video = data?.video_url;
   const likeCount = data?.liked_count;
@@ -127,8 +129,7 @@ function DetailItem({ data }) {
   const storage = data?.sku_props[1];
 
   const pickOptions = data?.skus;
-  const [color, setColor] = useState(null);
-  const [memory, setMemory] = useState();
+  console.log(typeof mainImgs);
 
   return (
     <DetailItemAlignment>
@@ -138,7 +139,7 @@ function DetailItem({ data }) {
         <DetailInformation>
           <DetailInformationContainer>
             <TitleProduct>
-              <MallTitle />
+              <MallTitle display={"inline"} marginRight={"8px"} border={0} />
               <span style={{ fontSize: "20px" }}>{titleProduct}</span>
             </TitleProduct>
 
@@ -162,7 +163,7 @@ function DetailItem({ data }) {
             <div style={{ marginTop: "15px" }}>
               <div style={{ paddingLeft: "20px" }}>
                 <ButtonBuyContainer>
-                  <AddToCart>
+                  <AddToCart onClick={() => dispatch(addToCart())}>
                     <AddToCartIcon />
                     <AddToCartText>add to cart</AddToCartText>
                   </AddToCart>
