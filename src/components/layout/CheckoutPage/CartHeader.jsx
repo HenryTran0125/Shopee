@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import CheckoutHeaderNavigation from "./CheckoutHeaderNavigation";
-import CheckoutHeaderSearch from "./CheckoutHeaderSearch";
+import CartHeaderNavigation from "./CartHeaderNavigation";
+import CartHeaderSearch from "./CartHeaderSearch";
 import styled from "styled-components";
 
 const HeaderContainer = styled.header`
@@ -9,13 +9,13 @@ const HeaderContainer = styled.header`
   min-width: 50rem;
 `;
 
-function CheckoutHeader() {
+function CartHeader() {
   return (
     <HeaderContainer>
-      <CheckoutHeaderNavigation />
-      <CheckoutHeaderSearch />
+      <CartHeaderNavigation />
+      <CartHeaderSearch />
     </HeaderContainer>
   );
 }
 
-export default CheckoutHeader;
+export default CartHeader;

@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
-import CheckoutShopName from "./CheckoutShopName";
-import CheckoutProductFromShop from "./CheckoutProductFromShop";
+import CartProductFromShop from "./CartProductFromShop";
+import CartShopName from "./CartShopName";
+import CartVouchersAvailable from "./CartVouchersAvailable";
+import CartFreshipping from "./CartFreshipping";
 
 const ProductInformationContainer = styled.section`
   background: #fff;
@@ -14,9 +16,10 @@ const ProductInformationContainer = styled.section`
 function SelectedProducts() {
   return (
     <ProductInformationContainer>
-      <CheckoutShopName />
-
-      <CheckoutProductFromShop />
+      <CartShopName />
+      <CartProductFromShop />
+      <CartVouchersAvailable />
+      <CartFreshipping />
     </ProductInformationContainer>
   );
 }

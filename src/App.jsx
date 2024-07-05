@@ -7,7 +7,7 @@ import GlobalStyles from "./assets/styles/GlobalStyles";
 import Home from "./components/pages/Home";
 import SearchingPage from "./components/pages/SearchingPage";
 import DetailItemPage from "./components/pages/DetailItemPage";
-import CheckoutPage from "./components/pages/CheckoutPage";
+import ShopeeCart from "./components/pages/ShopeeCart";
 
 function App() {
   const queryClient = new QueryClient({
@@ -40,7 +40,7 @@ function App() {
             element={<DetailItemPage />}
           />
 
-          <Route path="/cart" element={<CheckoutPage />} />
+          <Route path="/cart" element={<ShopeeCart />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

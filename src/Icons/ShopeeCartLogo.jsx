@@ -1,6 +1,10 @@
+import { useNavigate } from "react-router-dom";
+
 function ShopeeCartLogo() {
+  const navigate = useNavigate();
   return (
     <svg
+      onClick={() => navigate("/")}
       style={{
         backgroundPosition: "50%",
         backgroundRepeat: "no-repeat",

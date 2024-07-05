@@ -1,6 +1,11 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import FindSimilarIcon from "../../../Icons/FindSimilarIcon";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  decreaseQuantityInCart,
+  increaseQuantityInCart,
+} from "../../../features/featureName/featureSlice";
 
 const Container = styled.section`
   padding-bottom: 1px;
@@ -300,9 +305,15 @@ const FindSimilar = styled.button`
 const FindSimilarText = styled.span`
   color: #ee4d2d;
   font-weight: 400;
+  display: inline-block;
+  text-align: center;
 `;
 
-function CheckoutProductFromShop() {
+function CartProductFromShop() {
+  const quantityOfUnit = useSelector(
+    (state) => state.numberOfProducts.quantityOfUnit
+  );
+  const dispatch = useDispatch();
   return (
     <Container>
       <Alignment>
@@ -352,9 +363,17 @@ function CheckoutProductFromShop() {
 
             <QuantityAlignment>
               <QuantityContainer>
-                <ButtonQuantity>-</ButtonQuantity>
-                <InputQuantity value={1} />
-                <ButtonQuantity>+</ButtonQuantity>
+                <ButtonQuantity
+                  onClick={() => dispatch(decreaseQuantityInCart())}
+                >
+                  -
+                </ButtonQuantity>
+                <InputQuantity value={quantityOfUnit} />
+                <ButtonQuantity
+                  onClick={() => dispatch(increaseQuantityInCart())}
+                >
+                  +
+                </ButtonQuantity>
               </QuantityContainer>
             </QuantityAlignment>
 
@@ -364,7 +383,14 @@ function CheckoutProductFromShop() {
 
             <ActionsContainer>
               <Delete>Delete</Delete>
-              <div style={{ width: "100%" }}>
+
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
                 <FindSimilar>
                   <FindSimilarText>Find Similar</FindSimilarText>
                   <FindSimilarIcon />
@@ -378,4 +404,4 @@ function CheckoutProductFromShop() {
   );
 }
 
-export default CheckoutProductFromShop;
+export default CartProductFromShop;

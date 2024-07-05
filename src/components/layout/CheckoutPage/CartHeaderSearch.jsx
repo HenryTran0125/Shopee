@@ -117,7 +117,7 @@ const Button = styled.button`
   text-transform: capitalize;
 `;
 
-function CheckoutHeaderSearch() {
+function CartHeaderSearch() {
   return (
     <Alignment>
       <Container>
@@ -148,4 +148,4 @@ function CheckoutHeaderSearch() {
   );
 }
 
-export default CheckoutHeaderSearch;
+export default CartHeaderSearch;

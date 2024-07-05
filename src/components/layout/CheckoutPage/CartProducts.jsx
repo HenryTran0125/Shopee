@@ -120,7 +120,7 @@ const Actions = styled.div`
   text-align: center;
 `;
 
-function CheckoutProducts() {
+function CartProducts() {
   return (
     <Main>
       <FreeStackShippingContainer>
@@ -151,4 +151,4 @@ function CheckoutProducts() {
   );
 }
 
-export default CheckoutProducts;
+export default CartProducts;

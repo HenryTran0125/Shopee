@@ -86,7 +86,7 @@ const Language = styled.div`
   align-items: center;
 `;
 
-function CheckoutHeaderNavigation() {
+function CartHeaderNavigation() {
   return (
     <HeaderAlignment>
       <HeaderNav>
@@ -129,4 +129,4 @@ function CheckoutHeaderNavigation() {
   );
 }
 
-export default CheckoutHeaderNavigation;
+export default CartHeaderNavigation;

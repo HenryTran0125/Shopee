@@ -111,7 +111,7 @@ const ChatWithShopButton = styled.button`
   overflow: visible;
 `;
 
-function CheckoutShopName() {
+function CartShopName() {
   return (
     <ProductFromShopAlignment>
       <ProductFromShopContainer>
@@ -138,4 +138,4 @@ function CheckoutShopName() {
   );
 }
 
-export default CheckoutShopName;
+export default CartShopName;

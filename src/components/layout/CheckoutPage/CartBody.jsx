@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
-import CheckoutChecking from "./CheckoutChecking";
-import CheckoutProducts from "./CheckoutProducts";
 import styled from "styled-components";
+import CartProducts from "./CartProducts";
+import CartCheckingPrice from "./CartCheckingPrice";
 
 const Container = styled.div`
   margin-left: auto;
@@ -9,13 +9,13 @@ const Container = styled.div`
   width: 1200px;
 `;
 
-function CheckoutBody() {
+function CartBody() {
   return (
     <Container>
-      <CheckoutProducts />
-      <CheckoutChecking />
+      <CartProducts />
+      <CartCheckingPrice />
     </Container>
   );
 }
 
-export default CheckoutBody;
+export default CartBody;
