@@ -241,10 +241,17 @@ const FavoriteText = styled.div`
   font-size: 16px;
 `;
 
-function OverView({ slideImgs, likeCount, color }) {
+function OverView({
+  slideImgs,
+  likeCount,
+  colorOfPickedProduct,
+  colorOfHoveredProduct,
+}) {
   const [chosenElement, setChosenElement] = useState();
-  const [isChosen, setIsChosen] = useState();
+  const [isChosen, setIsChosen] = useState(0);
   const lengthOfImgs = slideImgs.length;
+  const displayedElement = chosenElement && colorOfPickedProduct;
+
   function onHover(hoveredElement) {
     setChosenElement(hoveredElement);
   }
@@ -260,10 +267,10 @@ function OverView({ slideImgs, likeCount, color }) {
                 muted
               />
             </HoveredVideoContainer>
-          ) : color !== null ? (
-            <Img src={color} />
+          ) : colorOfHoveredProduct !== null ? (
+            <Img src={colorOfHoveredProduct} />
           ) : (
-            <Img src={chosenElement ? chosenElement : slideImgs[0]} />
+            <Img src={displayedElement ? displayedElement : slideImgs[0]} />
           )}
         </HoveredElementContainer>
 
@@ -286,6 +293,7 @@ function OverView({ slideImgs, likeCount, color }) {
                     setIsChosen(isChosen == index ? isChosen : index);
                     onHover(element);
                   }}
+                  // onMouseLeave={() => setChosenElement()}
                 ></BorderHoveredElement>
               </ElementContainer>
             ))}
@@ -339,5 +347,6 @@ export default OverView;
 OverView.propTypes = {
   slideImgs: PropTypes.any,
   likeCount: PropTypes.any,
-  color: PropTypes.any,
+  colorOfPickedProduct: PropTypes.any,
+  colorOfHoveredProduct: PropTypes.any,
 };

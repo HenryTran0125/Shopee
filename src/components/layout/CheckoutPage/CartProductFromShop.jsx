@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   decreaseQuantityInCart,
   increaseQuantityInCart,
-} from "../../../features/featureName/featureSlice";
+} from "../../../features/featureName/editQuantityInCart";
 
 const Container = styled.section`
   padding-bottom: 1px;

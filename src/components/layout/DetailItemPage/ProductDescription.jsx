@@ -31,7 +31,7 @@ const DescriptionContainer = styled.div`
 
 function ProductDescription() {
   const { dataDetailProduct } = useData();
-  const DescObj = dataDetailProduct?.desc_obj;
+  const descObj = dataDetailProduct?.desc_obj;
 
   return (
     <ProductDescriptionContainer>
@@ -39,7 +39,7 @@ function ProductDescription() {
 
       <DescriptionAlignment>
         <DescriptionContainer>
-          {DescObj?.map((item, index) =>
+          {descObj?.map((item, index) =>
             item.image ? (
               <div key={index}>
                 <div style={{ width: "100%" }}>

@@ -2,6 +2,8 @@
 import styled from "styled-components";
 import Minus from "../../../Icons/Minus";
 import Plus from "../../../Icons/Plus";
+import { useState } from "react";
+import PropTypes from "prop-types";
 
 const H3 = styled.h3`
   color: #757575;
@@ -92,18 +94,30 @@ const PlusButton = styled.button`
   width: 32px;
 `;
 
-function DetailItemQuantity() {
+function DetailItemQuantity({ quantity, setQuantity }) {
+  function Increasement() {
+    setQuantity((currValue) => currValue + 1);
+  }
+
+  function Decreasement() {
+    if (quantity > 1) {
+      setQuantity((currValue) => currValue - 1);
+    }
+  }
+
   return (
     <QuantityOption>
       <H3>Quantity</H3>
       <div>
         <QuantityAdjustmentAlignment>
           <QuantityAdjustment>
-            <MinusButton>
+            <MinusButton onClick={() => Decreasement()}>
               <Minus />
             </MinusButton>
-            <QuantityDisplay type="text" defaultValue={1} />
-            <PlusButton>
+
+            <QuantityDisplay type="text" value={quantity} />
+
+            <PlusButton onClick={() => Increasement()}>
               <Plus />
             </PlusButton>
           </QuantityAdjustment>
@@ -114,3 +128,8 @@ function DetailItemQuantity() {
 }
 
 export default DetailItemQuantity;
+
+DetailItemQuantity.propTypes = {
+  quantity: PropTypes.any,
+  setQuantity: PropTypes.any,
+};

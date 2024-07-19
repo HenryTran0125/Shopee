@@ -83,34 +83,38 @@ const BoxTickContainer = styled.div`
   width: 0.9375rem;
 `;
 
-function DetailItemPickingColour({ colour, pickOptions, setColor }) {
-  const [selection, setSelection] = useState();
-  const [hover, setHover] = useState();
-  function onSelectColor(index, image) {
+function DetailItemPickingColour({
+  colourOfProduct,
+  setColorOfPickedProduct,
+  setColorOfHoveredProduct,
+  setColorName,
+}) {
+  const [selection, setSelection] = useState(null);
+  const [hover, setHover] = useState(null);
+  function onSelectColor(index, image, name) {
     setSelection((currValue) => (currValue == index ? null : index));
-    setColor(image);
+    setColorOfPickedProduct((currImage) => (currImage == image ? null : image));
+    setColorName(name);
   }
 
   function onHover(index, image) {
     setHover((currValue) => (currValue == index ? currValue : index));
-    setColor(image);
+    setColorOfHoveredProduct(image);
   }
-  console.log(hover);
-  //   console.log(colour);
   return (
     <SpecificOption>
-      <ColourName>{colour?.prop_name}</ColourName>
+      <ColourName>{colourOfProduct?.prop_name}</ColourName>
       <ColourContainer>
-        {colour?.values.map((item, index) => (
+        {colourOfProduct?.values.map((item, index) => (
           <OptionButton
             hovered={hover == index}
-            selected={selection == index}
-            onClick={() => onSelectColor(index, item?.imageUrl)}
             onMouseEnter={() => onHover(index, item?.imageUrl)}
             onMouseLeave={() => {
-              setColor(null);
-              setHover(false);
+              setColorOfHoveredProduct(null);
+              setHover(null);
             }}
+            selected={selection == index}
+            onClick={() => onSelectColor(index, item?.imageUrl, item?.name)}
             key={index}
           >
             <ImgOption src={item.imageUrl} />
@@ -133,7 +137,8 @@ function DetailItemPickingColour({ colour, pickOptions, setColor }) {
 export default DetailItemPickingColour;
 
 DetailItemPickingColour.propTypes = {
-  colour: PropTypes.any,
-  pickOptions: PropTypes.any,
-  setColor: PropTypes.any,
+  colourOfProduct: PropTypes.any,
+  setColorOfPickedProduct: PropTypes.any,
+  setColorOfHoveredProduct: PropTypes.any,
+  setColorName: PropTypes.any,
 };

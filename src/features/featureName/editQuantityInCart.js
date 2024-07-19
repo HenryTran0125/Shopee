@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { createSlice } from "@reduxjs/toolkit";
 
-const featureSlice = createSlice({
+const editQuantityInCart = createSlice({
   name: "numberOfProducts",
   initialState: {
     value: 0,
@@ -21,5 +21,5 @@ const featureSlice = createSlice({
 });
 
 export const { addToCart, increaseQuantityInCart, decreaseQuantityInCart } =
-  featureSlice.actions;
-export default featureSlice.reducer;
+  editQuantityInCart.actions;
+export default editQuantityInCart.reducer;

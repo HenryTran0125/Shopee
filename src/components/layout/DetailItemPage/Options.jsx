@@ -136,10 +136,14 @@ function Options({
   shippingThreshold,
   shippingFeeMin,
   shippingFeeMax,
-  colour,
+  colourOfProduct,
   storage,
-  pickOptions,
-  setColor,
+  setColorOfPickedProduct,
+  setColorOfHoveredProduct,
+  quantity,
+  setQuantity,
+  setStoragePicked,
+  setColorName,
 }) {
   return (
     <OptionsAlignment>
@@ -181,14 +185,18 @@ function Options({
         <PickingOptionsContainer>
           <PickingOptionsAlignment>
             <DetailItemPickingColour
-              colour={colour}
-              setColor={setColor}
-              pickOptions={pickOptions}
+              colourOfProduct={colourOfProduct}
+              setColorOfPickedProduct={setColorOfPickedProduct}
+              setColorOfHoveredProduct={setColorOfHoveredProduct}
+              setColorName={setColorName}
             />
 
-            <DetailItemStorage storage={storage} />
+            <DetailItemStorage
+              storage={storage}
+              setStoragePicked={setStoragePicked}
+            />
 
-            <DetailItemQuantity />
+            <DetailItemQuantity quantity={quantity} setQuantity={setQuantity} />
           </PickingOptionsAlignment>
         </PickingOptionsContainer>
       </OptionsContainer>
@@ -203,8 +211,12 @@ Options.propTypes = {
   shippingThreshold: PropTypes.any,
   shippingFeeMin: PropTypes.any,
   shippingFeeMax: PropTypes.any,
-  colour: PropTypes.any,
+  colourOfProduct: PropTypes.any,
   storage: PropTypes.any,
-  pickOptions: PropTypes.any,
-  setColor: PropTypes.any,
+  setColorOfPickedProduct: PropTypes.any,
+  setColorOfHoveredProduct: PropTypes.any,
+  setQuantity: PropTypes.any,
+  setStoragePicked: PropTypes.any,
+  setColorName: PropTypes.any,
+  quantity: PropTypes.any,
 };

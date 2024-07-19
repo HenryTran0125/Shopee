@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
 import { combineReducers } from "@reduxjs/toolkit";
-import featureReducer from "../features/featureName/featureSlice";
+import editQuantityInCart from "../features/featureName/editQuantityInCart";
+import addProductToCart from "../features/featureName/addProductToCart";
 
 const rootReducer = combineReducers({
-  numberOfProducts: featureReducer,
+  numberOfProductsInCart: editQuantityInCart,
+  productInCart: addProductToCart,
 });
 
 export default rootReducer;

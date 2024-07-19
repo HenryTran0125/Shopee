@@ -1,5 +1,7 @@
+/* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 const SpecificOption = styled.section`
   margin-bottom: 24px;
@@ -31,10 +33,11 @@ const StorageContainer = styled.div`
 const StorageButton = styled.button`
   align-items: center;
   background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.09);
+  border: 1px solid
+    ${(props) => (props.click ? "#d0011b" : "rgba(0,0,0, 0.09)")};
   border-radius: 2px;
   box-sizing: border-box;
-  color: rgba(0, 0, 0, 0.8);
+  color: ${(props) => (props.click ? "#d0011b" : "rgba(0, 0, 0, 0.8)")};
   cursor: pointer;
   display: inline-flex;
   justify-content: center;
@@ -49,13 +52,27 @@ const StorageButton = styled.button`
   word-break: break-word;
 `;
 
-function DetailItemStorage({ storage }) {
+function DetailItemStorage({ storage, setStoragePicked }) {
+  const [checkIndex, setCheckIndex] = useState(null);
+  function onPicked(storage, index) {
+    setStoragePicked((currStorage) =>
+      currStorage == storage ? null : storage
+    );
+    setCheckIndex((currIndex) => (currIndex == index ? null : index));
+  }
+
   return (
     <SpecificOption>
       <StorageName>{storage?.prop_name}</StorageName>
       <StorageContainer>
         {storage?.values.map((item, index) => (
-          <StorageButton key={index}>{item.name}</StorageButton>
+          <StorageButton
+            click={checkIndex == index}
+            key={index}
+            onClick={() => onPicked(item.name, index)}
+          >
+            {item.name}
+          </StorageButton>
         ))}
       </StorageContainer>
     </SpecificOption>
@@ -66,4 +83,5 @@ export default DetailItemStorage;
 
 DetailItemStorage.propTypes = {
   storage: PropTypes.any,
+  setStoragePicked: PropTypes.any,
 };

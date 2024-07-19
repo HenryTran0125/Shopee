@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import OverView from "./OverView";
 import RatingResult from "./RatingResult";
@@ -10,7 +10,8 @@ import ShippingPolicy from "./ShippingPolicy";
 import AddToCartIcon from "../../../Icons/AddToCartIcon";
 import MallTitle from "../../../Icons/MallTitle";
 import { useState } from "react";
-import { addToCart } from "../../../features/featureName/featureSlice";
+import { addToCart } from "../../../features/featureName/editQuantityInCart";
+import { updateProductDetails } from "../../../features/featureName/addProductToCart";
 
 const DetailItemAlignment = styled.div`
   margin-top: 1.25rem;
@@ -106,7 +107,14 @@ const BuyNow = styled.button`
 `;
 
 function DetailItem({ data }) {
-  const [color, setColor] = useState(null);
+  const test1 = useSelector((state) => state.productInCart.productsInCart);
+  const [colorOfPickedProduct, setColorOfPickedProduct] = useState(null);
+  const [colorOfHoveredProduct, setColorOfHoveredProduct] = useState(null);
+
+  const [colorName, setColorName] = useState(null);
+  const [storagePicked, setStoragePicked] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+
   const dispatch = useDispatch();
 
   const mainImgs = data?.main_imgs;
@@ -125,16 +133,44 @@ function DetailItem({ data }) {
     data?.delivery_info?.price_info_default?.free_shipping_threshold;
   const shippingFeeMin = data?.delivery_info?.price_info_default?.price_min;
   const shippingFeeMax = data?.delivery_info?.price_info_default?.price_max;
-  const colour = data?.sku_props[0];
+  const colourOfProduct = data?.sku_props[0];
   const storage = data?.sku_props[1];
 
-  const pickOptions = data?.skus;
-  console.log(typeof mainImgs);
+  const allKindOfProductInformation = data?.skus;
+  const solving = allKindOfProductInformation.map((item) =>
+    item.props_names.split(";")
+  );
+
+  const templateSelection = {
+    nameTemplate: "",
+    storageTemplate: "",
+  };
+
+  const finalTemplate = solving.map((item) => ({
+    ...templateSelection,
+    nameTemplate: item[0],
+    storageTemplate: item[1],
+  }));
+
+  const selectedProductToCart = {
+    colorOfSelectedProduct: colorName,
+    storageOfSelectedProduct: storagePicked,
+    quantityOfSelectedProduct: quantity,
+  };
+
+  // console.log(allKindOfProductInformation);
+  // console.log(finalTemplate);
+  console.log(test1);
 
   return (
     <DetailItemAlignment>
       <DetailItemContainer>
-        <OverView color={color} slideImgs={slideImgs} likeCount={likeCount} />
+        <OverView
+          colorOfPickedProduct={colorOfPickedProduct}
+          colorOfHoveredProduct={colorOfHoveredProduct}
+          slideImgs={slideImgs}
+          likeCount={likeCount}
+        />
 
         <DetailInformation>
           <DetailInformationContainer>
@@ -154,16 +190,31 @@ function DetailItem({ data }) {
               shippingThreshold={shippingThreshold}
               shippingFeeMin={shippingFeeMin}
               shippingFeeMax={shippingFeeMax}
-              colour={colour}
-              setColor={setColor}
+              colourOfProduct={colourOfProduct}
+              setColorOfPickedProduct={setColorOfPickedProduct}
+              setColorOfHoveredProduct={setColorOfHoveredProduct}
+              quantity={quantity}
+              setQuantity={setQuantity}
               storage={storage}
-              pickOptions={pickOptions}
+              setStoragePicked={setStoragePicked}
+              setColorName={setColorName}
             />
 
             <div style={{ marginTop: "15px" }}>
               <div style={{ paddingLeft: "20px" }}>
                 <ButtonBuyContainer>
-                  <AddToCart onClick={() => dispatch(addToCart())}>
+                  <AddToCart
+                    onClick={() =>
+                      dispatch(
+                        updateProductDetails({
+                          nameProductInCart:
+                            selectedProductToCart.colorOfSelectedProduct,
+                          storageProductInCart:
+                            selectedProductToCart.storageOfSelectedProduct,
+                        })
+                      )
+                    }
+                  >
                     <AddToCartIcon />
                     <AddToCartText>add to cart</AddToCartText>
                   </AddToCart>
