@@ -107,7 +107,9 @@ const BuyNow = styled.button`
 `;
 
 function DetailItem({ data }) {
-  const test1 = useSelector((state) => state.productInCart.productsInCart);
+  const selectedObject = useSelector(
+    (state) => state.productInCart.productsInCart
+  );
   const [colorOfPickedProduct, setColorOfPickedProduct] = useState(null);
   const [colorOfHoveredProduct, setColorOfHoveredProduct] = useState(null);
 
@@ -133,23 +135,30 @@ function DetailItem({ data }) {
     data?.delivery_info?.price_info_default?.free_shipping_threshold;
   const shippingFeeMin = data?.delivery_info?.price_info_default?.price_min;
   const shippingFeeMax = data?.delivery_info?.price_info_default?.price_max;
+
   const colourOfProduct = data?.sku_props[0];
   const storage = data?.sku_props[1];
 
   const allKindOfProductInformation = data?.skus;
-  const solving = allKindOfProductInformation.map((item) =>
-    item.props_names.split(";")
-  );
+  const solving = allKindOfProductInformation.map((item) => [
+    item.props_names.split(";"),
+    item.origin_price,
+    item.sale_price,
+  ]);
 
   const templateSelection = {
     nameTemplate: "",
     storageTemplate: "",
+    originPrice: "",
+    salePrice: "",
   };
 
   const finalTemplate = solving.map((item) => ({
     ...templateSelection,
-    nameTemplate: item[0],
-    storageTemplate: item[1],
+    nameTemplate: item[0][0],
+    storageTemplate: item[0][1],
+    originPrice: item[1],
+    salePrice: item[2],
   }));
 
   const selectedProductToCart = {
@@ -160,7 +169,9 @@ function DetailItem({ data }) {
 
   // console.log(allKindOfProductInformation);
   // console.log(finalTemplate);
-  console.log(test1);
+
+  console.log(solving);
+  console.log(selectedObject);
 
   return (
     <DetailItemAlignment>
@@ -211,6 +222,8 @@ function DetailItem({ data }) {
                             selectedProductToCart.colorOfSelectedProduct,
                           storageProductInCart:
                             selectedProductToCart.storageOfSelectedProduct,
+                          quantityOfSelectedProduct:
+                            selectedProductToCart.quantityOfSelectedProduct,
                         })
                       )
                     }

@@ -274,7 +274,6 @@ function StoreInformation({ shopId }) {
     ? shopLogoURL.toLowerCase().replace("shopeesiteoption.sg", "sg")
     : shopLogoURL;
 
-  console.log(yearJoined, currentYear);
   return (
     <StoreSetting>
       <StoreAlignment>

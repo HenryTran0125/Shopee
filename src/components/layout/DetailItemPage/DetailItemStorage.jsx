@@ -34,10 +34,12 @@ const StorageButton = styled.button`
   align-items: center;
   background: #fff;
   border: 1px solid
-    ${(props) => (props.click ? "#d0011b" : "rgba(0,0,0, 0.09)")};
+    ${(props) =>
+      props.click || props.hovered ? "#d0011b" : "rgba(0,0,0, 0.09)"};
   border-radius: 2px;
   box-sizing: border-box;
-  color: ${(props) => (props.click ? "#d0011b" : "rgba(0, 0, 0, 0.8)")};
+  color: ${(props) =>
+    props.click || props.hovered ? "#d0011b" : "rgba(0, 0, 0, 0.8)"};
   cursor: pointer;
   display: inline-flex;
   justify-content: center;
@@ -50,15 +52,30 @@ const StorageButton = styled.button`
   position: relative;
   text-align: left;
   word-break: break-word;
+
+  ::before {
+    border: 0.9375rem solid transparent;
+    border-bottom: 0.9375rem solid #d0011b;
+    bottom: 0;
+    content: "";
+    position: absolute;
+    right: -0.9375rem;
+  }
 `;
 
 function DetailItemStorage({ storage, setStoragePicked }) {
   const [checkIndex, setCheckIndex] = useState(null);
+  const [hover, setHover] = useState(null);
+
   function onPicked(storage, index) {
     setStoragePicked((currStorage) =>
       currStorage == storage ? null : storage
     );
     setCheckIndex((currIndex) => (currIndex == index ? null : index));
+  }
+
+  function onHover(index) {
+    setHover((currValue) => (currValue == index ? currValue : index));
   }
 
   return (
@@ -68,8 +85,11 @@ function DetailItemStorage({ storage, setStoragePicked }) {
         {storage?.values.map((item, index) => (
           <StorageButton
             click={checkIndex == index}
+            hovered={hover == index}
             key={index}
             onClick={() => onPicked(item.name, index)}
+            onMouseEnter={() => onHover(index)}
+            onMouseLeave={() => setHover(null)}
           >
             {item.name}
           </StorageButton>
