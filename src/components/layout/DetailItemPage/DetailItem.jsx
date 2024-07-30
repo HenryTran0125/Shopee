@@ -165,6 +165,10 @@ function DetailItem({ data }) {
     colorOfSelectedProduct: colorName,
     storageOfSelectedProduct: storagePicked,
     quantityOfSelectedProduct: quantity,
+    originPriceOfSelectedProduct: "",
+    salePriceOfSelectedProduct: "",
+    imageOfSelectedProduct: "",
+    nameOfSelectedProduct: "",
   };
 
   // console.log(allKindOfProductInformation);
@@ -172,6 +176,7 @@ function DetailItem({ data }) {
 
   console.log(solving);
   console.log(selectedObject);
+  console.log(finalTemplate);
 
   return (
     <DetailItemAlignment>

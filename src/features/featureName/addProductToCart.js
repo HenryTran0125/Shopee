@@ -24,11 +24,12 @@ const addProductToCart = createSlice({
           action.payload.quantityOfSelectedProduct;
       } else {
         state.productsInCart.push({
-          nameProductInCart: action.payload.nameProductInCart,
-          storageProductInCart: action.payload.storageProductInCart,
-          quantityOfSelectedProduct: action.payload.quantityOfSelectedProduct,
-          imageOfSelectedProduct: action.payload.imageOfSelectedProduct,
-          salePriceOfSelectedProduct: action.payload.salePriceOfSelectedProduct,
+          nameOfProductInCart: action.payload.nameOfProductInCart,
+          storageOfProductInCart: action.payload.storageOfProductInCart,
+          quantityOfProductInCart: action.payload.quantityOfProductInCart,
+          imageOfProductInCart: action.payload.imageOfProductInCart,
+          originPriceOfProductInCart: action.payload.originPriceOfProductInCart,
+          salePriceOfProductInCart: action.payload.salePriceOfProductInCart,
         });
       }
     },
