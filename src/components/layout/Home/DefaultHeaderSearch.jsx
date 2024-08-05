@@ -9,6 +9,8 @@ import Shopee from "../../../Icons/Shopee";
 import Cart from "../../../Icons/Cart";
 import MagnifyingGlass from "../../../Icons/MagnifyingGlass";
 import { useSelector } from "react-redux";
+import PreviewCart from "./PreviewCart";
+import { useState } from "react";
 
 const HeaderContainer = styled.div`
   min-width: inherit;
@@ -78,54 +80,6 @@ const CateAnchor = styled.a`
   /* margin-right: 10px; */
 `;
 
-const PreviewCart = styled.div`
-  z-index: 20;
-  position: absolute;
-  background-color: #fff;
-  height: 340px;
-  width: 390px;
-  right: 3%;
-  top: 90%;
-`;
-
-const ArrowPreviewCart = styled.div`
-  position: absolute;
-  bottom: 100%;
-  right: 5%;
-  border-bottom: 10px solid #fff;
-  border-right: 10px solid transparent;
-  border-left: 10px solid transparent;
-  height: 0;
-  width: 0;
-`;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 12px;
-`;
-
-const Title = styled.div`
-  flex: 1;
-  line-height: 2;
-`;
-
-const H3 = styled.h3`
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.26);
-  font-weight: 400;
-  letter-spacing: 1px;
-`;
-
-const ProductListed = styled.div`
-  flex: 3;
-`;
-
-const ButtonPreviewCart = styled.button`
-  flex: 1;
-`;
-
 function DefaultHeaderSearch() {
   const selectedObject = useSelector(
     (state) => state.productInCart.productsInCart
@@ -146,7 +100,10 @@ function DefaultHeaderSearch() {
   } = useForm();
 
   const [searchParams, setSearchParams] = useSearchParams();
+  const [cartPreview, setCartPreview] = useState(false);
   const location = useLocation();
+
+  function onHoverPreviewCart() {}
 
   function onSubmit() {
     valueInput = getValues("searching");
@@ -189,21 +146,9 @@ function DefaultHeaderSearch() {
           </NavSearch>
         </SearchContainer>
 
-        <Cart />
+        <Cart setCartPreview={setCartPreview} />
 
-        <PreviewCart>
-          <ArrowPreviewCart></ArrowPreviewCart>
-
-          <Container>
-            <Title>
-              <H3>Recently Added Products</H3>
-            </Title>
-
-            <div></div>
-
-            <div></div>
-          </Container>
-        </PreviewCart>
+        <PreviewCart cartPreview={cartPreview} />
       </HeaderSearching>
     </HeaderContainer>
   );

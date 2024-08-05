@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const ItemsInCart = styled.div`
   color: #d0011b;
@@ -17,7 +18,7 @@ const ItemsInCart = styled.div`
   right: -30%;
 `;
 
-function Cart() {
+function Cart({ setCartPreview }) {
   return (
     <div
       style={{
@@ -31,6 +32,8 @@ function Cart() {
       }}
     >
       <a
+        onMouseEnter={() => setCartPreview((currStatus) => !currStatus)}
+        onMouseLeave={() => setCartPreview((currStatus) => !currStatus)}
         style={{
           cursor: "pointer",
           margin: "0 0 0 5px",
@@ -69,3 +72,7 @@ function Cart() {
 }
 
 export default Cart;
+
+Cart.propTypes = {
+  setCartPreview: PropTypes.any,
+};
