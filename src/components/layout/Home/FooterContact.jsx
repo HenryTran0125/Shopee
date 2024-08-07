@@ -20,8 +20,9 @@ const Alignment = styled.div`
 `;
 
 const Service = styled.div`
-  padding: 0.5rem;
+  padding: 1rem 0;
   display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
 const H3 = styled.h3`
@@ -34,6 +35,12 @@ const H3 = styled.h3`
 
 const Column = styled.div`
   width: 240px;
+
+  &:last-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const ListContainer = styled.ul`
@@ -93,6 +100,22 @@ const QRImage = styled.img`
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
   margin-right: 8px;
+`;
+
+const CopyRightContainer = styled.div`
+  color: rgba(0, 0, 0, 0.54);
+  padding: 2.5rem 0;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+`;
+
+const AllRightReserved = styled.div`
+  font-size: 1rem;
+`;
+
+const Country = styled.div`
+  font-size: 1rem;
 `;
 
 function FooterContact() {
@@ -176,7 +199,22 @@ function FooterContact() {
           </Column>
         </Service>
 
-        <div></div>
+        <CopyRightContainer>
+          <AllRightReserved>
+            © 2024 Shopee. All Rights Reserved .
+          </AllRightReserved>
+
+          <Country>
+            Country & Region: Singapore <span>&nbsp;|&nbsp;</span> Indonesia{" "}
+            <span>&nbsp;|&nbsp;</span>
+            Thailand <span>&nbsp;|&nbsp;</span> Malaysia{" "}
+            <span>&nbsp;|&nbsp;</span> Vietnam <span>&nbsp;|&nbsp;</span>{" "}
+            Philippines <span>&nbsp;|&nbsp;</span> Brazil{" "}
+            <span>&nbsp;|&nbsp;</span> México <span>&nbsp;|&nbsp;</span>{" "}
+            Colombia <span>&nbsp;|&nbsp;</span> Chile <span>&nbsp;|&nbsp;</span>
+            Taiwan
+          </Country>
+        </CopyRightContainer>
       </Alignment>
     </Container>
   );
