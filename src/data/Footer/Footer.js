@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import creditCard from "../../assets/images/Payment/creditCard.jpeg";
-import shopeePay from "../../assets/images/Payment/ShopeePay.jpeg";
+import shopeePay from "../../assets/images/Payment/shopeePay.jpeg";
 import unknown from "../../assets/images/Payment/unknown.jpeg";
 import visa from "../../assets/images/Payment/visa.jpeg";
 
