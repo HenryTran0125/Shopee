@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import creditCard from "../../assets/images/Payment/creditCard.jpeg";
-import ShopeePay from "../../assets/images/Payment/ShopeePay.jpeg";
+import shopeePay from "../../assets/images/Payment/ShopeePay.jpeg";
 import unknown from "../../assets/images/Payment/unknown.jpeg";
 import visa from "../../assets/images/Payment/visa.jpeg";
 
@@ -423,7 +423,7 @@ export const service = [
   },
 ];
 
-export const payment = [visa, creditCard, unknown, ShopeePay];
+export const payment = [visa, creditCard, unknown, shopeePay];
 
 export const logistic = [
   SPX,
