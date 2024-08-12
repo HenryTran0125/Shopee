@@ -25,7 +25,7 @@ function SearchResult() {
   }
 
   if (error) {
-    return <div>Error loading data</div>;
+    return <div>API from 3rd party (TMAPI) is fixing API. Try again later</div>;
   }
 
   const dataInformation =
